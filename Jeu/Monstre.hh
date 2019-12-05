@@ -4,8 +4,11 @@
 #define MONSTRE_HH
 
 class Monstre : public Personnage{
+public:
+    Monstre();
+    attaque(Joueur j);
 protected:
     Statut faiblesse;
     Statut force;
-};
-#endif
+    std::string couleur;
+}
