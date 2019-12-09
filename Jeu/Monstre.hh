@@ -1,7 +1,7 @@
-#include "Personnage.hh"
-
 #ifndef MONSTRE_HH
 #define MONSTRE_HH
+
+#include "Personnage.hh"
 
 class Monstre : public Personnage{
 public:

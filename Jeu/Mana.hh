@@ -1,7 +1,7 @@
-#include "Objet.hh"
-
 #ifndef MANA_HH
 #define MANA_HH
+
+#include "Objet.hh"
 
 class Mana: public Objet{
 public:

@@ -1,9 +1,9 @@
+#ifndef OBJET_HH
+#define OBJET_HH
+
 #include <iostream>
 #include <string>
 #include "Personnage.hh"
-
-#ifndef OBJET_HH
-#define OBJET_HH
 
 using namespace std;
 

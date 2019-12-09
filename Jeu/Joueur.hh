@@ -12,7 +12,7 @@ public:
 //Méthodes
   Joueur();
   Joueur(int Viemax);
-
+  void initiattaque();
 private:
     int manaMax;
     int mana;
