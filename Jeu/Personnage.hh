@@ -5,7 +5,14 @@
 
 typedef enum {PHYSIQUE, FEU, POISON, SOIN, GLACE} Statut;
 class Personnage{
-    protected:
+  protected:
     int vie;
     int vieMax;
-}
+
+  public:
+    Personnage(int vieMax);
+    Personnage();
+
+};
+
+#endif
