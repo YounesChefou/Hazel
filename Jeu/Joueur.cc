@@ -30,3 +30,10 @@ Joueur::Joueur(int viemax){
   S = PHYSIQUE;
   initiattaque();
 }
+
+void Joueur::recuperation(Vie a){
+  vie += a.getrecup();
+  if(vie > vieMax){
+    vie = vieMax;
+  }
+}

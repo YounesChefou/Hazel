@@ -6,6 +6,7 @@
 #include <iostream>
 #include <ostream>
 #include <list>
+#include "Vie.hh"
 
 class Joueur : public Personnage{
 public:
@@ -13,6 +14,9 @@ public:
   Joueur();
   Joueur(int Viemax);
   void initiattaque();
+  int getvie() const {return vie;}
+  int getviemax() const {return vieMax;}
+  void recuperation(Vie a);
 private:
     int manaMax;
     int mana;

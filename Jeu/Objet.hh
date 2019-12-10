@@ -11,7 +11,7 @@ class Objet{
 public:
   Objet(int recuperation); // Nbre de pts de mana récupéré
   Objet();
-  void virtual recuperation(Joueur a);
+  int getrecup(){return recup;}
 
 protected:
   string nom;
