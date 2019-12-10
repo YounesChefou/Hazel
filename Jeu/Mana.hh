@@ -7,6 +7,5 @@ class Mana: public Objet{
 public:
   Mana(int recuperation);
   Mana();
-  void recuperation(Joueur a);
 };
 #endif

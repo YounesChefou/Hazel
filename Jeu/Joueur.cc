@@ -37,3 +37,10 @@ void Joueur::recuperation(Vie a){
     vie = vieMax;
   }
 }
+
+void Joueur::recuperation(Mana a){
+  mana += a.getrecup();
+  if(mana > manaMax){
+    mana = manaMax;
+  }
+}

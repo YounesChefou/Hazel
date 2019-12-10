@@ -2,7 +2,6 @@
 #define VIE_HH
 
 #include "Objet.hh"
-#include "Joueur.hh"
 
 class Vie: public Objet{
 public:
