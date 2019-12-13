@@ -8,7 +8,6 @@ public:
   Monde(int L, int l);
   Monde();
   ~Monde();
-  void deplacement(Personnage pers);
 private:
   string** carte;
 };

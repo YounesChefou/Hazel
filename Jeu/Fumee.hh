@@ -7,6 +7,7 @@ class Fumee{
     protected:
     std::string couleur;
     int consoMana;
+    int degats;
 };
 
 #endif

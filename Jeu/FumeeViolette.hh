@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Fumee.hh"
 
-//Fumee empoisonnée
+//Fumee empoisonnée, la personne touchée perd des pts de vie à un intervalle de tps régulier 
 class FumeeViolette : public Fumee{
     public:
     FumeeViolette();

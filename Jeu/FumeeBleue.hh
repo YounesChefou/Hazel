@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Fumee.hh"
 
-//Fumée pour geler
+//Fumée pour geler, empêche l'adversaire de bouger quelques secondes
 class FumeeBleue : public Fumee{
     public:
     FumeeBleue();
