@@ -1,7 +1,7 @@
-#include <iostream>
-
 #ifndef FUMEE_HH
 #define FUMEE_HH
+
+#include <iostream>
 
 class Fumee{
     protected:
