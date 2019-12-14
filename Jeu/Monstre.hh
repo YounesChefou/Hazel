@@ -1,6 +1,3 @@
-#ifndef MONSTRE_HH
-#define MONSTRE_HH
-
 #include "Personnage.hh"
 #include "Joueur.hh"
 
@@ -12,5 +9,5 @@ protected:
     Statut faiblesse;
     Statut force;
     std::string couleur;
-    Fumee fum;
+    friend class Joueur;
 }

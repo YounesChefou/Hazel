@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -std=c++11
+CFLAGS = -Wall -std=c++11 #rajouter liens biblothèques graphiques
 
 all: main
 

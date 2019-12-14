@@ -19,11 +19,14 @@ public:
   int getviemax() const {return vieMax;}
   void recuperation(Vie a);
   void recuperation(Mana a);
+  void action(Monstre M); //Nom temporaire
+  void transformation(Statut S); //
+  void detransformation(); //Permet de revenir au Statut standatd
+  std::string toString();
 private:
     int manaMax;
     int mana;
-    Statut S;
-    std::list<Statut> attaques; //Penser au fait que les attaques vont dépendre du statut,
-    // donc fumée.hh doit être inclus
+    Statut element;
+    std::list<Statut> attaques;
 };
 #endif
