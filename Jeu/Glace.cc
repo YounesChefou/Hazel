@@ -7,7 +7,6 @@ Glace::Glace(int vieMax){
   faiblesse = FEU;
   force = GLACE;
   couleur = "BLEUE";
-  fum = new FumeeBleue();
 }
 
 Glace::Glace(){
@@ -17,9 +16,8 @@ Glace::Glace(){
   faiblesse = FEU;
   force = GLACE;
   couleur = "BLEUE";
-  fum = new FumeeBleue();
 }
 
-void Glace::attaque(Joueur a){
+void Glace::attaque(Personnage a){
 
 }

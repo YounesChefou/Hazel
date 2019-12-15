@@ -7,7 +7,6 @@ Feu::Feu(int vieMax){
   faiblesse = GLACE;
   force = FEU;
   couleur = "ROUGE";
-  fum = new FumeeRouge();
 }
 
 Feu::Feu(){
@@ -18,9 +17,8 @@ Feu::Feu(){
   faiblesse = GLACE;
   force = FEU;
   couleur = "ROUGE";
-  fum = new FumeeRouge();
 }
 
-void Feu::attaque(Joueur a){
-  
+void Feu::attaque(Personnage a){
+
 }

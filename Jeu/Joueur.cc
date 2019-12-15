@@ -1,8 +1,9 @@
 #include "Joueur.hh"
 #include <time.h>
 #include <ostream>
+#include <sstream>
 #include <list>
-#include
+#include <ctime>
 
 // void Joueur::initiattaque(){
 //   attaques.push_back(PHYSIQUE);
@@ -18,8 +19,8 @@ Joueur::Joueur(){
   vie = vieMax;
   manaMax = (75 + (int) rand() /(int) RAND_MAX * (50));
   mana = manaMax;
-  S = PHYSIQUE;
-  initiattaque();
+  element = PHYSIQUE;
+  //initiattaque();
 }
 
 Joueur::Joueur(int viemax){
@@ -28,8 +29,8 @@ Joueur::Joueur(int viemax){
   vie = viemax;
   manaMax = (75 + (int) rand() /(int) RAND_MAX * (50));
   mana = manaMax;
-  S = PHYSIQUE;
-  initiattaque();
+  element = PHYSIQUE;
+  //initiattaque();
 }
 
 void Joueur::recuperation(Vie a){
@@ -45,21 +46,23 @@ void Joueur::recuperation(Mana a){
     mana = manaMax;
  }
 
+}
+
 void Joueur::action(Monstre M){
     if(element == SOIN){
-        M.vie += 2;
+        M.setVie(2);
     }
-    else if(element == M.Force){
+    else if(element == M.getFaiblesse()){
         std::cout << "L'attaque n'est pas très efficace..." << std::endl;
-        M.vie -= 2;
+        M.setVie(-2);
     }
-    else if(element == M.faiblesse){
+    else if(element == M.getFaiblesse()){
         std::cout << "L'attaque est très efficace !" << std::endl;
-        M.vie -= M.vie*0.07;
+        M.setVie(-15);
     }
     else{
         std::cout << "L'attaque est normale." << std::endl;
-        M.vie -= 5;
+        M.setVie(-5);
     }
 }
 
@@ -71,14 +74,15 @@ void Joueur::transformation(Statut S){
 }
 
 void Joueur::detransformation(){
-    
+    element = PHYSIQUE;
+
 }
 
 std::string Joueur::toString(){
     std::stringstream str;
-    std::cout << "=========================" << std::endl;
-    std::cout << "Le joueur a " << mana << " en mana." << std::endl
-    std::cout << "Le joueur a " << vie << " sur " <<< vieMax;
-    std::cout << "=========================" << std::endl;
- }
+    str << "=========================" << std::endl;
+    str << "Le joueur a " << mana << " en mana." << std::endl;
+    str << "Le joueur a " << vie << " sur " << vieMax << std::endl;
+    str << "=========================" << std::endl;
+    return str.str();
 }

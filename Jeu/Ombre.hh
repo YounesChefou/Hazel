@@ -1,11 +1,8 @@
-#ifndef OMBRE_HH
-#define OMBRE_HH
-
+#pragma once
 #include "Monstre.hh"
 
 class Ombre: public Monstre{
   Ombre(int vieMax);
   Ombre();
-  void attaque(Joueur a);
+  void attaque(Personnage a);
 };
-#endif

@@ -7,7 +7,6 @@ Ombre::Ombre(int vieMax){
   faiblesse = SOIN;
   force = PHYSIQUE;
   couleur = "NOIRE";
-  fum = new FumeeNoire(); //Plus puissante que la fumée du monstre basic
 }
 
 Ombre::Ombre(){
@@ -17,9 +16,8 @@ Ombre::Ombre(){
   faiblesse = SOIN;
   force = PHYSIQUE;
   couleur = "NOIRE";
-  fum = new FumeeNoire();
 }
 
-void Ombre::attaque(Joueur a){
+void Ombre::attaque(Personnage a){
 
 }

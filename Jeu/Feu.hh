@@ -1,11 +1,9 @@
-#ifndef FEU_HH
-#define FEU_HH
-
+#pragma once
 #include "Monstre.hh"
+
 
 class Feu: public Monstre{
   Feu(int vieMax);
   Feu();
-  void attaque(Joueur a);
+  void attaque(Personnage a);
 };
-#endif
