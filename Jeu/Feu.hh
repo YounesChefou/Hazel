@@ -4,7 +4,7 @@
 
 class Feu: public Monstre{
 public:
-  Feu(int vieMax);
+  Feu(int v);
   Feu();
   void attaque(Personnage a);
 };

@@ -14,7 +14,7 @@ class Joueur : public Personnage{
 public:
 //Méthodes
   Joueur();
-  Joueur(int Viemax);
+  Joueur(int v);
   void initiattaque();
   int getMana() const {return mana;}
   void recuperation(Vie a);

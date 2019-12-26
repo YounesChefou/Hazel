@@ -5,7 +5,7 @@
 class Glace: public Monstre{
 private:
 public:
-  Glace(int vieMax);
+  Glace(int v);
   Glace();
   void attaque(Personnage a);
 };

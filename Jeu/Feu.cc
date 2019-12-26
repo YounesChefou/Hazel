@@ -1,8 +1,8 @@
 #include "Feu.hh"
 #include <time.h>
 
-Feu::Feu(int vieMax){
-  vieMax = vieMax;
+Feu::Feu(int v){
+  vieMax = v;
   vie = vieMax;
   faiblesse = GLACE;
   force = FEU;

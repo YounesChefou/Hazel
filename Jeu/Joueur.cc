@@ -25,10 +25,10 @@ Joueur::Joueur(){
   //initiattaque();
 }
 
-Joueur::Joueur(int viemax){
+Joueur::Joueur(int v){
   srand (time(NULL));
-  viemax = viemax;
-  vie = viemax;
+  vieMax = v;
+  vie = vieMax;
   manaMax = (75 + (int) rand() /(int) RAND_MAX * (50));
   mana = manaMax;
   typeAttaque = 0;

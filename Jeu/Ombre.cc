@@ -1,8 +1,8 @@
 #include "Ombre.hh"
 #include <time.h>
 
-Ombre::Ombre(int vieMax){
-  vieMax = vieMax;
+Ombre::Ombre(int v){
+  vieMax = v;
   vie = vieMax;
   faiblesse = SOIN;
   force = PHYSIQUE;

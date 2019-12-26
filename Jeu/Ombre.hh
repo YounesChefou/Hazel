@@ -3,7 +3,7 @@
 
 class Ombre: public Monstre{
 public:
-  Ombre(int vieMax);
+  Ombre(int v);
   Ombre();
   void attaque(Personnage a);
 };

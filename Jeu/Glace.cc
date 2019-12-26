@@ -1,8 +1,8 @@
 #include "Glace.hh"
 #include <time.h>
 
-Glace::Glace(int vieMax){
-  vieMax = vieMax;
+Glace::Glace(int v){
+  vieMax = v;
   vie = vieMax;
   faiblesse = FEU;
   force = GLACE;
