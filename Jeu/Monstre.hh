@@ -1,5 +1,6 @@
 #pragma once
 #include "Personnage.hh"
+#include <sstream>
 
 class Monstre : public Personnage{
 public:
@@ -16,6 +17,7 @@ public:
     }
     Statut getForce(){return force;}
     Statut getFaiblesse(){return faiblesse;}
+    std::string toString();
 
 protected:
     Statut faiblesse;
