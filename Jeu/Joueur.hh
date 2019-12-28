@@ -8,22 +8,30 @@
 #include <list>
 #include "Vie.hh"
 #include "Mana.hh"
+#include "Monstre.hh"
 
 class Joueur : public Personnage{
 public:
 //Méthodes
   Joueur();
-  Joueur(int Viemax);
+  Joueur(int v);
   void initiattaque();
-  int getvie() const {return vie;}
-  int getviemax() const {return vieMax;}
+  int getMana() const {return mana;}
   void recuperation(Vie a);
   void recuperation(Mana a);
+  void action(Monstre M); //Nom temporaire
+  void transformation(); //
+  void detransformation(); //Permet de revenir au Statut standard
+  // void setMana(int nouvMana){mana = nouvMana;}
+  void setMana(int nouvMana){mana = nouvMana;}
+  void changerElement();
+  std::string toString();
 private:
+    static Statut elements[];
     int manaMax;
     int mana;
-    Statut S;
-    std::list<Statut> attaques; //Penser au fait que les attaques vont dépendre du statut,
-    // donc fumée.hh doit être inclus
+    int typeAttaque;
+    bool transforme;
+    friend class Monstre;
 };
 #endif

@@ -1,13 +1,12 @@
 #include "Ombre.hh"
 #include <time.h>
 
-Ombre::Ombre(int vieMax){
-  vieMax = vieMax;
+Ombre::Ombre(int v){
+  vieMax = v;
   vie = vieMax;
   faiblesse = SOIN;
   force = PHYSIQUE;
   couleur = "NOIRE";
-  fum = new FumeeNoire(); //Plus puissante que la fumée du monstre basic
 }
 
 Ombre::Ombre(){
@@ -17,9 +16,8 @@ Ombre::Ombre(){
   faiblesse = SOIN;
   force = PHYSIQUE;
   couleur = "NOIRE";
-  fum = new FumeeNoire();
 }
 
-void Ombre::attaque(Joueur a){
+void Ombre::attaque(Personnage a){
 
 }

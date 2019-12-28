@@ -1,6 +1,4 @@
-#ifndef VIE_HH
-#define VIE_HH
-
+#pragma once
 #include "Objet.hh"
 
 class Vie: public Objet{
@@ -8,5 +6,3 @@ public:
   Vie(int recuperation);
   Vie();
 };
-
-#endif

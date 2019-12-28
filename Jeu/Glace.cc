@@ -1,13 +1,12 @@
 #include "Glace.hh"
 #include <time.h>
 
-Glace::Glace(int vieMax){
-  vieMax = vieMax;
+Glace::Glace(int v){
+  vieMax = v;
   vie = vieMax;
   faiblesse = FEU;
   force = GLACE;
   couleur = "BLEUE";
-  fum = new FumeeBleue();
 }
 
 Glace::Glace(){
@@ -17,9 +16,8 @@ Glace::Glace(){
   faiblesse = FEU;
   force = GLACE;
   couleur = "BLEUE";
-  fum = new FumeeBleue();
 }
 
-void Glace::attaque(Joueur a){
+void Glace::attaque(Personnage a){
 
 }
