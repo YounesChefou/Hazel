@@ -10,8 +10,11 @@ class Personnage{
     int vieMax;
 
   public:
-    Personnage(int vieMax);
-    Personnage();
+    // Personnage(int vieMax);
+    // Personnage();
+    int getVie() const {return vie;}
+    void setVie(int vie);
+    int getviemax() const {return vieMax;}
 
 };
 

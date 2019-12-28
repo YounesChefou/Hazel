@@ -6,7 +6,6 @@ Basic::Basic(int vieMax){
   faiblesse = AUCUNE;
   force = AUCUNE;
   couleur = "GRISE";
-  fum = new FumeeNoire();
 }
 
 Basic::Basic(){
@@ -16,9 +15,8 @@ Basic::Basic(){
   faiblesse = AUCUNE;
   force = AUCUNE;
   couleur = "GRISE";
-  fum = new FumeeNoire();
 }
 
-void Basic::attaque(Joueur a){
+void Basic::attaque(Personnage a){
 
 }

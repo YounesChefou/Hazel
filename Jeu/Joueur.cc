@@ -1,15 +1,19 @@
 #include "Joueur.hh"
 #include <time.h>
 #include <ostream>
+#include <sstream>
 #include <list>
+#include <ctime>
 
-void Joueur::initiattaque(){
-  attaques.push_back(PHYSIQUE);
-  attaques.push_back(FEU);
-  attaques.push_back(POISON);
-  attaques.push_back(SOIN);
-  attaques.push_back(GLACE);
-}
+// void Joueur::initiattaque(){
+//   attaques.push_back(PHYSIQUE);
+//   attaques.push_back(FEU);
+//   attaques.push_back(POISON);
+//   attaques.push_back(SOIN);
+//   attaques.push_back(GLACE);
+// }
+
+Statut Joueur::elements[] = {PHYSIQUE, FEU, POISON, SOIN, GLACE};
 
 Joueur::Joueur(){
   srand (time(NULL));
@@ -17,18 +21,19 @@ Joueur::Joueur(){
   vie = vieMax;
   manaMax = (75 + (int) rand() /(int) RAND_MAX * (50));
   mana = manaMax;
-  S = PHYSIQUE;
-  initiattaque();
+  typeAttaque = 0;
+  //initiattaque();
 }
 
-Joueur::Joueur(int viemax){
+Joueur::Joueur(int v){
   srand (time(NULL));
-  viemax = viemax;
-  vie = viemax;
+  vieMax = v;
+  vie = vieMax;
   manaMax = (75 + (int) rand() /(int) RAND_MAX * (50));
   mana = manaMax;
-  S = PHYSIQUE;
-  initiattaque();
+  typeAttaque = 0;
+  transforme = false;
+  //initiattaque();
 }
 
 void Joueur::recuperation(Vie a){
@@ -42,5 +47,52 @@ void Joueur::recuperation(Mana a){
   mana += a.getrecup();
   if(mana > manaMax){
     mana = manaMax;
-  }
+ }
+
+}
+
+void Joueur::action(Monstre M){
+    if(elements[typeAttaque] == SOIN){
+        M.setVie(2);
+    }
+    else if(elements[typeAttaque] == M.getFaiblesse()){
+        std::cout << "L'attaque n'est pas très efficace..." << std::endl;
+        M.setVie(-2);
+    }
+    else if(elements[typeAttaque] == M.getFaiblesse()){
+        std::cout << "L'attaque est très efficace !" << std::endl;
+        M.setVie(-15);
+    }
+    else{
+        std::cout << "L'attaque est normale." << std::endl;
+        M.setVie(-5);
+    }
+
+    std::cout << M.toString() << std::endl;
+}
+
+//Permet au joueur de changer le type d'élèment selectionné actuellement
+void Joueur::changerElement(){
+    typeAttaque++;
+    if(typeAttaque >= 5) typeAttaque = 0;
+}
+
+//Le joueur choisit le type de pouvoir qu'il souhaite avoir et ensuite
+//se transforme, toutes les secondes, sa mana va graduellement descendre
+//Quand sa mana tombe à zéro ou qu'il décide de se detransformer =
+void Joueur::transformation(){
+    transforme = true;
+}
+
+void Joueur::detransformation(){
+    typeAttaque = 0;
+}
+
+std::string Joueur::toString(){
+    std::stringstream str;
+    str << "=========================" << std::endl;
+    str << "Le joueur a " << mana << " en mana." << std::endl;
+    str << "Le joueur a " << vie << " sur " << vieMax << std::endl;
+    str << "=========================" << std::endl;
+    return str.str();
 }
