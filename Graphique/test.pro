@@ -3,7 +3,9 @@ QT += core
 
 SOURCES += \
     ATH.cc \
+    SpriteJoueur.cc \
     main.cpp \
 
 HEADERS += \
-    ATH.hh
+    ATH.hh \
+    SpriteJoueur.hh
