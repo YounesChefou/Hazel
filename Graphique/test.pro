@@ -1,8 +1,9 @@
 QT += widgets
 QT += core
+
 SOURCES += \
+    ATH.cc \
     main.cpp \
-    fenetre.cpp
 
 HEADERS += \
-    fenetre.h
+    ATH.hh
