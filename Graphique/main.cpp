@@ -7,6 +7,7 @@
 //#include <QEvent>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QGraphicsItem>
 #include <QPixmap>
 #include <Qt>
 
@@ -56,7 +57,12 @@ int main(int argc, char *argv[]){
     QGraphicsScene * scene = new QGraphicsScene(0,0,1350,700);
     QPixmap pix("../Ressources/decorGenerique.jpg");
     scene->setBackgroundBrush(pix.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
-    QGraphicsView * airview = new QGraphicsView(scene);
-    airview->show();
+    QGraphicsView * view = new QGraphicsView(scene);
+
+    QPixmap pix2("../Ressources/spriteGenerique.png");
+    //Penser à creer une classe SpriteJoueur héritant de QGraphicsItem
+    QGraphicsPixmapItem * sprite = new QGraphicsPixmapItem(pix2);
+    scene->addItem(sprite);
+    view->show();
     return app.exec();
 }
