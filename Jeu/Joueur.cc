@@ -33,6 +33,7 @@ Joueur::Joueur(int v){
   mana = manaMax;
   typeAttaque = 0;
   transforme = false;
+  sprite = new SpriteJoueur();
   //initiattaque();
 }
 
