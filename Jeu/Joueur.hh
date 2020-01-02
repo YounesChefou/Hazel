@@ -1,14 +1,12 @@
-#ifndef JOUEUR_HH
-#define JOUEUR_HH
-
+#pragma once
 #include "Personnage.hh"
 #include <string>
 #include <iostream>
 #include <ostream>
-#include <list>
 #include "Vie.hh"
 #include "Mana.hh"
 #include "Monstre.hh"
+#include "../Graphique/SpriteJoueur.hh"
 
 class Joueur : public Personnage{
 public:
@@ -32,6 +30,6 @@ private:
     int mana;
     int typeAttaque;
     bool transforme;
+    SpriteJoueur sprite;
     friend class Monstre;
 };
-#endif
