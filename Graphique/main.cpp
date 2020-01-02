@@ -8,6 +8,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include "SpriteJoueur.hh"
+#include "../Jeu/Joueur.hh"
 #include <QPixmap>
 #include <Qt>
 
@@ -67,12 +68,14 @@ int main(int argc, char *argv[]){
     QGraphicsView * view = new QGraphicsView(scene);
 
     //On charge le sprite du joueur
-    QPixmap pix2("../Ressources/spriteGenerique.png");
+    //QPixmap pix2("../Ressources/spriteGenerique.png");
     //On cree une instance SpriteJoueur avec le sprite chargé
-    SpriteJoueur * sprite = new SpriteJoueur(pix2);
+    //SpriteJoueur * sprite = new SpriteJoueur(pix2);
     //On ajoute le sprite à la scene
-    scene->addItem(sprite);
+    Joueur j(150);
 
+    SpriteJoueur * sprite = j.getSprite();
+    scene->addItem(sprite);
     //Pour que le sprite soit sensible aux contrôles de l'utilisateur,
     //Il doit être "focusable"
     sprite->setFlag(QGraphicsItem::ItemIsFocusable);

@@ -15,6 +15,7 @@ public:
   Joueur(int v);
   void initiattaque();
   int getMana() const {return mana;}
+  SpriteJoueur* getSprite();
   void recuperation(Vie a);
   void recuperation(Mana a);
   void action(Monstre M); //Nom temporaire
@@ -30,6 +31,6 @@ private:
     int mana;
     int typeAttaque;
     bool transforme;
-    SpriteJoueur sprite;
+    SpriteJoueur* sprite;
     friend class Monstre;
 };

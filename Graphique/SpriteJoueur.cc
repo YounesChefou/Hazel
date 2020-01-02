@@ -1,5 +1,9 @@
 #include "SpriteJoueur.hh"
 
+SpriteJoueur::SpriteJoueur(){
+    QPixmap spriteStandard("../Ressources/spriteGenerique.png");
+    this->setPixmap(spriteStandard);
+}
 
 //Permet de déplacer le sprite
 void SpriteJoueur::keyPressEvent(QKeyEvent *event)

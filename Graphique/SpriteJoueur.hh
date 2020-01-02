@@ -1,3 +1,4 @@
+#pragma once
 #include <QGraphicsItem>
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -8,6 +9,7 @@ public:
 //    static QPixmap spriteStandard;
 //    static QPixmap spriteGlace;
 //    static QPixmap spriteFeu;
+    SpriteJoueur();
     SpriteJoueur(QPixmap &p):QGraphicsPixmapItem(p){}
     void keyPressEvent(QKeyEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

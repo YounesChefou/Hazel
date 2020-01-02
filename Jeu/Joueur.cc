@@ -77,6 +77,10 @@ void Joueur::changerElement(){
     if(typeAttaque >= 5) typeAttaque = 0;
 }
 
+SpriteJoueur* Joueur::getSprite(){
+    return sprite;
+}
+
 //Le joueur choisit le type de pouvoir qu'il souhaite avoir et ensuite
 //se transforme, toutes les secondes, sa mana va graduellement descendre
 //Quand sa mana tombe à zéro ou qu'il décide de se detransformer =
