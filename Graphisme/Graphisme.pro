@@ -1,11 +1,24 @@
 QT += widgets
 QT += core
 
-HEADERS += \
-    spritejoueur.hh \
-    pouvoir.hh
-
 SOURCES += \
-    main.cpp \
-    spritejoueur.cc \
-    pouvoir.cc
+    ../Jeu/Basic.cc \
+    ../Jeu/Feu.cc \
+    ../Jeu/Joueur.cc \
+    ../Jeu/Monstre.cc \
+    ../Jeu/Ombre.cc \
+    Pouvoir.cc \
+    SpriteJoueur.cc \
+    main.cpp
+
+
+HEADERS += \
+    ../Jeu/Basic.hh \
+    ../Jeu/Feu.hh \
+    ../Jeu/Glace.hh \
+    ../Jeu/Joueur.hh \
+    ../Jeu/Monstre.hh \
+    ../Jeu/Ombre.hh \
+    ../Jeu/Personnage.hh \
+    Pouvoir.hh \
+    SpriteJoueur.hh

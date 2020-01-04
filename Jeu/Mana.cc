@@ -1,5 +1,6 @@
 #include "Mana.hh"
-#include <time.h>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 Mana::Mana(int recuperation){
   recup = recuperation;

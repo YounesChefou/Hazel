@@ -1,5 +1,6 @@
 #include "Ombre.hh"
-#include <time.h>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 Ombre::Ombre(int v){
   vieMax = v;

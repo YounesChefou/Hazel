@@ -1,5 +1,6 @@
 #include "Glace.hh"
-#include <time.h>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 Glace::Glace(int v){
   vieMax = v;

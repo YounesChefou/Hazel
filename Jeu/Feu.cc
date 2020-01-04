@@ -1,5 +1,6 @@
 #include "Feu.hh"
-#include <time.h>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 Feu::Feu(int v){
   vieMax = v;

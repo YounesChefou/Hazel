@@ -88,8 +88,8 @@ int main(int argc, char *argv[]){
     //SpriteJoueur * sprite = new SpriteJoueur(pix2);
     //On ajoute le sprite à la scene
     Joueur j(150);
-
-    SpriteJoueur * sprite = j.getSprite();
+    Pouvoir* basic = new Pouvoir();
+    SpriteJoueur * sprite = new SpriteJoueur(&j, basic);
     scene->addItem(sprite);
     //Pour que le sprite soit sensible aux contrôles de l'utilisateur,
     //Il doit être "focusable"

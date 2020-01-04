@@ -7,14 +7,15 @@
 #include "Mana.hh"
 #include "Monstre.hh"
 
+
 class Joueur : public Personnage{
 public:
 //Méthodes
   Joueur();
   Joueur(int v);
   void initiattaque();
+  int getManamax() const{return manaMax;}
   int getMana() const {return mana;}
-  SpriteJoueur* getSprite();
   void recuperation(Vie a);
   void recuperation(Mana a);
   void action(Monstre M); //Nom temporaire

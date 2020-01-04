@@ -1,5 +1,6 @@
 #include "Joueur.hh"
-#include <time.h>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 #include <ostream>
 #include <sstream>
 #include <list>

@@ -1,4 +1,6 @@
 #include "Basic.hh"
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 Basic::Basic(int vieMax){
   vieMax = vieMax;
