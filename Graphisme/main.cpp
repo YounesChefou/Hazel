@@ -52,30 +52,6 @@ int main(int argc, char *argv[]){
     Pouvoir *poison = new Pouvoir("../Ressources/poison.png", scene);
     tableau.push_back(poison);
 
-    //Barre de vie max
-    QRect PMmax(20,20,100,20);
-    QGraphicsRectItem rectPMmax(PMmax);
-    rectPMmax.setBrush(Qt::black);
-    scene->addItem(&rectPMmax);
-
-    //Barre de vie variante
-    QRect PM(20,20,50/* 100 * PM/PMmax */,20);
-    QGraphicsRectItem rectPM(PM);
-    rectPM.setBrush(Qt::green);
-    scene->addItem(&rectPM);
-
-    //Barre de mana max
-    QRect HPmax(20,60,100,20);
-    QGraphicsRectItem rectHPmax(HPmax);
-    rectHPmax.setBrush(Qt::black);
-    scene->addItem(&rectHPmax);
-
-    //Barre de mana variante
-    QRect HP(20,60,50/* 100 * HP/HPmax */,20);
-    QGraphicsRectItem rectHP(HP);
-    rectHP.setBrush(Qt::blue);
-    scene->addItem(&rectHP);
-
     //On charge le sprite du joueur
     QPixmap pix2("../Ressources/spriteGenerique.png");
     //On cree une instance SpriteJoueur avec le sprite chargé

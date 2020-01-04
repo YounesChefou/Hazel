@@ -5,14 +5,6 @@
 #include <list>
 #include <ctime>
 
-// void Joueur::initiattaque(){
-//   attaques.push_back(PHYSIQUE);
-//   attaques.push_back(FEU);
-//   attaques.push_back(POISON);
-//   attaques.push_back(SOIN);
-//   attaques.push_back(GLACE);
-// }
-
 Statut Joueur::elements[] = {PHYSIQUE, FEU, POISON, SOIN, GLACE};
 
 Joueur::Joueur(){
@@ -33,7 +25,6 @@ Joueur::Joueur(int v){
   mana = manaMax;
   typeAttaque = 0;
   transforme = false;
-  sprite = new SpriteJoueur();
   //initiattaque();
 }
 

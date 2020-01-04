@@ -5,6 +5,12 @@ SpriteJoueur::SpriteJoueur(){
     this->setPixmap(spriteStandard);
 }
 
+SpriteJoueur::SpriteJoueur(Joueur *j, Pouvoir *p):joueur(j), pictoAttaque(p)
+{
+    QPixmap spriteStandard("../Ressources/spriteGenerique.png");
+    this->setPixmap(spriteStandard);
+}
+
 //Permet de déplacer le sprite
 void SpriteJoueur::keyPressEvent(QKeyEvent *event)
 {

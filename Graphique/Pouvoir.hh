@@ -4,9 +4,6 @@
 
 class Pouvoir: public QGraphicsPixmapItem{
  public:
+     Pouvoir();
      Pouvoir(QString s, QGraphicsScene* scene);
 };
-
-
-
-

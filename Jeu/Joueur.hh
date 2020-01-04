@@ -6,7 +6,6 @@
 #include "Vie.hh"
 #include "Mana.hh"
 #include "Monstre.hh"
-#include "../Graphique/SpriteJoueur.hh"
 
 class Joueur : public Personnage{
 public:
@@ -31,6 +30,5 @@ private:
     int mana;
     int typeAttaque;
     bool transforme;
-    SpriteJoueur* sprite;
     friend class Monstre;
 };
