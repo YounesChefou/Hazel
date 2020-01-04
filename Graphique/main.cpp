@@ -46,14 +46,6 @@ int main(int argc, char *argv[]){
 //    HP.setValue(100/*HP max Joueur*/);
 //    HP.setMinimum(0);
 //    HP.setMaximum(100/*HP max Joueur*/);
-
-//    //Fond
-//    QLabel fond(&fenetre);
-//    QPicture pic;
-//    pic.load("../Ressources/decorGenerique.jpg");
-//    fond.setPicture(pic);
-//    fond.move(0,0);
-//    fenetre.show();
 //    //Iniatilisation
 
     //Initialisation de la scene
@@ -63,10 +55,33 @@ int main(int argc, char *argv[]){
     QPixmap pix("../Ressources/decorGenerique.jpg");
     //Application du décor au fond de la scene
     scene->setBackgroundBrush(pix.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
-
     //On cree une vue pour visualiser la scene
     QGraphicsView * view = new QGraphicsView(scene);
 
+    //Barre de vie max
+    QRect PMmax(20,20,100,20);
+    QGraphicsRectItem rectPMmax(PMmax);
+    rectPMmax.setBrush(Qt::black);
+    scene->addItem(&rectPMmax);
+
+    //Barre de vie variante
+    QRect PM(20,20,50/* 100 * PM/PMmax */,20);
+    QGraphicsRectItem rectPM(PM);
+    rectPM.setBrush(Qt::green);
+    scene->addItem(&rectPM);
+
+    //Barre de mana max
+    QRect HPmax(20,60,100,20);
+    QGraphicsRectItem rectHPmax(HPmax);
+    rectHPmax.setBrush(Qt::black);
+    scene->addItem(&rectHPmax);
+
+    //Barre de mana variante
+    QRect HP(20,60,50/* 100 * HP/HPmax */,20);
+    QGraphicsRectItem rectHP(HP);
+    rectHP.setBrush(Qt::blue);
+    scene->addItem(&rectHP);
+    
     //On charge le sprite du joueur
     //QPixmap pix2("../Ressources/spriteGenerique.png");
     //On cree une instance SpriteJoueur avec le sprite chargé
