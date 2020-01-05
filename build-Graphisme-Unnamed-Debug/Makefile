@@ -55,7 +55,8 @@ SOURCES       = ../Jeu/Basic.cc \
 		../Jeu/Ombre.cc \
 		../Graphisme/Pouvoir.cc \
 		../Graphisme/SpriteJoueur.cc \
-		../Graphisme/main.cpp 
+		../Graphisme/main.cpp \
+		../Graphisme/barre.cc 
 OBJECTS       = Basic.o \
 		Feu.o \
 		Joueur.o \
@@ -63,7 +64,8 @@ OBJECTS       = Basic.o \
 		Ombre.o \
 		Pouvoir.o \
 		SpriteJoueur.o \
-		main.o
+		main.o \
+		barre.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -128,14 +130,16 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../Jeu/Ombre.hh \
 		../Jeu/Personnage.hh \
 		../Graphisme/Pouvoir.hh \
-		../Graphisme/SpriteJoueur.hh ../Jeu/Basic.cc \
+		../Graphisme/SpriteJoueur.hh \
+		../Graphisme/barre.hh ../Jeu/Basic.cc \
 		../Jeu/Feu.cc \
 		../Jeu/Joueur.cc \
 		../Jeu/Monstre.cc \
 		../Jeu/Ombre.cc \
 		../Graphisme/Pouvoir.cc \
 		../Graphisme/SpriteJoueur.cc \
-		../Graphisme/main.cpp
+		../Graphisme/main.cpp \
+		../Graphisme/barre.cc
 QMAKE_TARGET  = Graphisme
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Graphisme
@@ -301,8 +305,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Jeu/Basic.hh ../Jeu/Feu.hh ../Jeu/Glace.hh ../Jeu/Joueur.hh ../Jeu/Monstre.hh ../Jeu/Ombre.hh ../Jeu/Personnage.hh ../Graphisme/Pouvoir.hh ../Graphisme/SpriteJoueur.hh $(DISTDIR)/
-	$(COPY_FILE) --parents ../Jeu/Basic.cc ../Jeu/Feu.cc ../Jeu/Joueur.cc ../Jeu/Monstre.cc ../Jeu/Ombre.cc ../Graphisme/Pouvoir.cc ../Graphisme/SpriteJoueur.cc ../Graphisme/main.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Jeu/Basic.hh ../Jeu/Feu.hh ../Jeu/Glace.hh ../Jeu/Joueur.hh ../Jeu/Monstre.hh ../Jeu/Ombre.hh ../Jeu/Personnage.hh ../Graphisme/Pouvoir.hh ../Graphisme/SpriteJoueur.hh ../Graphisme/barre.hh $(DISTDIR)/
+	$(COPY_FILE) --parents ../Jeu/Basic.cc ../Jeu/Feu.cc ../Jeu/Joueur.cc ../Jeu/Monstre.cc ../Jeu/Ombre.cc ../Graphisme/Pouvoir.cc ../Graphisme/SpriteJoueur.cc ../Graphisme/main.cpp ../Graphisme/barre.cc $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -390,6 +394,9 @@ main.o: ../Graphisme/main.cpp ../Graphisme/SpriteJoueur.hh \
 		../Jeu/Monstre.hh \
 		../Graphisme/Pouvoir.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Graphisme/main.cpp
+
+barre.o: ../Graphisme/barre.cc ../Graphisme/barre.hh
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o barre.o ../Graphisme/barre.cc
 
 ####### Install
 

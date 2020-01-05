@@ -15,7 +15,10 @@ Joueur::Joueur(){
   manaMax = (75 + (int) rand() /(int) RAND_MAX * (50));
   mana = manaMax;
   typeAttaque = 0;
-  //initiattaque();
+  HPMax= new Barre(vieMax,20, Qt::black);
+  HP = new Barre(vie,20,Qt::green);
+  PMMax = new Barre(manaMax,60,Qt::black);
+  PM = new Barre(mana,60,Qt::blue);
 }
 
 Joueur::Joueur(int v){
@@ -26,7 +29,10 @@ Joueur::Joueur(int v){
   mana = manaMax;
   typeAttaque = 0;
   transforme = false;
-  //initiattaque();
+  HPMax= new Barre(vieMax,20, Qt::black);
+  HP = new Barre(vie,20,Qt::green);
+  PMMax = new Barre(manaMax,60,Qt::black);
+  PM = new Barre(mana,60,Qt::blue);
 }
 
 void Joueur::recuperation(Vie a){

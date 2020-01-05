@@ -19,6 +19,6 @@ Basic::Basic(){
   couleur = "GRISE";
 }
 
-void Basic::attaque(Personnage a){
+//void Basic::attaque(Personnage a){
 
-}
+//}

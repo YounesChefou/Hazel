@@ -26,36 +26,19 @@ int main(int argc, char *argv[]){
     //On cree une vue pour visualiser la scene
     QGraphicsView * view = new QGraphicsView(scene);
 
-    //Barre de vie max
-    QRect HPmax(20,20,100,20);
-    QGraphicsRectItem rectHPmax(HPmax);
-    rectHPmax.setBrush(Qt::black);
-    scene->addItem(&rectHPmax);
-
-    //Barre de vie variante
-    QRect HP(20,20,50/* 100 * PM/PMmax */,20);
-    QGraphicsRectItem rectHP(HP);
-    rectHP.setBrush(Qt::green);
-    scene->addItem(&rectHP);
-
-    //Barre de mana max
-    QRect MPmax(20,60,100,20);
-    QGraphicsRectItem rectMPmax(MPmax);
-    rectMPmax.setBrush(Qt::black);
-    scene->addItem(&rectMPmax);
-
-    //Barre de mana variante
-    QRect MP(20,60,50/* 100 * HP/HPmax */,20);
-    QGraphicsRectItem rectMP(MP);
-    rectMP.setBrush(Qt::blue);
-    scene->addItem(&rectMP);
-
     //On charge le sprite du joueur
     //QPixmap pix2("../Ressources/spriteGenerique.png");
     //On cree une instance SpriteJoueur avec le sprite chargé
     //SpriteJoueur * sprite = new SpriteJoueur(pix2);
     //On ajoute le sprite à la scene
     Joueur j(150);
+
+    //Ajout des barres de vie et de mana
+    scene->addItem(j.getHPMax());
+    scene->addItem(j.getHP());
+    scene->addItem(j.getPMMax());
+    scene->addItem(j.getPM());
+
     Pouvoir* basic = new Pouvoir();
     scene->addItem(basic);
 

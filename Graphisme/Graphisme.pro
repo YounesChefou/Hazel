@@ -9,7 +9,8 @@ SOURCES += \
     ../Jeu/Ombre.cc \
     Pouvoir.cc \
     SpriteJoueur.cc \
-    main.cpp
+    main.cpp \
+    barre.cc
 
 
 HEADERS += \
@@ -21,4 +22,5 @@ HEADERS += \
     ../Jeu/Ombre.hh \
     ../Jeu/Personnage.hh \
     Pouvoir.hh \
-    SpriteJoueur.hh
+    SpriteJoueur.hh \
+    barre.hh
