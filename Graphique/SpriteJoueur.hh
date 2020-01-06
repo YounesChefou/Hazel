@@ -15,6 +15,10 @@ public:
     SpriteJoueur();
     SpriteJoueur(Joueur* j, Pouvoir* p);
     SpriteJoueur(QPixmap &p):QGraphicsPixmapItem(p){}
+    Barre* getHPMax(){return HPMax;}
+    Barre* getHP(){return HP;}
+    Barre* getMPMax(){return MPMax;}
+    Barre* getMP(){return MP;}
     void keyPressEvent(QKeyEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void changerSprite(char typeFumee);

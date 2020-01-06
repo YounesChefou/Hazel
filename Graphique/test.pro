@@ -11,8 +11,8 @@ SOURCES += \
     Barre.cc \
     HazelGame.cc \
     Pouvoir.cc \
-    SpriteJoueur.cc \
-    main.cpp \
+    SpriteJoueur.cc \ \
+    main.cc
 
 HEADERS += \
     ../Jeu/Basic.hh \

@@ -9,5 +9,4 @@ public:
 private:
     QGraphicsScene* scene;
     SpriteJoueur* sprite;
-
 };
