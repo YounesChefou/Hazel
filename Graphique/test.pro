@@ -11,7 +11,7 @@ SOURCES += \
     Barre.cc \
     HazelGame.cc \
     Pouvoir.cc \
-    SpriteJoueur.cc \ \
+    SpriteJoueur.cc \
     main.cc
 
 HEADERS += \
