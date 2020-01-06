@@ -5,6 +5,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include "../Jeu/Joueur.hh"
 #include "Pouvoir.hh"
+#include "Barre.hh"
 
 class SpriteJoueur : public QGraphicsPixmapItem{
 public:
@@ -20,4 +21,8 @@ public:
 private:
     Joueur* joueur;
     Pouvoir* pictoAttaque;
+    Barre* HP;
+    Barre* HPMax;
+    Barre* MP;
+    Barre* MPMax;
 };

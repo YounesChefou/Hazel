@@ -8,6 +8,8 @@ SOURCES += \
     ../Jeu/Monstre.cc \
     ../Jeu/Ombre.cc \
     ATH.cc \
+    Barre.cc \
+    HazelGame.cc \
     Pouvoir.cc \
     SpriteJoueur.cc \
     main.cpp \
@@ -21,5 +23,7 @@ HEADERS += \
     ../Jeu/Ombre.hh \
     ../Jeu/Personnage.hh \
     ATH.hh \
+    Barre.hh \
+    HazelGame.hh \
     Pouvoir.hh \
     SpriteJoueur.hh

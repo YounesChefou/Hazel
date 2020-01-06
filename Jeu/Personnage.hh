@@ -1,6 +1,6 @@
 #include <iostream>
 #include <QGraphicsRectItem>
-#include "barre.hh"
+#include "Barre.hh"
 
 #ifndef PERSONNAGE_HH
 #define PERSONNAGE_HH

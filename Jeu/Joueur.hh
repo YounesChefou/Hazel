@@ -7,7 +7,7 @@
 #include "Mana.hh"
 #include "Monstre.hh"
 #include <QGraphicsRectItem>
-#include "barre.hh"
+#include "Barre.hh"
 
 class Joueur : public Personnage{
 public:
@@ -15,11 +15,11 @@ public:
   Joueur();
   Joueur(int v);
   void initiattaque();
-  int getManamax() const{return manaMax;}
+  int getVieMax() const{return vieMax;}
+  int getVie()  const{return vie;}
+  int getManaMax() const{return manaMax;}
   int getMana() const {return mana;}
-  Barre* getPMMax(){return PMMax;}
-  Barre* getPM(){return PM;}
-  void recuperation(Vie a);
+  void recuperation(Vie v);
   void recuperation(Mana a);
   void action(Monstre M); //Nom temporaire
   void transformation(); //
@@ -29,11 +29,10 @@ public:
   std::string toString();
 private:
     static Statut elements[];
+    int vieMax;
+    int vie;
     int manaMax;
     int mana;
     int typeAttaque;
     bool transforme;
-    Barre* PMMax;
-    Barre* PM;
-    friend class Monstre;
 };
