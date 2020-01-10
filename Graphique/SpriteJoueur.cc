@@ -41,14 +41,22 @@ void SpriteJoueur::keyPressEvent(QKeyEvent *event)
     //Liste de tous les Items avec lesquels le joueur rentre en collision
     QList<QGraphicsItem*> objets = collidingItems();
     //Tenter de reparer ça ou avoir une liste de tous les objets crées et utiliser collidesWithItem
+    //Pour la solution avec une liste, creer un evenement qui se declenchera dès que la position va changer et sera catch par la scene
+    //qui ensuite pourra gérer ça
+    //Ou creer une fonction collision dans SpriteJoueur qui prend la liste des objets de la scene et verifie s'il y a en effet une collision
+    //Utiliser un cast comme test, si cast marche alors objets = Vie ou objets = Mana
     int tailleTab = objets.size();
     for(int i = 0; i < tailleTab; i++){
         if(typeid(*(objets[i])) == typeid(Vie)){ //Le joueur vient de recupérer un objet pour remonter ses points de Vie
-            Vie v = qgraphicsitem_cast(*objets[i]);
-
+            Vie* v = dynamic_cast<Vie*>(objets[i]);
+            int recup = v->getrecup();
+            this->joueur->setVie(this->joueur->getVie() + recup);
             scene()->removeItem(objets[i]);
         }
         else if(typeid(*(objets[i])) == typeid(Mana)){ //Le joueur a recupéré un objet pour remonter ses points de Magie
+            Mana* m = dynamic_cast<Mana*>(objets[i]);
+            int recup = m->getrecup();
+            this->joueur->setMana(this->joueur->getMana() + recup);
             scene()->removeItem(objets[i]);
         }
     }

@@ -40,26 +40,24 @@ Joueur::Joueur(int v){
 //     mana = manaMax;
 //  }
 
-}
-
-void Joueur::action(Monstre M){
+void Joueur::action(Monstre* M){
     if(elements[typeAttaque] == SOIN){
-        M.setVie(2);
+        M->setVie(2);
     }
-    else if(elements[typeAttaque] == M.getFaiblesse()){
+    else if(elements[typeAttaque] == M->getFaiblesse()){
         std::cout << "L'attaque n'est pas très efficace..." << std::endl;
-        M.setVie(-2);
+        M->setVie(-2);
     }
-    else if(elements[typeAttaque] == M.getFaiblesse()){
+    else if(elements[typeAttaque] == M->getFaiblesse()){
         std::cout << "L'attaque est très efficace !" << std::endl;
-        M.setVie(-15);
+        M->setVie(-15);
     }
     else{
         std::cout << "L'attaque est normale." << std::endl;
-        M.setVie(-5);
+        M->setVie(-5);
     }
 
-    std::cout << M.toString() << std::endl;
+    std::cout << M->toString() << std::endl;
 }
 
 //Permet au joueur de changer le type d'élèment selectionné actuellement
