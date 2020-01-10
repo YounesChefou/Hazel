@@ -1,12 +1,10 @@
-#ifndef OBJET_HH
-#define OBJET_HH
-
+#pragma once
 #include <iostream>
 #include <string>
-
+#include <QGraphicsPixmapItem>
 using namespace std;
 
-class Objet{
+class Objet : public QGraphicsPixmapItem{
 public:
   int getrecup(){return recup;}
 
@@ -14,4 +12,4 @@ protected:
   string nom;
   int recup;
 };
-#endif
+

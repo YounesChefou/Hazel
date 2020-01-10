@@ -27,18 +27,18 @@ Joueur::Joueur(int v){
   transforme = false;
 }
 
-void Joueur::recuperation(Vie a){
-  vie += a.getrecup();
-  if(vie > vieMax){
-    vie = vieMax;
-  }
-}
-
-void Joueur::recuperation(Mana a){
-  mana += a.getrecup();
-  if(mana > manaMax){
-    mana = manaMax;
- }
+// void Joueur::recuperation(Vie a){
+//   vie += a.getrecup();
+//   if(vie > vieMax){
+//     vie = vieMax;
+//   }
+// }
+//
+// void Joueur::recuperation(Mana a){
+//   mana += a.getrecup();
+//   if(mana > manaMax){
+//     mana = manaMax;
+//  }
 
 }
 

@@ -5,6 +5,8 @@
 Mana::Mana(int recuperation){
   recup = recuperation;
   nom = "MANA";
+  QPixmap temp("../Ressources/Mana.png");
+  this->setPixmap(temp);
 }
 Mana::Mana(){
   srand (time(NULL));

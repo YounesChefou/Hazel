@@ -19,8 +19,8 @@ public:
   int getVie()  const{return vie;}
   int getManaMax() const{return manaMax;}
   int getMana() const {return mana;}
-  void recuperation(Vie v);
-  void recuperation(Mana a);
+  // void recuperation(Vie v);
+  // void recuperation(Mana a);
   void action(Monstre M); //Nom temporaire
   void transformation(); //
   void detransformation(); //Permet de revenir au Statut standard

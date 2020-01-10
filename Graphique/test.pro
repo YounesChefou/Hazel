@@ -10,8 +10,10 @@ SOURCES += \
     ATH.cc \
     Barre.cc \
     HazelGame.cc \
+    Mana.cc \
     Pouvoir.cc \
     SpriteJoueur.cc \
+    Vie.cc \
     main.cc
 
 HEADERS += \
@@ -25,5 +27,8 @@ HEADERS += \
     ATH.hh \
     Barre.hh \
     HazelGame.hh \
+    Mana.hh \
+    Objet.hh \
     Pouvoir.hh \
-    SpriteJoueur.hh
+    SpriteJoueur.hh \
+    Vie.hh
