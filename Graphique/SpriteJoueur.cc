@@ -1,4 +1,7 @@
 #include "SpriteJoueur.hh"
+#include "Vie.hh"
+#include "Mana.hh"
+#include <QList>
 
 SpriteJoueur::SpriteJoueur(){
     QPixmap spriteStandard("../Ressources/spriteGenerique.png");
@@ -34,6 +37,21 @@ void SpriteJoueur::keyPressEvent(QKeyEvent *event)
         default:
             break;
     }
+
+    //Liste de tous les Items avec lesquels le joueur rentre en collision
+    QList<QGraphicsItem*> objets = collidingItems();
+    int tailleTab = objets.size();
+    for(int i = 0; i < tailleTab; i++){
+        if(typeid(*(objets[i])) == typeid(Vie)){ //Le joueur vient de recupérer un objet pour remonter ses points de Vie
+            Vie v = qgraphicsitem_cast(*objets[i]);
+
+            scene()->removeItem(objets[i]);
+        }
+        else if(typeid(*(objets[i])) == typeid(Mana)){ //Le joueur a recupéré un objet pour remonter ses points de Magie
+            scene()->removeItem(objets[i]);
+        }
+    }
+
 }
 
 //Test du changement de sprite
