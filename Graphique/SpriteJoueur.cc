@@ -40,6 +40,7 @@ void SpriteJoueur::keyPressEvent(QKeyEvent *event)
 
     //Liste de tous les Items avec lesquels le joueur rentre en collision
     QList<QGraphicsItem*> objets = collidingItems();
+    //Tenter de reparer ça ou avoir une liste de tous les objets crées et utiliser collidesWithItem
     int tailleTab = objets.size();
     for(int i = 0; i < tailleTab; i++){
         if(typeid(*(objets[i])) == typeid(Vie)){ //Le joueur vient de recupérer un objet pour remonter ses points de Vie

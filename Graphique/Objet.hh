@@ -6,7 +6,8 @@ using namespace std;
 
 class Objet : public QGraphicsPixmapItem{
 public:
-  int getrecup(){return recup;}
+    enum { Type = UserType + 1 };
+    int type() const override{ return Type;}
 
 protected:
   string nom;
