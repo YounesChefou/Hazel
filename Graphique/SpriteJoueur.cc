@@ -18,6 +18,8 @@ SpriteJoueur::SpriteJoueur(Joueur *j, Pouvoir *p):joueur(j), pictoAttaque(p)
     MP = new Barre(j->getMana(),60,Qt::blue);
 }
 
+SpriteJoueur::~SpriteJoueur(){}
+
 //Permet de déplacer le sprite
 void SpriteJoueur::keyPressEvent(QKeyEvent *event)
 {

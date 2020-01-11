@@ -14,6 +14,7 @@ public:
 //    static QPixmap spriteFeu;
     SpriteJoueur();
     SpriteJoueur(Joueur* j, Pouvoir* p);
+    ~SpriteJoueur();
     SpriteJoueur(QPixmap &p):QGraphicsPixmapItem(p){}
     Barre* getHPMax(){return HPMax;}
     Barre* getHP(){return HP;}

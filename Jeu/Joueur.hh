@@ -24,6 +24,7 @@ public:
   void action(Monstre* M); //Nom temporaire
   void transformation(); //
   void detransformation(); //Permet de revenir au Statut standard
+  void setVie(int nouvVie){vie = nouvVie;}
   void setMana(int nouvMana){mana = nouvMana;}
   void changerElement();
   std::string toString();
