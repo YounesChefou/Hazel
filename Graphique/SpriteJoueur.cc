@@ -52,7 +52,9 @@ void SpriteJoueur::keyPressEvent(QKeyEvent *event)
         if(typeid(*(objets[i])) == typeid(Vie)){ //Le joueur vient de recupérer un objet pour remonter ses points de Vie
             Vie* v = dynamic_cast<Vie*>(objets[i]);
             int recup = v->getrecup();
+            std::cout << this->joueur->toString() << std::endl;
             this->joueur->setVie(this->joueur->getVie() + recup);
+            std::cout << this->joueur->toString() << std::endl;
             scene()->removeItem(objets[i]);
         }
         else if(typeid(*(objets[i])) == typeid(Mana)){ //Le joueur a recupéré un objet pour remonter ses points de Magie
