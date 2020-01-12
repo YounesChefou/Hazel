@@ -11,9 +11,12 @@
 
 class Joueur : public Personnage{
 public:
-//Méthodes
+  //Constructeurs
   Joueur();
   Joueur(int v);
+  //Destructeur
+  ~Joueur();
+  //Fonctions
   void initiattaque();
   int getVieMax() const{return vieMax;}
   int getVie()  const{return vie;}
@@ -26,9 +29,13 @@ public:
   void detransformation(); //Permet de revenir au Statut standard
   void setVie(int nouvVie){vie = nouvVie;}
   void setMana(int nouvMana){mana = nouvMana;}
+  void recupVie(int recup);
+  void recupMana(int recup);
   void changerElement();
+  bool estMort();
   std::string toString();
 private:
+    //Attributs
     static Statut elements[];
     int vieMax;
     int vie;

@@ -52,15 +52,16 @@ void SpriteJoueur::keyPressEvent(QKeyEvent *event)
         if(typeid(*(objets[i])) == typeid(Vie)){ //Le joueur vient de recupérer un objet pour remonter ses points de Vie
             Vie* v = dynamic_cast<Vie*>(objets[i]);
             int recup = v->getrecup();
-            std::cout << this->joueur->toString() << std::endl;
-            this->joueur->setVie(this->joueur->getVie() + recup);
-            std::cout << this->joueur->toString() << std::endl;
+            std::cout << joueur->toString() << std::endl;
+            joueur->recupVie(recup);
+            //joueur->getHP()->setRect(QRectF(20, 20, joueur->getVie(),20));
+            std::cout << joueur->toString() << std::endl;
             scene()->removeItem(objets[i]);
         }
         else if(typeid(*(objets[i])) == typeid(Mana)){ //Le joueur a recupéré un objet pour remonter ses points de Magie
             Mana* m = dynamic_cast<Mana*>(objets[i]);
             int recup = m->getrecup();
-            this->joueur->setMana(this->joueur->getMana() + recup);
+            joueur->recupMana(recup);
             scene()->removeItem(objets[i]);
         }
     }
@@ -73,13 +74,13 @@ void SpriteJoueur::mousePressEvent(QGraphicsSceneMouseEvent *event){
     if(event->button() == Qt::LeftButton){
         switch(d){
             case 0:
-            this->changerSprite('S');
+            changerSprite('S');
             break;
             case 1:
-            this->changerSprite('G');
+            changerSprite('G');
             break;
             case 2:
-            this->changerSprite('F');
+            changerSprite('F');
             break;
         }
     }
@@ -95,10 +96,10 @@ void SpriteJoueur::changerSprite(char typeFumee){
 
     switch(typeFumee){
         case 'S':
-            this->setPixmap(spriteStandard);
+            setPixmap(spriteStandard);
             break;
         case 'G':
-            this->setPixmap(spriteGlace);
+            setPixmap(spriteGlace);
             break;
         case 'F':
             this->setPixmap(spriteFeu);

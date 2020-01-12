@@ -11,7 +11,7 @@ HazelGame::HazelGame()
     scene->setBackgroundBrush(pix.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
     this->setScene(scene);
 
-    Joueur *j = new Joueur(150);
+    Joueur *j = new Joueur(100);
     Pouvoir* basic = new Pouvoir();
     scene->addItem(basic);
     sprite = new SpriteJoueur(j, basic);
@@ -24,13 +24,15 @@ HazelGame::HazelGame()
     scene->addItem(sprite->getMPMax());
     scene->addItem(sprite->getMP());
 
+    //On place l'image des pouvoirs juste à côté de
+    basic->setPos(sprite->getHPMax()->x() + 200, sprite->getHPMax()->y() + 20);
     //Pour que le sprite soit sensible aux contrôles de l'utilisateur,
     //Il doit être "focusable"
     sprite->setFlag(QGraphicsItem::ItemIsFocusable);
     sprite->setFocus();
 
     ajouterVie(20, 500, 500);
-    ajouterVie(10, 500, 500);
+    ajouterVie(10, 600, 500);
 }
 
 HazelGame::~HazelGame(){}
