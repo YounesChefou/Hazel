@@ -6,7 +6,7 @@
 #include <list>
 #include <ctime>
 
-Statut Joueur::elements[] = {PHYSIQUE, FEU, POISON, SOIN, GLACE};
+Statut Joueur::elements[] = {PHYSIQUE, GLACE, FEU, POISON, SOIN};
 
 Joueur::Joueur(){
   srand (time(NULL));

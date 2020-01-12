@@ -22,6 +22,7 @@ public:
   int getVie()  const{return vie;}
   int getManaMax() const{return manaMax;}
   int getMana() const {return mana;}
+  int getAttaque() const {return typeAttaque;}
   // void recuperation(Vie v);
   // void recuperation(Mana a);
   void action(Monstre* M); //Nom temporaire

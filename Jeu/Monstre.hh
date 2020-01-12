@@ -20,6 +20,7 @@ public:
     std::string toString();
 
 protected:
+    int vie;
     Statut faiblesse;
     Statut force;
     std::string couleur;

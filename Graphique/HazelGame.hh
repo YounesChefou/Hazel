@@ -1,6 +1,8 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include "SpriteJoueur.hh"
+#include "SpriteMonstre.hh"
+#include <vector>
 
 class HazelGame : public QGraphicsView
 {
@@ -12,4 +14,5 @@ public:
 private:
     QGraphicsScene* scene;
     SpriteJoueur* sprite;
+    std::vector<SpriteMonstre*> monstres;
 };

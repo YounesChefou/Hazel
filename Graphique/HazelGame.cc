@@ -1,6 +1,6 @@
 #include "HazelGame.hh"
 
-
+//Initialise le jeu
 HazelGame::HazelGame()
 {
     //Initialisation de la scene
@@ -37,6 +37,7 @@ HazelGame::HazelGame()
 
 HazelGame::~HazelGame(){}
 
+//Ajoute un objet Vie dans la scene à la position (x,y)
 void HazelGame::ajouterVie(int recup, int x, int y)
 {
         QPixmap pix("../Ressources/vie.png");
@@ -45,6 +46,7 @@ void HazelGame::ajouterVie(int recup, int x, int y)
         v->setPos(x, y);
 }
 
+//Ajoute un objet Mana dans la scene à la position (x,y)
 void HazelGame::ajouterMana(int recup, int x, int y)
 {
         QPixmap pix2("../Ressources/mana.png");

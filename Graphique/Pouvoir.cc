@@ -14,7 +14,7 @@ Pouvoir::Pouvoir(QString s,QGraphicsScene* scene){
     cpt += 90;
 }
 
-void Pouvoir::changerPicto(char typeFumee)
+void Pouvoir::changerPicto(int typeFumee)
 {
     QPixmap pictoPhysique("../Ressources/physique.png");
     QPixmap pictoSoin("../Ressources/soin.png");
@@ -23,19 +23,19 @@ void Pouvoir::changerPicto(char typeFumee)
     QPixmap pictoGlace("../Ressources/glace.png");
 
     switch(typeFumee){
-        case 'S'://Physique
+        case 0://Physique
             this->setPixmap(pictoPhysique);
             break;
-        case 'G'://Glace
+        case 1://Glace
             this->setPixmap(pictoGlace);
             break;
-        case 'F'://Feu
+        case 2://Feu
             this->setPixmap(pictoFeu);
             break;
-        case 'P'://Poison
+        case 3://Poison
             this->setPixmap(pictoPoison);
             break;
-        case 'H'://Soin
+        case 4://Soin
             this->setPixmap(pictoSoin);
             break;
 
