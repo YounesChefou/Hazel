@@ -7,11 +7,13 @@ SOURCES += \
     ../Jeu/Joueur.cc \
     ../Jeu/Monstre.cc \
     ../Jeu/Ombre.cc \
+    Barre.cc \
+    HazelGame.cc \
+    Main.cc \
+    Mana.cc \
     Pouvoir.cc \
     SpriteJoueur.cc \
-    main.cpp \
-    barre.cc
-
+    Vie.cc
 
 HEADERS += \
     ../Jeu/Basic.hh \
@@ -21,6 +23,10 @@ HEADERS += \
     ../Jeu/Monstre.hh \
     ../Jeu/Ombre.hh \
     ../Jeu/Personnage.hh \
+    Barre.hh \
+    HazelGame.hh \
+    Mana.hh \
+    Objet.hh \
     Pouvoir.hh \
     SpriteJoueur.hh \
-    barre.hh
+    Vie.hh

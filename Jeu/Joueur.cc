@@ -117,15 +117,15 @@ void Joueur::recupMana(int recup)
         this->setMana(mana + recup);
     }
     else{
-        this->setMana(vieMax);
+        this->setMana(manaMax);
     }
 }
 
 std::string Joueur::toString(){
     std::stringstream str;
     str << "=========================" << std::endl;
-    str << "Le joueur a " << mana << " en mana." << std::endl;
-    str << "Le joueur a " << vie << " sur " << vieMax << std::endl;
+    str << "PV: " << vie << " / " << vieMax << std::endl;
+    str << "PM: " << mana << " / " << manaMax << std::endl;
     str << "=========================" << std::endl;
     return str.str();
 }

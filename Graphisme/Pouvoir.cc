@@ -2,7 +2,7 @@
 
 //Création du logo de chaque attaque
 Pouvoir::Pouvoir(){
-    QPixmap physique(QPixmap("../Ressources/physique.png").scaled(QSize(80,60)));
+    QPixmap physique("../Ressources/physique.png");
     this->setPixmap(physique);
 }
 
@@ -14,28 +14,28 @@ Pouvoir::Pouvoir(QString s,QGraphicsScene* scene){
     cpt += 90;
 }
 
-void Pouvoir::changerPicto(char typeFumee)
+void Pouvoir::changerPicto(int typeFumee)
 {
-    QPixmap pictoPhysique(QPixmap("../Ressources/physique.png").scaled(QSize(80,60)));
-    QPixmap pictoSoin(QPixmap("../Ressources/soin.png").scaled(QSize(80,60)));
-    QPixmap pictoFeu(QPixmap("../Ressources/feu.png").scaled(QSize(80,60)));
-    QPixmap pictoPoison(QPixmap("../Ressources/poison.png").scaled(QSize(80,60)));
-    QPixmap pictoGlace(QPixmap("../Ressources/glace.png").scaled(QSize(80,60)));
+    QPixmap pictoPhysique("../Ressources/physique.png");
+    QPixmap pictoSoin("../Ressources/soin.png");
+    QPixmap pictoFeu("../Ressources/feu.png");
+    QPixmap pictoPoison("../Ressources/poison.png");
+    QPixmap pictoGlace("../Ressources/glace.png");
 
     switch(typeFumee){
-        case 'S'://Physique
+        case 0://Physique
             this->setPixmap(pictoPhysique);
             break;
-        case 'G'://Glace
+        case 1://Glace
             this->setPixmap(pictoGlace);
             break;
-        case 'F'://Feu
+        case 2://Feu
             this->setPixmap(pictoFeu);
             break;
-        case 'P'://Poison
+        case 3://Poison
             this->setPixmap(pictoPoison);
             break;
-        case 'H'://Soin
+        case 4://Soin
             this->setPixmap(pictoSoin);
             break;
 

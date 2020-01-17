@@ -1,37 +1,81 @@
 #include "SpriteJoueur.hh"
+#include "Vie.hh"
+#include "Mana.hh"
+#include <typeinfo>
+#include <QList>
 
 SpriteJoueur::SpriteJoueur(){
     QPixmap spriteStandard("../Ressources/spriteGenerique.png");
     this->setPixmap(spriteStandard);
-
 }
 
-SpriteJoueur::SpriteJoueur(Joueur j, Pouvoir *p):joueur(j),pictoAttaque(p)
+SpriteJoueur::SpriteJoueur(Joueur *j, Pouvoir *p):joueur(j), pictoAttaque(p)
 {
-
     QPixmap spriteStandard("../Ressources/spriteGenerique.png");
     this->setPixmap(spriteStandard);
+    HPMax= new Barre(j->getVieMax(),20, Qt::black);
+    HP = new Barre(j->getVie(),20,Qt::green);
+    MPMax = new Barre(j->getManaMax(),60,Qt::black);
+    MP = new Barre(j->getMana(),60,Qt::blue);
 }
+
+SpriteJoueur::~SpriteJoueur(){}
 
 //Permet de déplacer le sprite
 void SpriteJoueur::keyPressEvent(QKeyEvent *event)
 {
     switch(event->key()){
+        case Qt::Key_Q:
         case Qt::Key_Left:
             setPos(x()-10, y());
             break;
+        case Qt::Key_D:
         case Qt::Key_Right:
             setPos(x()+10, y());
             break;
+        case Qt::Key_Z:
         case Qt::Key_Up:
             setPos(x(), y()-10);
             break;
+        case Qt::Key_S:
         case Qt::Key_Down:
             setPos(x(), y()+10);
+            break;
+        case Qt::Key_A:
+            joueur->changerElement();
+            pictoAttaque->changerPicto(joueur->getAttaque());
             break;
         default:
             break;
     }
+
+    //Liste de tous les Items avec lesquels le joueur rentre en collision
+    QList<QGraphicsItem*> objets = collidingItems();
+    //Tenter de reparer ça ou avoir une liste de tous les objets crées et utiliser collidesWithItem
+    //Pour la solution avec une liste, creer un evenement qui se declenchera dès que la position va changer et sera catch par la scene
+    //qui ensuite pourra gérer ça
+    //Ou creer une fonction collision dans SpriteJoueur qui prend la liste des objets de la scene et verifie s'il y a en effet une collision
+    //Utiliser un cast comme test, si cast marche alors objets = Vie ou objets = Mana
+    int tailleTab = objets.size();
+    for(int i = 0; i < tailleTab; i++){
+        if(typeid(*(objets[i])) == typeid(Vie)){ //Le joueur vient de recupérer un objet pour remonter ses points de Vie
+            Vie* v = dynamic_cast<Vie*>(objets[i]);
+            int recup = v->getrecup();
+            std::cout << joueur->toString() << std::endl;
+            joueur->recupVie(recup);
+            this->setHP(joueur->getVie()); // Mise à jour barre de vie
+            std::cout << joueur->toString() << std::endl;
+            scene()->removeItem(objets[i]);
+        }
+        else if(typeid(*(objets[i])) == typeid(Mana)){ //Le joueur a recupéré un objet pour remonter ses points de Magie
+            Mana* m = dynamic_cast<Mana*>(objets[i]);
+            int recup = m->getrecup();
+            joueur->recupMana(recup);
+            this->setMP(joueur->getMana()); // Mise à jour barre de mana
+            scene()->removeItem(objets[i]);
+        }
+    }
+
 }
 
 //Test du changement de sprite
@@ -40,14 +84,13 @@ void SpriteJoueur::mousePressEvent(QGraphicsSceneMouseEvent *event){
     if(event->button() == Qt::LeftButton){
         switch(d){
             case 0:
-            this->changerSprite('S');
-            pictoAttaque->changerPicto('S');
+            changerSprite('S');
             break;
             case 1:
-            this->changerSprite('G');
+            changerSprite('G');
             break;
             case 2:
-            this->changerSprite('F');
+            changerSprite('F');
             break;
         }
     }
@@ -63,17 +106,13 @@ void SpriteJoueur::changerSprite(char typeFumee){
 
     switch(typeFumee){
         case 'S':
-            this->setPixmap(spriteStandard);
-            pictoAttaque->changerPicto('S');
+            setPixmap(spriteStandard);
             break;
         case 'G':
-            this->setPixmap(spriteGlace);
-            pictoAttaque->changerPicto('G');
+            setPixmap(spriteGlace);
             break;
         case 'F':
             this->setPixmap(spriteFeu);
-            pictoAttaque->changerPicto('F');
             break;
     }
 }
-
