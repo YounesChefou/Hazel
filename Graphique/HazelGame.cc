@@ -1,4 +1,6 @@
 #include "HazelGame.hh"
+#include "Vie.hh"
+#include "Mana.hh"
 
 //Initialise le jeu
 HazelGame::HazelGame()

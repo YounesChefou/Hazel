@@ -20,6 +20,8 @@ public:
     Barre* getHP(){return HP;}
     Barre* getMPMax(){return MPMax;}
     Barre* getMP(){return MP;}
+    void setHP(int vie){return HP->setBarre(vie);}
+    void setMP(int mana){return MP->setBarre(mana);}
     void keyPressEvent(QKeyEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void changerSprite(char typeFumee);

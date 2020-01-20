@@ -57,23 +57,25 @@ SOURCES       = ../Jeu/Basic.cc \
 		../Jeu/Joueur.cc \
 		../Jeu/Monstre.cc \
 		../Jeu/Ombre.cc \
-		../Graphique/ATH.cc \
 		../Graphique/Barre.cc \
 		../Graphique/HazelGame.cc \
+		../Graphique/Main.cc \
+		../Graphique/Mana.cc \
 		../Graphique/Pouvoir.cc \
 		../Graphique/SpriteJoueur.cc \
-		../Graphique/main.cc 
+		../Graphique/Vie.cc 
 OBJECTS       = Basic.o \
 		Feu.o \
 		Joueur.o \
 		Monstre.o \
 		Ombre.o \
-		ATH.o \
 		Barre.o \
 		HazelGame.o \
+		Main.o \
+		Mana.o \
 		Pouvoir.o \
 		SpriteJoueur.o \
-		main.o
+		Vie.o
 DIST          = /home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/mkspecs/common/unix.conf \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/mkspecs/common/linux.conf \
@@ -258,21 +260,24 @@ DIST          = /home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/mkspecs/features/spec_
 		../Jeu/Monstre.hh \
 		../Jeu/Ombre.hh \
 		../Jeu/Personnage.hh \
-		../Graphique/ATH.hh \
 		../Graphique/Barre.hh \
 		../Graphique/HazelGame.hh \
+		../Graphique/Mana.hh \
+		../Graphique/Objet.hh \
 		../Graphique/Pouvoir.hh \
-		../Graphique/SpriteJoueur.hh ../Jeu/Basic.cc \
+		../Graphique/SpriteJoueur.hh \
+		../Graphique/Vie.hh ../Jeu/Basic.cc \
 		../Jeu/Feu.cc \
 		../Jeu/Joueur.cc \
 		../Jeu/Monstre.cc \
 		../Jeu/Ombre.cc \
-		../Graphique/ATH.cc \
 		../Graphique/Barre.cc \
 		../Graphique/HazelGame.cc \
+		../Graphique/Main.cc \
+		../Graphique/Mana.cc \
 		../Graphique/Pouvoir.cc \
 		../Graphique/SpriteJoueur.cc \
-		../Graphique/main.cc
+		../Graphique/Vie.cc
 QMAKE_TARGET  = test
 DESTDIR       = 
 TARGET        = test
@@ -656,8 +661,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Jeu/Basic.hh ../Jeu/Feu.hh ../Jeu/Glace.hh ../Jeu/Joueur.hh ../Jeu/Monstre.hh ../Jeu/Ombre.hh ../Jeu/Personnage.hh ../Graphique/ATH.hh ../Graphique/Barre.hh ../Graphique/HazelGame.hh ../Graphique/Pouvoir.hh ../Graphique/SpriteJoueur.hh $(DISTDIR)/
-	$(COPY_FILE) --parents ../Jeu/Basic.cc ../Jeu/Feu.cc ../Jeu/Joueur.cc ../Jeu/Monstre.cc ../Jeu/Ombre.cc ../Graphique/ATH.cc ../Graphique/Barre.cc ../Graphique/HazelGame.cc ../Graphique/Pouvoir.cc ../Graphique/SpriteJoueur.cc ../Graphique/main.cc $(DISTDIR)/
+	$(COPY_FILE) --parents ../Jeu/Basic.hh ../Jeu/Feu.hh ../Jeu/Glace.hh ../Jeu/Joueur.hh ../Jeu/Monstre.hh ../Jeu/Ombre.hh ../Jeu/Personnage.hh ../Graphique/Barre.hh ../Graphique/HazelGame.hh ../Graphique/Mana.hh ../Graphique/Objet.hh ../Graphique/Pouvoir.hh ../Graphique/SpriteJoueur.hh ../Graphique/Vie.hh $(DISTDIR)/
+	$(COPY_FILE) --parents ../Jeu/Basic.cc ../Jeu/Feu.cc ../Jeu/Joueur.cc ../Jeu/Monstre.cc ../Jeu/Ombre.cc ../Graphique/Barre.cc ../Graphique/HazelGame.cc ../Graphique/Main.cc ../Graphique/Mana.cc ../Graphique/Pouvoir.cc ../Graphique/SpriteJoueur.cc ../Graphique/Vie.cc $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -995,9 +1000,6 @@ Joueur.o: ../Jeu/Joueur.cc ../Jeu/Joueur.hh \
 		../Graphique/Barre.hh \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/QBrush \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qbrush.h \
-		../Jeu/Vie.hh \
-		../Jeu/Objet.hh \
-		../Jeu/Mana.hh \
 		../Jeu/Monstre.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Joueur.o ../Jeu/Joueur.cc
 
@@ -1193,9 +1195,6 @@ Ombre.o: ../Jeu/Ombre.cc ../Jeu/Ombre.hh \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/QBrush \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qbrush.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Ombre.o ../Jeu/Ombre.cc
-
-ATH.o: ../Graphique/ATH.cc 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ATH.o ../Graphique/ATH.cc
 
 Barre.o: ../Graphique/Barre.cc ../Graphique/Barre.hh \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsRectItem \
@@ -1417,12 +1416,246 @@ HazelGame.o: ../Graphique/HazelGame.cc ../Graphique/HazelGame.hh \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsRectItem \
 		../Graphique/Barre.hh \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/QBrush \
-		../Jeu/Vie.hh \
-		../Jeu/Objet.hh \
-		../Jeu/Mana.hh \
 		../Jeu/Monstre.hh \
-		../Graphique/Pouvoir.hh
+		../Graphique/Pouvoir.hh \
+		../Graphique/SpriteMonstre.hh \
+		../Graphique/Vie.hh \
+		../Graphique/Objet.hh \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
+		../Graphique/Mana.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HazelGame.o ../Graphique/HazelGame.cc
+
+Main.o: ../Graphique/Main.cc /home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QApplication \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qapplication.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qglobal.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qconfig.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qlogging.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qflags.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qatomic.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qmutex.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtgui-config.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstring.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qchar.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringliteral.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringview.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobject.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qlist.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qiterator.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qpair.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qvector.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qpoint.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qregexp.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsize.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qmargins.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qcursor.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qwidget.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qrect.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpalette.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qcolor.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qrgb.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qrgba64.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qbrush.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qmatrix.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpolygon.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qregion.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qdatastream.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qiodevice.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qline.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtransform.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpainterpath.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qimage.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpixelformat.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpixmap.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qshareddata.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qhash.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qfont.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qfontinfo.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qkeysequence.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qevent.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qvariant.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qmap.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qdebug.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qtextstream.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qlocale.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qset.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qurl.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qurlquery.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qfile.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qfiledevice.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qvector2d.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qguiapplication.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qinputmethod.h \
+		../Graphique/HazelGame.hh \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsView \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpainter.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtextoption.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpen.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qframe.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsScene \
+		../Graphique/SpriteJoueur.hh \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsItem \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/QKeyEvent \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/QMouseEvent \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../Jeu/Joueur.hh \
+		../Jeu/Personnage.hh \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		../Graphique/Barre.hh \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/QBrush \
+		../Jeu/Monstre.hh \
+		../Graphique/Pouvoir.hh \
+		../Graphique/SpriteMonstre.hh \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/Qt
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Main.o ../Graphique/Main.cc
+
+Mana.o: ../Graphique/Mana.cc ../Graphique/Mana.hh \
+		../Graphique/Objet.hh \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qglobal.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qconfig.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qlogging.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qflags.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qatomic.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qmutex.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtgui-config.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobject.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstring.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qchar.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringliteral.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringview.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qlist.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qiterator.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qpair.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qvector.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qpoint.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qregexp.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qvariant.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qmap.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qdebug.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qhash.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qtextstream.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qiodevice.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qlocale.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qshareddata.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qset.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qrect.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qmargins.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsize.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpainterpath.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qmatrix.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpolygon.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qregion.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qdatastream.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qline.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpixmap.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qcolor.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qrgb.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qrgba64.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qimage.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpixelformat.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtransform.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Mana.o ../Graphique/Mana.cc
 
 Pouvoir.o: ../Graphique/Pouvoir.cc ../Graphique/Pouvoir.hh \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsScene \
@@ -1629,19 +1862,23 @@ SpriteJoueur.o: ../Graphique/SpriteJoueur.cc ../Graphique/SpriteJoueur.hh \
 		../Graphique/Barre.hh \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/QBrush \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qbrush.h \
-		../Jeu/Vie.hh \
-		../Jeu/Objet.hh \
-		../Jeu/Mana.hh \
 		../Jeu/Monstre.hh \
 		../Graphique/Pouvoir.hh \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsScene \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qfont.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpen.h
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpen.h \
+		../Graphique/Vie.hh \
+		../Graphique/Objet.hh \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
+		../Graphique/Mana.hh \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/QList
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SpriteJoueur.o ../Graphique/SpriteJoueur.cc
 
-main.o: ../Graphique/main.cc /home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QApplication \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qapplication.h \
+Vie.o: ../Graphique/Vie.cc ../Graphique/Vie.hh \
+		../Graphique/Objet.hh \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtguiglobal.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qglobal.h \
@@ -1667,20 +1904,19 @@ main.o: ../Graphique/main.cc /home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/Q
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qversiontagging.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtgui-config.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobject.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstring.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qchar.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qbytearray.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qrefcount.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qnamespace.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qarraydata.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringliteral.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringalgorithms.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringview.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qstringbuilder.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobject.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobjectdefs.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qlist.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qalgorithms.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qiterator.h \
@@ -1699,87 +1935,38 @@ main.o: ../Graphique/main.cc /home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/Q
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qvarlengtharray.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcontainerfwd.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qobject_impl.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qeventloop.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qwindowdefs.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qwindowdefs_win.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsize.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qmargins.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qcursor.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qwidget.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpaintdevice.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qrect.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpalette.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qcolor.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qrgb.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qrgba64.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qbrush.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qmatrix.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpolygon.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qregion.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qdatastream.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qiodevice.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qline.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtransform.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpainterpath.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qimage.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpixelformat.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpixmap.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsharedpointer.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qshareddata.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qhash.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qfont.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qfontmetrics.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qfontinfo.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qsizepolicy.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qkeysequence.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qevent.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qvariant.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qmap.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qdebug.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qhash.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qtextstream.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qiodevice.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qlocale.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qshareddata.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qset.h \
 		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qcontiguouscache.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qurl.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qurlquery.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qfile.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qfiledevice.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qvector2d.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtouchdevice.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qguiapplication.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qinputmethod.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsScene \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpen.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsView \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qgraphicsview.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpainter.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtextoption.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qscrollarea.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qframe.h \
-		../Graphique/HazelGame.hh \
-		../Graphique/SpriteJoueur.hh \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsItem \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/QKeyEvent \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/QMouseEvent \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
-		../Jeu/Joueur.hh \
-		../Jeu/Personnage.hh \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtWidgets/QGraphicsRectItem \
-		../Graphique/Barre.hh \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/QBrush \
-		../Jeu/Vie.hh \
-		../Jeu/Objet.hh \
-		../Jeu/Mana.hh \
-		../Jeu/Monstre.hh \
-		../Graphique/Pouvoir.hh \
-		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/Qt
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Graphique/main.cc
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qrect.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qmargins.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qsize.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpainterpath.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qmatrix.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpolygon.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qregion.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qdatastream.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtCore/qline.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpixmap.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qcolor.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qrgb.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qrgba64.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qimage.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qpixelformat.h \
+		/home/lephoquebleu/Qt5.14.0/5.14.0/gcc_64/include/QtGui/qtransform.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Vie.o ../Graphique/Vie.cc
 
 ####### Install
 

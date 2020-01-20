@@ -62,6 +62,7 @@ void SpriteJoueur::keyPressEvent(QKeyEvent *event)
             int recup = v->getrecup();
             std::cout << joueur->toString() << std::endl;
             joueur->recupVie(recup);
+            this->setHP(joueur->getVie()); // Mise à jour barre de vie
             //joueur->getHP()->setRect(QRectF(20, 20, joueur->getVie(),20));
             std::cout << joueur->toString() << std::endl;
             scene()->removeItem(objets[i]);
@@ -70,6 +71,7 @@ void SpriteJoueur::keyPressEvent(QKeyEvent *event)
             Mana* m = dynamic_cast<Mana*>(objets[i]);
             int recup = m->getrecup();
             joueur->recupMana(recup);
+            this->setMP(joueur->getMana()); // Mise à jour barre de mana
             scene()->removeItem(objets[i]);
         }
     }
