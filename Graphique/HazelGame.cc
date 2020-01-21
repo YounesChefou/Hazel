@@ -1,6 +1,7 @@
 #include "HazelGame.hh"
 #include "Vie.hh"
 #include "Mana.hh"
+#include "../Jeu/Feu.hh"
 
 //Initialise le jeu
 HazelGame::HazelGame()
@@ -35,6 +36,10 @@ HazelGame::HazelGame()
 
     ajouterVie(20, 500, 500);
     ajouterVie(10, 600, 500);
+
+    Feu* f = new Feu(75);
+    SpriteMonstre* spriteM =  new SpriteMonstre(f);
+    ajouterMonstre(spriteM, 500, 150);
 }
 
 HazelGame::~HazelGame(){}
@@ -42,17 +47,26 @@ HazelGame::~HazelGame(){}
 //Ajoute un objet Vie dans la scene à la position (x,y)
 void HazelGame::ajouterVie(int recup, int x, int y)
 {
-        QPixmap pix("../Ressources/vie.png");
-        Vie * v = new Vie(recup);
-        this->scene->addItem(v);
-        v->setPos(x, y);
+    QPixmap pix("../Ressources/vie.png");
+    Vie * v = new Vie(recup);
+    this->scene->addItem(v);
+    v->setPos(x, y);
 }
 
 //Ajoute un objet Mana dans la scene à la position (x,y)
 void HazelGame::ajouterMana(int recup, int x, int y)
 {
-        QPixmap pix2("../Ressources/mana.png");
-        Mana * m = new Mana(recup);
-        this->scene->addItem(m);
-        m->setPos(x, y);
+    QPixmap pix2("../Ressources/mana.png");
+    Mana * m = new Mana(recup);
+    this->scene->addItem(m);
+    m->setPos(x, y);
+}
+
+//Ajoute un ennemi dans la scène
+void HazelGame::ajouterMonstre(SpriteMonstre* m, int x, int y){
+    scene->addItem(m);
+    scene->addItem(m->getMonstreHPMax());
+    scene->addItem(m->getMonstreHP());
+    m->setPosition(x, y);
+    monstres.push_back(m);
 }

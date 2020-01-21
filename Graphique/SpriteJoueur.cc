@@ -11,11 +11,11 @@ SpriteJoueur::SpriteJoueur(){
 SpriteJoueur::SpriteJoueur(Joueur *j, Pouvoir *p):joueur(j), pictoAttaque(p)
 {
     QPixmap spriteStandard("../Ressources/spriteGenerique.png");
-    this->setPixmap(spriteStandard);
-    HPMax= new Barre(j->getVieMax(),20, Qt::black);
-    HP = new Barre(j->getVie(),20,Qt::green);
-    MPMax = new Barre(j->getManaMax(),60,Qt::black);
-    MP = new Barre(j->getMana(),60,Qt::blue);
+    setPixmap(spriteStandard);
+    HPMax= new Barre(j->getVieMax(), 20, 20, Qt::black);
+    HP = new Barre(j->getVie(), 20, 20, Qt::green);
+    MPMax = new Barre(j->getManaMax(),20, 60, Qt::black);
+    MP = new Barre(j->getMana(), 20, 60, Qt::blue);
 }
 
 SpriteJoueur::~SpriteJoueur(){}

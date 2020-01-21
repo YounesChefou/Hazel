@@ -13,6 +13,7 @@ SOURCES += \
     Mana.cc \
     Pouvoir.cc \
     SpriteJoueur.cc \
+    SpriteMonstre.cc \
     Vie.cc
 
 HEADERS += \
@@ -29,4 +30,5 @@ HEADERS += \
     Objet.hh \
     Pouvoir.hh \
     SpriteJoueur.hh \
+    SpriteMonstre.hh \
     Vie.hh
