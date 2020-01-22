@@ -42,6 +42,8 @@ HazelGame::HazelGame()
     SpriteMonstre* spriteM =  new SpriteMonstre(f);
     ajouterMonstre(spriteM, 500, 150);
 
+    setMouseTracking(true);
+
     QTimer * timer = new QTimer();
     //Chaque fois que le timer arrive à zero, on appelle deplacement
     connect(timer, SIGNAL(timeout()), this, SLOT(previentMonstres()));
@@ -76,6 +78,13 @@ void HazelGame::ajouterMonstre(SpriteMonstre* m, int x, int y){
     scene->addItem(m->getMonstreHP());
     m->setPosition(x, y);
     monstres.push_back(m);
+}
+
+void HazelGame::mouseMoveEvent(QMouseEvent *event)
+{
+    int x = event->x();
+    int y = event->y();
+    sprite->setPos(x,y);
 }
 
 //Indique aux ennemis où se situe le joueur

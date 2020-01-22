@@ -13,7 +13,7 @@ public:
     void ajouterVie(int recup, int x, int y);
     void ajouterMana(int recup, int x, int y);
     void ajouterMonstre(SpriteMonstre* m, int x, int y);
-    //void ajouterMonstre(Monstre* m);
+    void mouseMoveEvent(QMouseEvent *event);
 public slots:
     void previentMonstres();
 private:
