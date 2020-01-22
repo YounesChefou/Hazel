@@ -2,6 +2,7 @@
 #include "Vie.hh"
 #include "Mana.hh"
 #include "../Jeu/Feu.hh"
+#include <QTimer>
 
 //Initialise le jeu
 HazelGame::HazelGame()
@@ -40,6 +41,12 @@ HazelGame::HazelGame()
     Feu* f = new Feu(75);
     SpriteMonstre* spriteM =  new SpriteMonstre(f);
     ajouterMonstre(spriteM, 500, 150);
+
+    QTimer * timer = new QTimer();
+    //Chaque fois que le timer arrive à zero, on appelle deplacement
+    connect(timer, SIGNAL(timeout()), this, SLOT(previentMonstres()));
+
+    timer->start(5); //Toutes les 5 ms
 }
 
 HazelGame::~HazelGame(){}
@@ -73,5 +80,42 @@ void HazelGame::ajouterMonstre(SpriteMonstre* m, int x, int y){
 
 //Indique aux ennemis où se situe le joueur
 void HazelGame::previentMonstres(){
+    int xJoueur = sprite->x(), yJoueur = sprite->y();
+    int xMonstre = 0, yMonstre = 0;
+    int xComp = 0, yComp = 0;
+    int nbMonstres = monstres.size();
 
+    //On compare la position du joueur et de chaque monstre pour leur indiquer où aller
+    for(int i = 0; i < nbMonstres; i++){
+        xMonstre = monstres[i]->x();
+        yMonstre = monstres[i]->y();
+
+        xComp = xMonstre - xJoueur;
+        yComp = yMonstre - yJoueur;
+
+        if(xComp > 0 && yComp > 0){ //Le Joueur est à gauche du Monstre
+            monstres[i]->changerDirection(8);
+        }
+        else if(xComp > 0 && yComp == 0){
+            monstres[i]->changerDirection(7);
+        }
+        else if(xComp > 0 && yComp < 0){
+            monstres[i]->changerDirection(6);
+        }
+        else if(xComp == 0 && yComp > 0){//Le Joueur est sur le même axe que le Monstre, soit en haut, soit en bas
+            monstres[i]->changerDirection(1);
+        }
+        else if(xComp == 0 && yComp < 0){
+            monstres[i]->changerDirection(5);
+        }
+        else if(xComp < 0 && yComp < 0){//Le Joueur est à droite du Monstre
+            monstres[i]->changerDirection(4);
+        }
+        else if(xComp < 0 && yComp == 0){
+            monstres[i]->changerDirection(3);
+        }
+        else if(xComp < 0 && yComp > 0){
+            monstres[i]->changerDirection(2);
+        }
+    }
 }

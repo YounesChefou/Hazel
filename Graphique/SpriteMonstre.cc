@@ -12,7 +12,7 @@ SpriteMonstre::SpriteMonstre(Monstre* m){
     //Chaque fois que le timer arrive à zero, on appelle deplacement
     connect(timer, SIGNAL(timeout()), this, SLOT(deplacement()));
 
-    timer->start(50); //Toutes les 10ms
+    timer->start(20); //Toutes les 10ms
 }
 
 SpriteMonstre::~SpriteMonstre(){}
@@ -36,14 +36,35 @@ void SpriteMonstre::deplacement()
 
     switch(direction) {
         case 0:
+            deplacerDe(0,0);    //Immobile
+            break;
+        case 1:
+            deplacerDe(0, -1);  //Nord
+            break;
+        case 2:
+            deplacerDe(1, -1);  //Nord-Est
+            break;
+        case 3:
+            deplacerDe(1, 0);   //Est
+            break;
+        case 4:
+            deplacerDe(1, 1);   //Sud-Est
+            break;
+        case 5:
+            deplacerDe(0, 1);   //Sud
+            break;
+        case 6:
+            deplacerDe(-1, 1);  //Sud-Ouest
+            break;
+        case 7:
+            deplacerDe(-1, 0);  //Ouest
+            break;
+        case 8:
+            deplacerDe(-1, -1); //Nord-Ouest
+            break;
+        default:
             deplacerDe(0,0);
+            break;
     }
-    deplacerDe(0, -1);  //Nord
-    deplacerDe(1, -1);  //Nord-Est
-    deplacerDe(1, 0);   //Est
-    deplacerDe(1, 1);   //Sud-Est
-    deplacerDe(0, 1);   //Sud
-    deplacerDe(-1, 1);  //Sud-Ouest
-    deplacerDe(-1, 0);  //Ouest
-    deplacerDe(-1, -1); //Nord-Ouest
+
 }
