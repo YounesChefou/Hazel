@@ -1,7 +1,8 @@
 #include "../Jeu/Monstre.hh"
 #include <QGraphicsPixmapItem>
 
-class SpriteMonstre : public QGraphicsPixmapItem{
+class SpriteMonstre : public QObject, public QGraphicsPixmapItem{
+    Q_OBJECT
 public:
     SpriteMonstre(Monstre* m);
     ~SpriteMonstre();
@@ -9,7 +10,8 @@ public:
     void deplacerDe(int nX, int nY);
     Barre* getMonstreHPMax(){return monstreHPMax;}
     Barre* getMonstreHP(){return monstreHP;}
-
+public slots:
+    void deplacement();
 private:
     Monstre* monstre;
     Barre* monstreHPMax;
