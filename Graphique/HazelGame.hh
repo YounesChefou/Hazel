@@ -12,6 +12,7 @@ public:
     void ajouterVie(int recup, int x, int y);
     void ajouterMana(int recup, int x, int y);
     void ajouterMonstre(SpriteMonstre* m, int x, int y);
+    void previentMonstres();
     //void ajouterMonstre(Monstre* m);
 private:
     QGraphicsScene* scene;

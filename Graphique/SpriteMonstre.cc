@@ -7,7 +7,7 @@ SpriteMonstre::SpriteMonstre(Monstre* m){
     setPixmap(spriteStd);
     monstreHPMax = new Barre(m->getVieMax(), x(), y() - 10, Qt::black);
     monstreHP = new Barre(m->getVie(), x(), y() - 10, Qt::red);
-
+    direction = 0;
     QTimer * timer = new QTimer();
     //Chaque fois que le timer arrive à zero, on appelle deplacement
     connect(timer, SIGNAL(timeout()), this, SLOT(deplacement()));
@@ -29,7 +29,21 @@ void SpriteMonstre::deplacerDe(int nX, int nY){
     setPosition(x()+ nX, y()+ nY);
 }
 
+//Fonction appelée toutes les 10ms, déplaçant l'ennemi vers le sprite du joueur
+//8 déplacements possibles
 void SpriteMonstre::deplacement()
 {
-    deplacerDe(-2,2);
+
+    switch(direction) {
+        case 0:
+            deplacerDe(0,0);
+    }
+    deplacerDe(0, -1);  //Nord
+    deplacerDe(1, -1);  //Nord-Est
+    deplacerDe(1, 0);   //Est
+    deplacerDe(1, 1);   //Sud-Est
+    deplacerDe(0, 1);   //Sud
+    deplacerDe(-1, 1);  //Sud-Ouest
+    deplacerDe(-1, 0);  //Ouest
+    deplacerDe(-1, -1); //Nord-Ouest
 }

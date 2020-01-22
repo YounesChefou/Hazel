@@ -16,4 +16,5 @@ private:
     Monstre* monstre;
     Barre* monstreHPMax;
     Barre* monstreHP;
+    int direction;
 };

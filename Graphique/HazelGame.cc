@@ -70,3 +70,8 @@ void HazelGame::ajouterMonstre(SpriteMonstre* m, int x, int y){
     m->setPosition(x, y);
     monstres.push_back(m);
 }
+
+//Indique aux ennemis où se situe le joueur
+void HazelGame::previentMonstres(){
+
+}
