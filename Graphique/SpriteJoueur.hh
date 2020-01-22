@@ -22,6 +22,8 @@ public:
     Barre* getMP(){return MP;}
     void setHP(int vie){return HP->setBarre(vie);}
     void setMP(int mana){return MP->setBarre(mana);}
+    void recupererVie(int recup);
+    void recupererMana(int recup);
     void keyPressEvent(QKeyEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void changerSprite(char typeFumee);

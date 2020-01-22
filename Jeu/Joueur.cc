@@ -17,14 +17,12 @@ Joueur::Joueur(){
   typeAttaque = 0;
 }
 
-Joueur::Joueur(int v){
+Joueur::Joueur(int v, int m){
   srand (time(NULL));
-  //vieMax = v;
   vieMax = 150;
-  //vie = vieMax;
   vie = v;
   manaMax = 75;
-  mana = manaMax;
+  mana = m;
   typeAttaque = 0;
   transforme = false;
 }

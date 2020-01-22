@@ -55,27 +55,37 @@ void SpriteJoueur::keyPressEvent(QKeyEvent *event)
     //qui ensuite pourra gérer ça
     //Ou creer une fonction collision dans SpriteJoueur qui prend la liste des objets de la scene et verifie s'il y a en effet une collision
     //Utiliser un cast comme test, si cast marche alors objets = Vie ou objets = Mana
-    int tailleTab = objets.size();
-    for(int i = 0; i < tailleTab; i++){
-        if(typeid(*(objets[i])) == typeid(Vie)){ //Le joueur vient de recupérer un objet pour remonter ses points de Vie
-            Vie* v = dynamic_cast<Vie*>(objets[i]);
-            int recup = v->getrecup();
-            std::cout << joueur->toString() << std::endl;
-            joueur->recupVie(recup);
-            this->setHP(joueur->getVie()); // Mise à jour barre de vie
-            //joueur->getHP()->setRect(QRectF(20, 20, joueur->getVie(),20));
-            std::cout << joueur->toString() << std::endl;
-            scene()->removeItem(objets[i]);
-        }
-        else if(typeid(*(objets[i])) == typeid(Mana)){ //Le joueur a recupéré un objet pour remonter ses points de Magie
-            Mana* m = dynamic_cast<Mana*>(objets[i]);
-            int recup = m->getrecup();
-            joueur->recupMana(recup);
-            this->setMP(joueur->getMana()); // Mise à jour barre de mana
-            scene()->removeItem(objets[i]);
-        }
-    }
+//    int tailleTab = objets.size();
+//    for(int i = 0; i < tailleTab; i++){
+//        if(typeid(*(objets[i])) == typeid(Vie)){ //Le joueur vient de recupérer un objet pour remonter ses points de Vie
+//            Vie* v = dynamic_cast<Vie*>(objets[i]);
+//            int recup = v->getrecup();
+//            std::cout << joueur->toString() << std::endl;
+//            joueur->recupVie(recup);
+//            this->setHP(joueur->getVie()); // Mise à jour barre de vie
+//            //joueur->getHP()->setRect(QRectF(20, 20, joueur->getVie(),20));
+//            std::cout << joueur->toString() << std::endl;
+//            scene()->removeItem(objets[i]);
+//        }
+//        else if(typeid(*(objets[i])) == typeid(Mana)){ //Le joueur a recupéré un objet pour remonter ses points de Magie
+//            Mana* m = dynamic_cast<Mana*>(objets[i]);
+//            int recup = m->getrecup();
+//            joueur->recupMana(recup);
+//            this->setMP(joueur->getMana()); // Mise à jour barre de mana
+//            scene()->removeItem(objets[i]);
+//        }
+//    }
 
+}
+
+void SpriteJoueur::recupererVie(int recup){
+    joueur->recupVie(recup);
+    setHP(joueur->getVie());
+}
+
+void SpriteJoueur::recupererMana(int recup){
+    joueur->recupMana(recup);
+    setMP(joueur->getMana());
 }
 
 //Test du changement de sprite

@@ -15,7 +15,7 @@ HazelGame::HazelGame()
     scene->setBackgroundBrush(pix.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
     this->setScene(scene);
 
-    Joueur *j = new Joueur(100);
+    Joueur *j = new Joueur(100, 25);
     Pouvoir* basic = new Pouvoir();
     scene->addItem(basic);
     sprite = new SpriteJoueur(j, basic);
@@ -36,7 +36,7 @@ HazelGame::HazelGame()
     sprite->setFocus();
 
     ajouterVie(20, 500, 500);
-    ajouterVie(10, 600, 500);
+    ajouterMana(10, 600, 500);
 
     Feu* f = new Feu(75);
     SpriteMonstre* spriteM =  new SpriteMonstre(f);
@@ -53,6 +53,15 @@ HazelGame::HazelGame()
 
 HazelGame::~HazelGame(){}
 
+//Permet de déplacer le personnage à l'aide de la souris
+void HazelGame::mouseMoveEvent(QMouseEvent *event)
+{
+    int x = event->x();
+    int y = event->y();
+    sprite->setPos(x,y);
+    collisionsObjets();
+}
+
 //Ajoute un objet Vie dans la scene à la position (x,y)
 void HazelGame::ajouterVie(int recup, int x, int y)
 {
@@ -60,6 +69,7 @@ void HazelGame::ajouterVie(int recup, int x, int y)
     Vie * v = new Vie(recup);
     this->scene->addItem(v);
     v->setPos(x, y);
+    objetsVie.push_back(v);
 }
 
 //Ajoute un objet Mana dans la scene à la position (x,y)
@@ -69,6 +79,32 @@ void HazelGame::ajouterMana(int recup, int x, int y)
     Mana * m = new Mana(recup);
     this->scene->addItem(m);
     m->setPos(x, y);
+    objetsMana.push_back(m);
+}
+
+//Verifie si le joueur est entré en contact avec un objet
+//J'ai fait deux tableaux mais possibilité de faire avec un seul
+//tableau d'objet et de caster dans la fonction
+void HazelGame::collisionsObjets()
+{
+    int nbObjetsVie = objetsVie.size();
+    int nbObjetsMana = objetsMana.size();
+
+    for(int i = 0; i < nbObjetsVie; i++){
+        if(sprite->collidesWithItem(objetsVie[i])){
+            sprite->recupererVie(objetsVie[i]->getRecup());
+            scene->removeItem(objetsVie[i]);
+            objetsVie.erase(objetsVie.begin()+i);
+        }
+    }
+
+    for(int i = 0; i < nbObjetsMana; i++){
+        if(sprite->collidesWithItem(objetsMana[i])){
+            sprite->recupererMana(objetsMana[i]->getRecup());
+            scene->removeItem(objetsMana[i]);
+            objetsMana.erase(objetsMana.begin()+i);
+        }
+    }
 }
 
 //Ajoute un ennemi dans la scène
@@ -78,13 +114,6 @@ void HazelGame::ajouterMonstre(SpriteMonstre* m, int x, int y){
     scene->addItem(m->getMonstreHP());
     m->setPosition(x, y);
     monstres.push_back(m);
-}
-
-void HazelGame::mouseMoveEvent(QMouseEvent *event)
-{
-    int x = event->x();
-    int y = event->y();
-    sprite->setPos(x,y);
 }
 
 //Indique aux ennemis où se situe le joueur

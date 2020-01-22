@@ -13,7 +13,7 @@ class Joueur : public Personnage{
 public:
   //Constructeurs
   Joueur();
-  Joueur(int v);
+  Joueur(int v, int m);
   //Destructeur
   ~Joueur();
   //Fonctions
