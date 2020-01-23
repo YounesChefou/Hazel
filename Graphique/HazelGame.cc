@@ -131,6 +131,8 @@ void HazelGame::previentMonstres(){
         xComp = xMonstre - xJoueur;
         yComp = yMonstre - yJoueur;
 
+        //Surement une manière plus élégante d'écrire ça
+        //A etudier
         if(xComp > 0 && yComp > 0){ //Le Joueur est à gauche du Monstre
             monstres[i]->changerDirection(8);
         }
@@ -166,7 +168,12 @@ void HazelGame::collisionsMonstres(){ 
 
     for(int i = 0; i < nbMonstres; i++){
         if(sprite->collidesWithItem(monstres[i])){
-            if()
+            if(sprite->joueur->estTransforme()){//Le joueur attaque
+                
+            }
+            else{//Le Monstre attaque
+
+            }
         }
     }
 }

@@ -19,7 +19,3 @@ Feu::Feu(){
   force = FEU;
   couleur = "ROUGE";
 }
-
-void Feu::attaque(Personnage a){
-
-}

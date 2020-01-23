@@ -7,5 +7,4 @@ private:
 public:
   Glace(int v);
   Glace();
-  void attaque(Personnage a);
 };

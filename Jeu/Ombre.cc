@@ -18,7 +18,3 @@ Ombre::Ombre(){
   force = PHYSIQUE;
   couleur = "NOIRE";
 }
-
-void Ombre::attaque(Personnage a){
-
-}

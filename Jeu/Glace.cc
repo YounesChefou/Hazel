@@ -18,7 +18,3 @@ Glace::Glace(){
   force = GLACE;
   couleur = "BLEUE";
 }
-
-void Glace::attaque(Personnage a){
-
-}

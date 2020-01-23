@@ -18,7 +18,3 @@ Basic::Basic(){
   force = AUCUNE;
   couleur = "GRISE";
 }
-
-//void Basic::attaque(Personnage a){
-
-//}

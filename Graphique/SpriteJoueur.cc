@@ -78,11 +78,13 @@ void SpriteJoueur::keyPressEvent(QKeyEvent *event)
 
 }
 
+//Permet au joueur de récuperer de la vie et met à jour la barre de vie de son sprite
 void SpriteJoueur::recupererVie(int recup){
     joueur->recupVie(recup);
     setHP(joueur->getVie());
 }
 
+//Permet au joueur de récuperer de la mana et met à jour la barre de mana de son sprite
 void SpriteJoueur::recupererMana(int recup){
     joueur->recupMana(recup);
     setMP(joueur->getMana());

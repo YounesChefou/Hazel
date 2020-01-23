@@ -13,7 +13,10 @@ class Personnage{
 
   public:
     int getVie() const {return vie;}
-    void setVie(int vie);
+    void setVie(int vie){vie = vie;};
+    //Retire des pts de vie au Personnage
+    //degats : pts de vie perdus
+    void perdVie(int degats){vie -= degats}
     int getVieMax() const {return vieMax;}
     bool estMort(){ return vie =< 0 ? true : false;}
 
