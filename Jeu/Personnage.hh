@@ -28,7 +28,11 @@ class Personnage{
     }
     //Retire des pts de vie au Personnage
     //degats : pts de vie perdus
-    void perdVie(int degats){vie -= degats;}
+    void perdVie(int degats){
+        std::cout << "Vie : " << this->vie << std::endl;
+        this->vie -= degats;
+        std::cout << "Vie : " << this->vie << std::endl;
+    }
     int getVieMax() const {return vieMax;}
     void attaque(Personnage* p);
     bool estMort(){ return vie <= 0 ? true : false;}

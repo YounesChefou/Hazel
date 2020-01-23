@@ -6,5 +6,6 @@ class Feu: public Monstre{
 public:
   Feu(int v);
   Feu();
-  Statut getForce() {return force;}
+  void attaque(Personnage* p);
+  std::string getForce() {return "FEU";}
 };

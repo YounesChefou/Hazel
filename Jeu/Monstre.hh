@@ -6,12 +6,13 @@ class Monstre : public Personnage{
 public:
     void attaque(Personnage* p);
     int getVieMax(){return vieMax;}
-    Statut getForce() const {return force;}
+    std::string getForce() {return "FEU";}
     Statut getFaiblesse() const {return faiblesse;}
     std::string toString();
 
 protected:
     Statut faiblesse;
     Statut force;
+    std::string strForce;
     std::string couleur;
 };

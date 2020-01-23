@@ -13,10 +13,11 @@ std::string Monstre::toString()
 //Permet au Monstre d'attaquer le joueur j
 void Monstre::attaque(Personnage* p){
     Joueur* j = (Joueur*) p;
-    if(this->getForce() == j->getElement()){
+    if(getForce() == j->getElement()){
+    //if(1){
         j->perdVie(30);
     }
-    else if(this->getFaiblesse() == j->getElement()){
+    else if(getFaiblesse() == j->getElement()){
         j->perdVie(10);
     }
     else{

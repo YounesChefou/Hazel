@@ -35,8 +35,6 @@ public:
 private:
     //Attributs
     static Statut elements[];
-    int vieMax;
-    int vie;
     int manaMax;
     int mana;
     int typeAttaque;
