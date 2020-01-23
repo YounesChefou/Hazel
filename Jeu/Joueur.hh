@@ -33,7 +33,7 @@ public:
   void recupVie(int recup);
   void recupMana(int recup);
   void changerElement();
-  bool estMort();
+  bool estTransforme(){return transforme;}
   std::string toString();
 private:
     //Attributs

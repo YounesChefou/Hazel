@@ -24,22 +24,22 @@ SpriteJoueur::~SpriteJoueur(){}
 void SpriteJoueur::keyPressEvent(QKeyEvent *event)
 {
     switch(event->key()){
-        case Qt::Key_Q:
-        case Qt::Key_Left:
-            setPos(x()-10, y());
-            break;
-        case Qt::Key_D:
-        case Qt::Key_Right:
-            setPos(x()+10, y());
-            break;
-        case Qt::Key_Z:
-        case Qt::Key_Up:
-            setPos(x(), y()-10);
-            break;
-        case Qt::Key_S:
-        case Qt::Key_Down:
-            setPos(x(), y()+10);
-            break;
+        // case Qt::Key_Q:
+        // case Qt::Key_Left:
+        //     setPos(x()-10, y());
+        //     break;
+        // case Qt::Key_D:
+        // case Qt::Key_Right:
+        //     setPos(x()+10, y());
+        //     break;
+        // case Qt::Key_Z:
+        // case Qt::Key_Up:
+        //     setPos(x(), y()-10);
+        //     break;
+        // case Qt::Key_S:
+        // case Qt::Key_Down:
+        //     setPos(x(), y()+10);
+        //     break;
         case Qt::Key_A:
             joueur->changerElement();
             pictoAttaque->changerPicto(joueur->getAttaque());
@@ -49,7 +49,7 @@ void SpriteJoueur::keyPressEvent(QKeyEvent *event)
     }
 
     //Liste de tous les Items avec lesquels le joueur rentre en collision
-    QList<QGraphicsItem*> objets = collidingItems();
+    // QList<QGraphicsItem*> objets = collidingItems();
     //Tenter de reparer ça ou avoir une liste de tous les objets crées et utiliser collidesWithItem
     //Pour la solution avec une liste, creer un evenement qui se declenchera dès que la position va changer et sera catch par la scene
     //qui ensuite pourra gérer ça

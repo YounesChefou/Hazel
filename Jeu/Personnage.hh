@@ -1,27 +1,23 @@
+#pragma once
 #include <iostream>
-#include <QGraphicsRectItem>
-#include "Barre.hh"
-
-#ifndef PERSONNAGE_HH
-#define PERSONNAGE_HH
+// #include <QGraphicsRectItem>
+// #include "Barre.hh"
 
 typedef enum {PHYSIQUE, FEU, POISON, SOIN, GLACE, AUCUNE} Statut;
 class Personnage{
   protected:
     int vie;
     int vieMax;
-    Barre* HPMax;
-    Barre* HP;
+    // Barre* HPMax;
+    // Barre* HP;
 
   public:
-    // Personnage(int vieMax);
-    // Personnage();
     int getVie() const {return vie;}
     void setVie(int vie);
-    int getviemax() const {return vieMax;}
-    Barre* getHPMax(){return HPMax;}
-    Barre* getHP(){return HP;}
+    int getVieMax() const {return vieMax;}
+    bool estMort(){ return vie =< 0 ? true : false;}
+
+    // Barre* getHPMax(){return HPMax;}
+    // Barre* getHP(){return HP;}
 
 };
-
-#endif

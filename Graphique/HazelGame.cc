@@ -157,3 +157,16 @@ void HazelGame::previentMonstres(){
         }
     }
 }
+
+//Verifie les collisions entre le joueur et le monstre
+//Si Joueur non transforme et collision avec monstre, monstre fait des dégats à joueur plus ou moins élevés, basés sur leur element
+//Si Joueur transforme, alors la collision résulte en des dégats sur le Monstre
+void HazelGame::collisionsMonstres(){ 
+    int nbMonstres = monstres.size();
+
+    for(int i = 0; i < nbMonstres; i++){
+        if(sprite->collidesWithItem(monstres[i])){
+            if()
+        }
+    }
+}
