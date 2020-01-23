@@ -13,14 +13,23 @@ class Personnage{
 
   public:
     int getVie() const {return vie;}
-    void setVie(int vie){vie = vie;};
+    void setVie(int v){vie = v;};
+    void recupVie(int recup)
+    {
+        int vie = this->getVie();
+        int vieMax = this->getVieMax();
+
+        if(vie + recup <= vieMax){
+            this->setVie(vie + recup);
+        }
+        else{
+            this->setVie(vieMax);
+        }
+    }
     //Retire des pts de vie au Personnage
     //degats : pts de vie perdus
-    void perdVie(int degats){vie -= degats}
+    void perdVie(int degats){vie -= degats;}
     int getVieMax() const {return vieMax;}
-    bool estMort(){ return vie =< 0 ? true : false;}
-
-    // Barre* getHPMax(){return HPMax;}
-    // Barre* getHP(){return HP;}
-
+    void attaque(Personnage* p);
+    bool estMort(){ return vie <= 0 ? true : false;}
 };

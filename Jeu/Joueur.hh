@@ -23,11 +23,11 @@ public:
   int getManaMax() const{return manaMax;}
   int getMana() const {return mana;}
   int getAttaque() const {return typeAttaque;}
-  void action(Monstre* M); //Nom temporaire
+  Statut getElement() const{return elements[typeAttaque];}
+  void attaque(Personnage* p);
   void transformation(); //
   void detransformation(); //Permet de revenir au Statut standard
   void setMana(int nouvMana){mana = nouvMana;}
-  void recupVie(int recup);
   void recupMana(int recup);
   void changerElement();
   bool estTransforme(){return transforme;}

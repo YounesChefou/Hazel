@@ -60,6 +60,7 @@ void HazelGame::mouseMoveEvent(QMouseEvent *event)
     int y = event->y();
     sprite->setPos(x,y);
     collisionsObjets();
+    collisionsMonstres();
 }
 
 //Ajoute un objet Vie dans la scene à la position (x,y)
@@ -163,16 +164,22 @@ void HazelGame::previentMonstres(){
 //Verifie les collisions entre le joueur et le monstre
 //Si Joueur non transforme et collision avec monstre, monstre fait des dégats à joueur plus ou moins élevés, basés sur leur element
 //Si Joueur transforme, alors la collision résulte en des dégats sur le Monstre
-void HazelGame::collisionsMonstres(){ 
+void HazelGame::collisionsMonstres(){
     int nbMonstres = monstres.size();
+    Joueur* persoJoueur = sprite->getJoueur();
+    Monstre* monstre;
 
     for(int i = 0; i < nbMonstres; i++){
+        monstre = monstres[i]->getMonstre();
         if(sprite->collidesWithItem(monstres[i])){
-            if(sprite->joueur->estTransforme()){//Le joueur attaque
-                
+            if(persoJoueur->estTransforme()){//Le joueur attaque
+                // persoJoueur->attaque(monstre);
+                monstres[i]->setMonstreHP(monstre->getVie());
             }
             else{//Le Monstre attaque
-
+                monstres[i]->getMonstre()->attaque(persoJoueur);
+                sprite->setHP(persoJoueur->getVie());
+                std::cout << "Attaque contre joueur" << std::endl;
             }
         }
     }

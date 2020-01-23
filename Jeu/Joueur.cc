@@ -17,6 +17,7 @@ Joueur::Joueur(){
   typeAttaque = 0;
 }
 
+//Constructeur de Joueur
 Joueur::Joueur(int v, int m){
   srand (time(NULL));
   vieMax = 150;
@@ -27,22 +28,27 @@ Joueur::Joueur(int v, int m){
   transforme = false;
 }
 
-
-void Joueur::action(Monstre* M){
-    if(elements[typeAttaque] == SOIN){
-        M->setVie(2);
+//Permet au Joueur d'attaquer le Monstre M
+//Si le joueur utilise SOIN, le monstre recupère 20 pts de vie
+//Si le joueur utilise une attaque correspondante à la force du Monstre, alors
+//le monstre recupère 2 pts de vie, si l'attaque correspond à sa faiblesse, 60 pts de vie
+//Si elle ne correspond à aucun des deux, 20 pts de vie
+void Joueur::attaque(Personnage* p){
+    Monstre* M = (Monstre*) p;
+    if(getElement() == SOIN){
+        M->recupVie(20);
     }
-    else if(elements[typeAttaque] == M->getFaiblesse()){
+    else if(getElement() == M->getForce()){
         std::cout << "L'attaque n'est pas très efficace..." << std::endl;
-        M->setVie(-2);
+        M->recupVie(5);
     }
-    else if(elements[typeAttaque] == M->getFaiblesse()){
+    else if(getElement() == M->getFaiblesse()){
         std::cout << "L'attaque est très efficace !" << std::endl;
-        M->setVie(-15);
+        M->perdVie(60);
     }
     else{
         std::cout << "L'attaque est normale." << std::endl;
-        M->setVie(-5);
+        M->perdVie(20);
     }
 
     std::cout << M->toString() << std::endl;
@@ -54,13 +60,13 @@ void Joueur::changerElement(){
     if(typeAttaque >= 5) typeAttaque = 0;
 }
 
-//Renvoie True si le joueur est mort et False sinon
-bool Joueur::estMort()
-{
-    if(vie <= 0) return true;
+////Renvoie True si le joueur est mort et False sinon
+//bool Joueur::estMort()
+//{
+//    if(vie <= 0) return true;
 
-    return false;
-}
+//    return false;
+//}
 
 //Le joueur choisit le type de pouvoir qu'il souhaite avoir et ensuite
 //se transforme, toutes les secondes, sa mana va graduellement descendre
@@ -77,18 +83,18 @@ void Joueur::detransformation(){
 //Si la somme du niveau de vie actuel et de recup donne un nombre supérieur
 //au niveau de vie maximum alors on attribue au joueur le taux de points de vie
 //maximum possible
-void Joueur::recupVie(int recup)
-{
-    int vie = this->getVie();
-    int vieMax = this->getVieMax();
-
-    if(vie + recup <= vieMax){
-        this->setVie(vie + recup);
-    }
-    else{
-        this->setVie(vieMax);
-    }
-}
+// void Joueur::recupVie(int recup)
+// {
+//     int vie = this->getVie();
+//     int vieMax = this->getVieMax();
+//
+//     if(vie + recup <= vieMax){
+//         this->setVie(vie + recup);
+//     }
+//     else{
+//         this->setVie(vieMax);
+//     }
+// }
 
 //Fonction permettant d'ajouter le montant recup à l'attribut mana du joueur
 //Si la somme du niveau de mana actuel et de recup donne un nombre supérieur

@@ -1,14 +1,13 @@
 #pragma once
 #include "Personnage.hh"
-#include "Joueur.hh"
 #include <sstream>
 
 class Monstre : public Personnage{
 public:
-    void attaque(Joueur* j);
+    void attaque(Personnage* p);
     int getVieMax(){return vieMax;}
-    Statut getForce(){return force;}
-    Statut getFaiblesse(){return faiblesse;}
+    Statut getForce() const {return force;}
+    Statut getFaiblesse() const {return faiblesse;}
     std::string toString();
 
 protected:
