@@ -1,4 +1,5 @@
 #include "Joueur.hh"
+#include "Monstre.hh"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include <ostream>
@@ -72,30 +73,13 @@ void Joueur::changerElement(){
 //se transforme, toutes les secondes, sa mana va graduellement descendre
 //Quand sa mana tombe à zéro ou qu'il décide de se detransformer =
 void Joueur::transformation(){
-    transforme = true;
+    transforme = true ? transforme = false : transforme = true;
 }
 
 //
 void Joueur::invincibilite(){
-    godMode = true;
+    godMode = true ? godMode = false : godMode = true;
 }
-
-//Fonction permettant d'ajouter le montant recup à l'attribut vie du joueur
-//Si la somme du niveau de vie actuel et de recup donne un nombre supérieur
-//au niveau de vie maximum alors on attribue au joueur le taux de points de vie
-//maximum possible
-// void Joueur::recupVie(int recup)
-// {
-//     int vie = this->getVie();
-//     int vieMax = this->getVieMax();
-//
-//     if(vie + recup <= vieMax){
-//         this->setVie(vie + recup);
-//     }
-//     else{
-//         this->setVie(vieMax);
-//     }
-// }
 
 //Fonction permettant d'ajouter le montant recup à l'attribut mana du joueur
 //Si la somme du niveau de mana actuel et de recup donne un nombre supérieur

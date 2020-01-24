@@ -5,7 +5,6 @@
 #include <ostream>
 //#include "Vie.hh"
 //#include "Mana.hh"
-#include "Monstre.hh"
 #include <QGraphicsRectItem>
 #include "Barre.hh"
 
