@@ -1,6 +1,6 @@
 QT += widgets
 QT += core
-
+CONFIG += c++11
 SOURCES += \
     ../Jeu/Basic.cc \
     ../Jeu/Feu.cc \
@@ -13,6 +13,7 @@ SOURCES += \
     Mana.cc \
     Pouvoir.cc \
     SpriteJoueur.cc \
+    SpriteMonstre.cc \
     Vie.cc
 
 HEADERS += \
@@ -29,4 +30,5 @@ HEADERS += \
     Objet.hh \
     Pouvoir.hh \
     SpriteJoueur.hh \
+    SpriteMonstre.hh \
     Vie.hh

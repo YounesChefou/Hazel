@@ -6,6 +6,7 @@
 #include <sstream>
 #include <list>
 #include <ctime>
+#include <chrono>
 
 Statut Joueur::elements[] = {PHYSIQUE, GLACE, FEU, POISON, SOIN};
 
@@ -16,6 +17,7 @@ Joueur::Joueur(){
   manaMax = (75 + (int) rand() /(int) RAND_MAX * (50));
   mana = manaMax;
   typeAttaque = 0;
+  godMode = false;
 }
 
 //Constructeur de Joueur
@@ -27,6 +29,7 @@ Joueur::Joueur(int v, int m){
   mana = m;
   typeAttaque = 0;
   transforme = false;
+  godMode = false;
 }
 
 //Permet au Joueur d'attaquer le Monstre M
@@ -73,13 +76,21 @@ void Joueur::changerElement(){
 //se transforme, toutes les secondes, sa mana va graduellement descendre
 //Quand sa mana tombe à zéro ou qu'il décide de se detransformer =
 void Joueur::transformation(){
-    transforme = true ? transforme = false : transforme = true;
+    transforme == true ? transforme = false : transforme = true;
 }
 
-//
+//Pas forcément super efficace, bloque le jeu si temps d'invincibilité trop long
 void Joueur::invincibilite(){
-    godMode = true ? godMode = false : godMode = true;
+    if(godMode == false){
+        godMode = true;
+        for(auto restUntil = std::chrono::system_clock::now() + std::chrono::milliseconds(5); std::chrono::system_clock::now() < restUntil;){
+            std::cout << "Invincible" << std::endl;
+        }
+        godMode = false;
+    }
+    //godMode == true ? godMode = false : godMode = true;
 }
+
 
 //Fonction permettant d'ajouter le montant recup à l'attribut mana du joueur
 //Si la somme du niveau de mana actuel et de recup donne un nombre supérieur

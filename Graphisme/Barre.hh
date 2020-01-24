@@ -4,12 +4,10 @@
 
 class Barre: public QGraphicsRectItem{
 public:
-    Barre(int vie, int posy,  Qt::GlobalColor brush);
-    //Faire la mise à jour des barres de vie et mana
-
+    Barre(int vie, int posX, int posY,  Qt::GlobalColor brush);
+    ~Barre();
     void setBarre(int vie);
-private:
-    int posy;
+    private:
+        int posX;
+        int posY;
 };
-
-

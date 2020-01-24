@@ -14,4 +14,3 @@ Vie::Vie(){
   recup = (10 + (int) rand() /(int) RAND_MAX * (15));
   nom = "VIE";
 }
-

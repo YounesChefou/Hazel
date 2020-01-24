@@ -13,4 +13,3 @@ Mana::Mana(){
   recup = (10 + (int) rand() /(int) RAND_MAX * (10));
   nom = "MANA";
 }
-

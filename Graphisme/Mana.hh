@@ -7,5 +7,4 @@ public:
   int type() const override{ return Type;}
   Mana(int recuperation);
   Mana();
-  int getrecup(){return recup;}
 };
