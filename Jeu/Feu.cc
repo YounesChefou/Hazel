@@ -24,17 +24,20 @@ Feu::Feu(){
 }
 
 //Permet au Monstre d'attaquer le joueur j
-void Feu::attaque(Personnage* p){
-    Joueur* j = (Joueur*) p;
-    if(j->getElement() == FEU){
-    //if(getForce() == "FEU"){
-    // if(1){
-        j->perdVie(30);
-    }
-    else if(j->getElement() == GLACE){
-        j->perdVie(10);
-    }
-    else{
-        j->perdVie(15);
-    }
-}
+//void Feu::attaque(Personnage* p){
+//    Joueur* j = (Joueur*) p;
+//    if((j->getElement())["FEU"] == j->getAttaque()){
+//    //if(j->getElement() == FEU){
+//    //if(getForce() == "FEU"){
+//    // if(1){
+//            j->perdVie(30);
+//    }
+//    else if((j->getElement())["GLACE"] == j->getAttaque()){
+//    //else if(j->getElement() == GLACE){
+//        j->perdVie(10);
+//    }
+//    else{
+//        j->perdVie(15);
+//    }
+//    //}
+//}

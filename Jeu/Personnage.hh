@@ -6,12 +6,13 @@
 typedef enum {PHYSIQUE, FEU, POISON, SOIN, GLACE, AUCUNE} Statut;
 class Personnage{
   protected:
+    //friend class Monstre;
     int vie;
     int vieMax;
 
   public:
     int getVie() const {return vie;}
-    void setVie(int v){vie = v;};
+    void setVie(int v){vie = v;}
     void recupVie(int recup)
     {
         int vie = this->getVie();
@@ -32,6 +33,7 @@ class Personnage{
         std::cout << "Vie : " << this->vie << std::endl;
     }
     int getVieMax() const {return vieMax;}
-    void attaque(Personnage* p);
+    //void virtual attaque(Personnage* p);
     bool estMort(){ return vie <= 0 ? true : false;}
 };
+

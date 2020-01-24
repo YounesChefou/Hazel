@@ -8,7 +8,8 @@
 #include <ctime>
 #include <chrono>
 
-Statut Joueur::elements[] = {PHYSIQUE, GLACE, FEU, POISON, SOIN};
+Statut Joueur::elements[] = {PHYSIQUE, FEU, SOIN, POISON, GLACE};
+//std::map<std::string,int> Joueur::elements = {{"PHYSIQUE",0},{"FEU",1},{"POISON",2},{"SOIN",3},{"GLACE",4}};
 
 Joueur::Joueur(){
   srand (time(NULL));
@@ -37,26 +38,48 @@ Joueur::Joueur(int v, int m){
 //Si le joueur utilise une attaque correspondante à la force du Monstre, alors
 //le monstre recupère 2 pts de vie, si l'attaque correspond à sa faiblesse, 60 pts de vie
 //Si elle ne correspond à aucun des deux, 20 pts de vie
-void Joueur::attaque(Personnage* p){
-    Monstre* M = (Monstre*) p;
-    if(getElement() == SOIN){
-        M->recupVie(20);
-    }
-    else if(getElement() == M->getForce()){
-        std::cout << "L'attaque n'est pas très efficace..." << std::endl;
-        M->recupVie(5);
-    }
-    else if(getElement() == M->getFaiblesse()){
-        std::cout << "L'attaque est très efficace !" << std::endl;
-        M->perdVie(60);
-    }
-    else{
-        std::cout << "L'attaque est normale." << std::endl;
-        M->perdVie(20);
-    }
+//void Joueur::attaque(Personnage *p){
+//    Monstre* M = dynamic_cast<Monstre*>(p);
+//    switch(getAttaque()){
+//    case SOIN:
+//        M->recupVie(20);
+//        break;
+//    case M->getForce():
+//        std::cout << "L'attaque n'est pas très efficace..." << std::endl;
+//        M->recupVie(5);
+//        break;
+//    case M->getFaiblesse():
+//        std::cout << "L'attaque est très efficace !" << std::endl;
+//        M->perdVie(60);
+//        break;
+//    default:
+//        std::cout << "L'attaque est normale." << std::endl;
+//        M->perdVie(20);
+//        break;
+//    }
+//    std::cout << M->toString() << std::endl;
+//}
+//    if(SOIN == getAttaque()){
+//    //if(getElement() == SOIN){
+//        M->recupVie(20);
+//    }
+//    else if(M->getForce() == getAttaque()){
+//    //else if(getElement() == M->getForce()){
+//        std::cout << "L'attaque n'est pas très efficace..." << std::endl;
+//        M->recupVie(5);
+//    }
+//    else if(M->getFaiblesse() == getAttaque()){
+//    //else if(getElement() == M->getFaiblesse()){
+//        std::cout << "L'attaque est très efficace !" << std::endl;
+//        M->perdVie(60);
+//    }
+//    else{
+//        std::cout << "L'attaque est normale." << std::endl;
+//        M->perdVie(20);
+//    }
 
-    std::cout << M->toString() << std::endl;
-}
+//    std::cout << M->toString() << std::endl;
+//}
 
 //Permet au joueur de changer le type d'élèment selectionné actuellement
 void Joueur::changerElement(){

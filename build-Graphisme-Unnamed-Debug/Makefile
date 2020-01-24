@@ -14,7 +14,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -m64 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -m64 -pipe -g -std=c++0x -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -m64 -pipe -g -std=c++1y -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -I../Graphisme -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
 QMAKE         = /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -123,6 +123,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++14.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
@@ -237,6 +238,7 @@ Makefile: ../Graphisme/Graphisme.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++14.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
@@ -299,6 +301,7 @@ Makefile: ../Graphisme/Graphisme.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf:
+/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++14.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf:
@@ -357,11 +360,11 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_HazelGame.cpp moc_SpriteMonstre.cpp
 moc_HazelGame.cpp: ../Graphisme/SpriteJoueur.hh \
 		../Jeu/Joueur.hh \
-		../Jeu/Personnage.hh \
 		../Graphisme/Barre.hh \
+		../Jeu/Monstre.hh \
+		../Jeu/Personnage.hh \
 		../Graphisme/Pouvoir.hh \
 		../Graphisme/SpriteMonstre.hh \
-		../Jeu/Monstre.hh \
 		../Graphisme/Vie.hh \
 		../Graphisme/Objet.hh \
 		../Graphisme/Mana.hh \
@@ -401,9 +404,9 @@ Feu.o: ../Jeu/Feu.cc ../Jeu/Feu.hh \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Feu.o ../Jeu/Feu.cc
 
 Joueur.o: ../Jeu/Joueur.cc ../Jeu/Joueur.hh \
-		../Jeu/Personnage.hh \
 		../Graphisme/Barre.hh \
-		../Jeu/Monstre.hh
+		../Jeu/Monstre.hh \
+		../Jeu/Personnage.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Joueur.o ../Jeu/Joueur.cc
 
 Monstre.o: ../Jeu/Monstre.cc ../Jeu/Monstre.hh \
@@ -423,11 +426,11 @@ Barre.o: ../Graphisme/Barre.cc ../Graphisme/Barre.hh
 HazelGame.o: ../Graphisme/HazelGame.cc ../Graphisme/HazelGame.hh \
 		../Graphisme/SpriteJoueur.hh \
 		../Jeu/Joueur.hh \
-		../Jeu/Personnage.hh \
 		../Graphisme/Barre.hh \
+		../Jeu/Monstre.hh \
+		../Jeu/Personnage.hh \
 		../Graphisme/Pouvoir.hh \
 		../Graphisme/SpriteMonstre.hh \
-		../Jeu/Monstre.hh \
 		../Graphisme/Vie.hh \
 		../Graphisme/Objet.hh \
 		../Graphisme/Mana.hh \
@@ -437,11 +440,11 @@ HazelGame.o: ../Graphisme/HazelGame.cc ../Graphisme/HazelGame.hh \
 Main.o: ../Graphisme/Main.cc ../Graphisme/HazelGame.hh \
 		../Graphisme/SpriteJoueur.hh \
 		../Jeu/Joueur.hh \
-		../Jeu/Personnage.hh \
 		../Graphisme/Barre.hh \
+		../Jeu/Monstre.hh \
+		../Jeu/Personnage.hh \
 		../Graphisme/Pouvoir.hh \
 		../Graphisme/SpriteMonstre.hh \
-		../Jeu/Monstre.hh \
 		../Graphisme/Vie.hh \
 		../Graphisme/Objet.hh \
 		../Graphisme/Mana.hh \
@@ -457,8 +460,9 @@ Pouvoir.o: ../Graphisme/Pouvoir.cc ../Graphisme/Pouvoir.hh
 
 SpriteJoueur.o: ../Graphisme/SpriteJoueur.cc ../Graphisme/SpriteJoueur.hh \
 		../Jeu/Joueur.hh \
-		../Jeu/Personnage.hh \
 		../Graphisme/Barre.hh \
+		../Jeu/Monstre.hh \
+		../Jeu/Personnage.hh \
 		../Graphisme/Pouvoir.hh \
 		../Graphisme/Vie.hh \
 		../Graphisme/Objet.hh \

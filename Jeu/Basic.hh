@@ -4,5 +4,5 @@
 class Basic: public Monstre{
   Basic(int vieMax);
   Basic();
-  void attaque(Personnage a);
+  //void attaque(Personnage a);
 };
