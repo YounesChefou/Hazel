@@ -10,6 +10,10 @@ std::string Monstre::toString()
         return str.str();
     }
 
+Statut Monstre::getForce(){return force;}
+Statut Monstre::getFaiblesse(){return faiblesse;}
+//int Monstre::getIntForce(){return intForce;}
+
 //Permet au Monstre d'attaquer le joueur j
 void Monstre::attaque(Personnage* p){
     Joueur* j = (Joueur*) p;

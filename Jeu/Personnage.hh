@@ -8,8 +8,6 @@ class Personnage{
   protected:
     int vie;
     int vieMax;
-    // Barre* HPMax;
-    // Barre* HP;
 
   public:
     int getVie() const {return vie;}

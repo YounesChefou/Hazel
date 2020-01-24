@@ -181,6 +181,7 @@ void HazelGame::collisionsMonstres(){
                 sprite->setHP(persoJoueur->getVie());
                 std::cout << persoJoueur->toString() << std::endl;
                 std::cout << "Attaque contre joueur" << std::endl;
+                persoJoueur->invincibilite();
             }
         }
     }

@@ -8,7 +8,8 @@ Feu::Feu(int v){
   vie = vieMax;
   faiblesse = GLACE;
   force = FEU;
-  strForce = "FEU";
+//  intForce = 1;
+//  intFaiblesse = 2;
   couleur = "ROUGE";
 }
 
@@ -25,12 +26,12 @@ Feu::Feu(){
 //Permet au Monstre d'attaquer le joueur j
 void Feu::attaque(Personnage* p){
     Joueur* j = (Joueur*) p;
-    //if(getForce() == j->getElement()){
-    if(getForce() == "FEU"){
+    if(j->getElement() == FEU){
+    //if(getForce() == "FEU"){
     // if(1){
         j->perdVie(30);
     }
-    else if(getFaiblesse() == j->getElement()){
+    else if(j->getElement() == GLACE){
         j->perdVie(10);
     }
     else{

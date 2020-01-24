@@ -4,15 +4,16 @@
 
 class Monstre : public Personnage{
 public:
+    // Monstre(Statut faiblesse, Statut force, std::string couleur):faiblesse(faiblesse), force(force), couleur(couleur){}
+    // ~Monstre();
     void attaque(Personnage* p);
-    int getVieMax(){return vieMax;}
-    std::string getForce() {return "FEU";}
-    Statut getFaiblesse() const {return faiblesse;}
+    Statut getForce();
+    Statut getFaiblesse();
+//    int getIntForce();
     std::string toString();
 
 protected:
     Statut faiblesse;
     Statut force;
-    std::string strForce;
     std::string couleur;
 };

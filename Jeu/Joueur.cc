@@ -75,8 +75,9 @@ void Joueur::transformation(){
     transforme = true;
 }
 
-void Joueur::detransformation(){
-    typeAttaque = 0;
+//
+void Joueur::invincibilite(){
+    godMode = true;
 }
 
 //Fonction permettant d'ajouter le montant recup à l'attribut vie du joueur

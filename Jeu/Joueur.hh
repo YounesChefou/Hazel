@@ -26,11 +26,12 @@ public:
   Statut getElement() const{return elements[typeAttaque];}
   void attaque(Personnage* p);
   void transformation(); //
-  void detransformation(); //Permet de revenir au Statut standard
+  void invincibilite();
   void setMana(int nouvMana){mana = nouvMana;}
   void recupMana(int recup);
   void changerElement();
   bool estTransforme(){return transforme;}
+  bool estInvincible(){return godMode;}
   std::string toString();
 private:
     //Attributs
@@ -39,4 +40,5 @@ private:
     int mana;
     int typeAttaque;
     bool transforme;
+    bool godMode;
 };
