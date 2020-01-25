@@ -17,8 +17,6 @@ public:
   //Destructeur
   ~Joueur();
   //Fonctions
-  int getVieMax() const{return vieMax;}
-  int getVie()  const{return vie;}
   int getManaMax() const{return manaMax;}
   int getMana() const {return mana;}
   int getAttaque() const {return typeAttaque;}

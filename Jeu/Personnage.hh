@@ -10,7 +10,9 @@ class Personnage{
     int vieMax;
 
   public:
-    int getVie() const {return vie;}
+    Personnage():vie(200), vieMax(200){}
+    Personnage(int v):vie(v), vieMax(200){}
+    int getVie(){return vie;}
     void setVie(int v){vie = v;}
     void recupVie(int recup)
     {
@@ -31,8 +33,6 @@ class Personnage{
         this->vie -= degats;
         std::cout << "Vie : " << this->vie << std::endl;
     }
-    int getVieMax() const {return vieMax;}
-    //void virtual attaque(Personnage* p);
+    int getVieMax() {return vieMax;}
     bool estMort(){ return vie <= 0 ? true : false;}
 };
-

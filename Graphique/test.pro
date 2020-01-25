@@ -2,11 +2,12 @@ QT += widgets
 QT += core
 
 SOURCES += \
-    ../Jeu/Basic.cc \
     ../Jeu/Feu.cc \
+    ../Jeu/Glace.cc \
     ../Jeu/Joueur.cc \
     ../Jeu/Monstre.cc \
     ../Jeu/Ombre.cc \
+    ../Jeu/Personnage.cc \
     Barre.cc \
     HazelGame.cc \
     Main.cc \
@@ -17,7 +18,6 @@ SOURCES += \
     Vie.cc
 
 HEADERS += \
-    ../Jeu/Basic.hh \
     ../Jeu/Feu.hh \
     ../Jeu/Glace.hh \
     ../Jeu/Joueur.hh \

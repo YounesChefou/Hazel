@@ -2,10 +2,10 @@
 #include "Monstre.hh"
 
 
-class Glace: public virtual Monstre{
-private:
+class Glace: public Monstre{
 public:
-  Glace(int v);
   Glace();
+  Glace(int v);
+  ~Glace();
   void attaque(int attaqueJoueur, Personnage *j);
 };

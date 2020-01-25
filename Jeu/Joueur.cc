@@ -9,21 +9,17 @@
 
 Statut Joueur::elements[] = {PHYSIQUE, FEU, SOIN, POISON, GLACE};
 
-Joueur::Joueur(){
-  srand (time(NULL));
-  vieMax = 200;
-  vie = 50;
-  manaMax = (75 + (int) rand() /(int) RAND_MAX * (50));
-  mana = manaMax;
-  typeAttaque = 0;
-  godMode = false;
+Joueur::Joueur():Personnage(200), manaMax(75), mana(75), typeAttaque(0), godMode(false){
+  // vie = 50;
+  // manaMax = (75 + (int) rand() /(int) RAND_MAX * (50));
+  // mana = manaMax;
+  // typeAttaque = 0;
+  // godMode = false;
 }
 
 //Constructeur de Joueur
-Joueur::Joueur(int v, int m){
-  srand (time(NULL));
+Joueur::Joueur(int v, int m):Personnage(v){
   vieMax = 150;
-  vie = v;
   manaMax = 75;
   mana = m;
   typeAttaque = 0;

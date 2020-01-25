@@ -2,25 +2,27 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
-Feu::Feu(int v){
-  vieMax = v;
-  vie = vieMax;
-  faiblesse = GLACE;
-  force = FEU;
-//  intForce = 1;
-//  intFaiblesse = 2;
-  couleur = "ROUGE";
+Feu::Feu():Monstre(200, GLACE, FEU, "ROUGE"){
+  // srand (time(NULL));
+  // vieMax = (20 + (int) rand() /(int) RAND_MAX * (20));
+  // vieMax = vieMax;
+  // vie = vieMax;
+  // faiblesse = GLACE;
+  // force = FEU;
+  // couleur = "ROUGE";
 }
 
-Feu::Feu(){
-  srand (time(NULL));
-  vieMax = (20 + (int) rand() /(int) RAND_MAX * (20));
-  vieMax = vieMax;
-  vie = vieMax;
-  faiblesse = GLACE;
-  force = FEU;
-  couleur = "ROUGE";
+Feu::Feu(int v):Monstre(v, GLACE, FEU, "ROUGE"){
+  // vieMax = v;
+  // vie = vieMax;
+  // faiblesse = GLACE;
+  // force = FEU;
+//  intForce = 1;
+//  intFaiblesse = 2;
+  // couleur = "ROUGE";
 }
+
+Feu::~Feu(){}
 
 void Feu::attaque(Statut attaqueJoueur, Personnage* j){
     switch(attaqueJoueur){
