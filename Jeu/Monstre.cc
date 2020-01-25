@@ -1,5 +1,4 @@
 #include "Monstre.hh"
-#include "Joueur.hh"
 
 std::string Monstre::toString()
     {
@@ -11,34 +10,23 @@ std::string Monstre::toString()
     }
 
 
+
 //int Monstre::getIntForce(){return intForce;}
 
 //Permet au Monstre d'attaquer le joueur j
 //void Monstre::attaque(Personnage *j){
 //    Joueur* j = (Joueur*) p;
-//    switch(j->getAttaque()){
-//    case (j->getElement())[force]:
+//     if(force == attaqueJoueur){
+//         //if(getForce() == j->getElement()){
+//         //if(1){
 //        j->perdVie(30);
-//        break;
-//    case (j->getElement())[faiblesse]:
+//      }
+//      else if(faiblesse == attaqueJoueur){
+//         //else if(getFaiblesse() == j->getElement()){
 //        j->perdVie(10);
-//        break;
-//    default:
+//      }
+//      else{
 //        j->perdVie(15);
-//        break;
-//    }
-//}
+//      }
 
-//    if((j->getElement())[force] == j->getAttaque()){
-//    //if(getForce() == j->getElement()){
-//    //if(1){
-//        j->perdVie(30);
-//    }
-//    else if((j->getElement())[faiblesse] == j->getAttaque()){
-//    //else if(getFaiblesse() == j->getElement()){
-//        j->perdVie(10);
-//    }
-//    else{
-//        j->perdVie(15);
-//    }
-//}
+

@@ -1,6 +1,7 @@
 QT += widgets
 QT += core
 CONFIG += c++14
+CONFIG += debug
 SOURCES += \
     ../Jeu/Basic.cc \
     ../Jeu/Feu.cc \

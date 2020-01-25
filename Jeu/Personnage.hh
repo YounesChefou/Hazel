@@ -6,7 +6,6 @@
 typedef enum {PHYSIQUE, FEU, POISON, SOIN, GLACE, AUCUNE} Statut;
 class Personnage{
   protected:
-    //friend class Monstre;
     int vie;
     int vieMax;
 

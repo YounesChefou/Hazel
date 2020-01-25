@@ -172,21 +172,26 @@ void HazelGame::collisionsMonstres(){
     for(int i = 0; i < nbMonstres; i++){
         monstre = monstres[i]->getMonstre();
         if(sprite->collidesWithItem(monstres[i])){
-            if(persoJoueur->estTransforme()){//Le joueur attaque
-                // persoJoueur->attaque(monstre);
-                //monstres[i]->setMonstreHP(monstre->getVie());
-            }
-            else{//Le Monstre attaque
-                //monstre->attaque(persoJoueur);
-                sprite->setHP(persoJoueur->getVie());
-                std::cout << persoJoueur->toString() << std::endl;
-                std::cout << "Attaque contre joueur" << std::endl;
-                persoJoueur->invincibilite();
+            attaque(monstre, persoJoueur);
+//            if(persoJoueur->estTransforme()){//Le joueur attaque
+//                // persoJoueur->attaque(monstre);
+//                //monstres[i]->setMonstreHP(monstre->getVie());
+//            }
+//            else{//Le Monstre attaque
+//                //monstre->attaque(persoJoueur);
+//                sprite->setHP(persoJoueur->getVie());
+//                std::cout << persoJoueur->toString() << std::endl;
+//                std::cout << "Attaque contre joueur" << std::endl;
+//                persoJoueur->invincibilite();
             }
         }
-    }
+
 }
 
-void HazelGame::attaque(SpriteMonstre *m, SpriteJoueur *j){
-
+void HazelGame::attaque(Monstre *m, Joueur *j){
+    if(j->estTransforme() == true){
+    }
+    else{
+       // m->attaque(j->getElement(),j);
+    }
 }

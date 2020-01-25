@@ -18,3 +18,11 @@ Basic::Basic(){
   force = AUCUNE;
   couleur = "GRISE";
 }
+
+void Basic::attaque(int attaqueJoueur, Personnage *j){
+    switch(attaqueJoueur){
+    default:
+        j->perdVie(15);
+        break;
+    }
+}

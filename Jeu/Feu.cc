@@ -1,5 +1,4 @@
 #include "Feu.hh"
-#include "Joueur.hh"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
@@ -21,6 +20,20 @@ Feu::Feu(){
   faiblesse = GLACE;
   force = FEU;
   couleur = "ROUGE";
+}
+
+void Feu::attaque(Statut attaqueJoueur, Personnage* j){
+    switch(attaqueJoueur){
+    case FEU:
+        j->perdVie(30);
+        break;
+    case GLACE:
+        j->perdVie(10);
+        break;
+    default:
+        j->perdVie(15);
+        break;
+    }
 }
 
 //Permet au Monstre d'attaquer le joueur j

@@ -360,11 +360,11 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_HazelGame.cpp moc_SpriteMonstre.cpp
 moc_HazelGame.cpp: ../Graphisme/SpriteJoueur.hh \
 		../Jeu/Joueur.hh \
-		../Graphisme/Barre.hh \
-		../Jeu/Monstre.hh \
 		../Jeu/Personnage.hh \
+		../Graphisme/Barre.hh \
 		../Graphisme/Pouvoir.hh \
 		../Graphisme/SpriteMonstre.hh \
+		../Jeu/Monstre.hh \
 		../Graphisme/Vie.hh \
 		../Graphisme/Objet.hh \
 		../Graphisme/Mana.hh \
@@ -404,15 +404,13 @@ Feu.o: ../Jeu/Feu.cc ../Jeu/Feu.hh \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Feu.o ../Jeu/Feu.cc
 
 Joueur.o: ../Jeu/Joueur.cc ../Jeu/Joueur.hh \
+		../Jeu/Personnage.hh \
 		../Graphisme/Barre.hh \
-		../Jeu/Monstre.hh \
-		../Jeu/Personnage.hh
+		../Jeu/Monstre.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Joueur.o ../Jeu/Joueur.cc
 
 Monstre.o: ../Jeu/Monstre.cc ../Jeu/Monstre.hh \
-		../Jeu/Personnage.hh \
-		../Jeu/Joueur.hh \
-		../Graphisme/Barre.hh
+		../Jeu/Personnage.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Monstre.o ../Jeu/Monstre.cc
 
 Ombre.o: ../Jeu/Ombre.cc ../Jeu/Ombre.hh \
@@ -426,11 +424,11 @@ Barre.o: ../Graphisme/Barre.cc ../Graphisme/Barre.hh
 HazelGame.o: ../Graphisme/HazelGame.cc ../Graphisme/HazelGame.hh \
 		../Graphisme/SpriteJoueur.hh \
 		../Jeu/Joueur.hh \
-		../Graphisme/Barre.hh \
-		../Jeu/Monstre.hh \
 		../Jeu/Personnage.hh \
+		../Graphisme/Barre.hh \
 		../Graphisme/Pouvoir.hh \
 		../Graphisme/SpriteMonstre.hh \
+		../Jeu/Monstre.hh \
 		../Graphisme/Vie.hh \
 		../Graphisme/Objet.hh \
 		../Graphisme/Mana.hh \
@@ -440,11 +438,11 @@ HazelGame.o: ../Graphisme/HazelGame.cc ../Graphisme/HazelGame.hh \
 Main.o: ../Graphisme/Main.cc ../Graphisme/HazelGame.hh \
 		../Graphisme/SpriteJoueur.hh \
 		../Jeu/Joueur.hh \
-		../Graphisme/Barre.hh \
-		../Jeu/Monstre.hh \
 		../Jeu/Personnage.hh \
+		../Graphisme/Barre.hh \
 		../Graphisme/Pouvoir.hh \
 		../Graphisme/SpriteMonstre.hh \
+		../Jeu/Monstre.hh \
 		../Graphisme/Vie.hh \
 		../Graphisme/Objet.hh \
 		../Graphisme/Mana.hh \
@@ -460,9 +458,8 @@ Pouvoir.o: ../Graphisme/Pouvoir.cc ../Graphisme/Pouvoir.hh
 
 SpriteJoueur.o: ../Graphisme/SpriteJoueur.cc ../Graphisme/SpriteJoueur.hh \
 		../Jeu/Joueur.hh \
-		../Graphisme/Barre.hh \
-		../Jeu/Monstre.hh \
 		../Jeu/Personnage.hh \
+		../Graphisme/Barre.hh \
 		../Graphisme/Pouvoir.hh \
 		../Graphisme/Vie.hh \
 		../Graphisme/Objet.hh \

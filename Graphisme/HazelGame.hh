@@ -18,7 +18,7 @@ public:
     void ajouterMonstre(SpriteMonstre* m, int x, int y);
     void collisionsObjets();
     void collisionsMonstres();
-    void attaque(SpriteMonstre* m, SpriteJoueur* j);
+    void attaque(Monstre* m, Joueur* j);
     void mouseMoveEvent(QMouseEvent *event);
 public slots:
     void previentMonstres();
