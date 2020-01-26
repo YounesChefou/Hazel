@@ -2,7 +2,8 @@
 #include "Vie.hh"
 #include "Mana.hh"
 #include "../Jeu/Feu.hh"
-#include "../Jeu"
+#include "../Jeu/Glace.hh"
+#include "../Jeu/Ombre.hh"
 #include "Pouvoir.hh"
 #include <time.h>
 #include <QTimer>
@@ -220,7 +221,7 @@ void HazelGame::effacerMorts(){
 
             //On incrémente le compteur d'ennemis tués
             ennemisTues += 1;
-            if(ennemisTues >= 15) finDePartie();
+            if(ennemisTues >= 15) finDePartie(1);
             //On retire sa barre de vie
             scene->removeItem(monstres[i]->getMonstreHPMax());
             scene->removeItem(monstres[i]->getMonstreHP());
@@ -346,5 +347,17 @@ void HazelGame::mousePressEvent(QMouseEvent *event){
         default:
             std::cout << "Me and Michael" << std::endl;
         break;
+    }
+}
+
+//
+void HazelGame::finDePartie(int i){
+    switch(i){
+        case 0:
+            std::cout << "Vous avez perdu :(" << std::endl;
+            break;
+        case 1:
+            std::cout << "Victoire woo" << std::endl;
+            break;
     }
 }

@@ -26,7 +26,7 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void effacerMorts();
     void spawnObjets(int x, int y);
-    void finDePartie(int i);
+    void finDePartie(int resultat);
     void rejouer();
 public slots:
     //Méthodes appelées de manière répétés
