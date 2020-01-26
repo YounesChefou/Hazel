@@ -11,8 +11,12 @@ class HazelGame : public QGraphicsView
 {
     Q_OBJECT
 public:
+    //Constructeur
     HazelGame();
+    //Destructeur
     ~HazelGame();
+
+    //Méthodes
     void ajouterVie(int recup, int x, int y);
     void ajouterMana(int recup, int x, int y);
     void ajouterMonstre(SpriteMonstre* m, int x, int y);
@@ -21,10 +25,14 @@ public:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void effacerMorts();
+    void spawnObjets();
 public slots:
+    //Méthodes appelées de manière répétés
     void previentMonstres();
     void joueurInvincible();
     void joueurTransforme();
+    void depletionMana();
+    void remplissageMana();
 private:
     QGraphicsScene* scene;
     SpriteJoueur* sprite;

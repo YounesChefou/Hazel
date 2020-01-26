@@ -2,6 +2,8 @@
 #include "Vie.hh"
 #include "Mana.hh"
 #include "../Jeu/Feu.hh"
+#include "Pouvoir.hh"
+#include <time.h>
 #include <QTimer>
 
 //Initialise le jeu
@@ -28,12 +30,8 @@ HazelGame::HazelGame()
     scene->addItem(sprite->getMPMax());
     scene->addItem(sprite->getMP());
 
-    //On place l'image des pouvoirs juste à côté de
+    //On place l'image des pouvoirs juste à côté des barres de vie et de mana
     basic->setPos(sprite->getHPMax()->x() + 200, sprite->getHPMax()->y() + 20);
-    //Pour que le sprite soit sensible aux contrôles de l'utilisateur,
-    //Il doit être "focusable"
-    sprite->setFlag(QGraphicsItem::ItemIsFocusable);
-    sprite->setFocus();
 
     ajouterVie(20, 500, 500);
     ajouterMana(10, 600, 500);
@@ -44,11 +42,20 @@ HazelGame::HazelGame()
 
     setMouseTracking(true);
 
-    QTimer * timer = new QTimer();
+    QTimer* timer = new QTimer();
     //Chaque fois que le timer arrive à zero, on appelle deplacement
     connect(timer, SIGNAL(timeout()), this, SLOT(previentMonstres()));
-
     timer->start(5); //Toutes les 5 ms
+
+    //La barre de mana se vide toutes les 2 secondes lorsque le joueur est transformé
+    QTimer* timer2 = new QTimer();
+    connect(timer2, SIGNAL(timeout()), this, SLOT(depletionMana()));
+    timer2->start(2000); // Toutes les 2 secondes
+
+    //La barre de mana se remplit toutes les 5 secondes lorsque le joueur n'est pas transformé
+    QTimer* timer3 = new QTimer();
+    connect(timer3, SIGNAL(timeout()), this, SLOT(remplissageMana()));
+    timer3->start(5000);
 }
 
 HazelGame::~HazelGame(){}
@@ -169,7 +176,6 @@ void HazelGame::collisionsMonstres(){
     Joueur* persoJoueur = sprite->getJoueur();
     Monstre* monstre;
 
-    //persoJoueur->transformation();
     for(int i = 0; i < nbMonstres; i++){
         monstre = monstres[i]->getMonstre();
         if(sprite->collidesWithItem(monstres[i])){
@@ -200,18 +206,49 @@ void HazelGame::collisionsMonstres(){
 void HazelGame::effacerMorts(){
     Monstre* M;
     int nbMonstres = monstres.size();
+    int x, y;
 
     for(int i = 0; i < nbMonstres; i++){
         M = monstres[i]->getMonstre();
         if(M->estMort()){
-            std::cout << "Le monstre est mooooooort" << std::endl;
+            x = monstres[i]->x();
+            y = monstres[i]->y();
+
+            //On retire sa barre de vie
             scene->removeItem(monstres[i]->getMonstreHPMax());
             scene->removeItem(monstres[i]->getMonstreHP());
             scene->removeItem(monstres[i]);
+
+            //On tire au sort si sa mort résulte en l'apparition d'un objet
+            spawnObjets(x,y);
+
+            //On le retire du tableau
             monstres.erase(monstres.begin()+i);
         }
     }
 }
+
+//Fait apparaitre aléatoirement un Objet Vie ou un Ob
+void HazelGame::spawnObjets(int x, int y){
+    srand(time(NULL));
+    int spawn = rand() % 5;
+
+    switch(spawn){
+        case 1:
+            ajouterVie(20, x, y);
+            break;
+        case 2:
+            ajouterVie(100, x, y);
+            break;
+        case 3:
+            ajouterMana(10, x, y);
+            break;
+        case 4:
+            ajouterMana(30, x, y);
+            break;
+    }
+
+    }
 
 //Appelle la fonction invincibilite() de Joueur
 //Le joueur devient soit invulnérable aux attaques ennemies
@@ -225,12 +262,40 @@ void HazelGame::joueurTransforme(){
     sprite->spriteTransformation();
 }
 
+//Vide la barre de Mana du joueur lorsqu'il est transforme et le fait
+//revenir à sa forme de base après que celle-ci soit entièrement vide
+void HazelGame::depletionMana(){
+    Joueur* j = sprite->getJoueur();
+    if(j->estTransforme()){ // Si le joueur est transforme, alors on vide sa mana
+        j->setMana(j->getMana() - 2);
+        sprite->setMP(j->getMana());
+        if(j->getMana() <= 0) joueurTransforme();
+    }
+}
+
+//Si le joueur n'est pas transforme, sa barre de Mana se remplit lentement
+void HazelGame::remplissageMana(){
+    Joueur* j = sprite->getJoueur();
+    if(!j->estTransforme()){ // Si le joueur est transforme, alors on vide sa mana
+        j->setMana(j->getMana() + 2);
+        sprite->setMP(j->getMana());
+    }
+}
+
+//Transformation du joueur avec un clic gauche
+//Changement d'element avec un clic droit
 void HazelGame::mousePressEvent(QMouseEvent *event){
+    Joueur* j = sprite->getJoueur();
+    Pouvoir* p = sprite->getPicto();
+
     switch(event->button()){
         case Qt::LeftButton:
             joueurTransforme();
-            QTimer::singleShot(10000, this, SLOT(joueurTransforme()));
-        break;
+            break;
+        case Qt::RightButton:
+            j->changerElement();
+            p->changerPicto(j->getAttaque());
+            break;
         default:
             std::cout << "Me and Michael" << std::endl;
         break;
