@@ -18,10 +18,14 @@ public:
     void ajouterMonstre(SpriteMonstre* m, int x, int y);
     void collisionsObjets();
     void collisionsMonstres();
-    void attaque(Monstre* m, Joueur* j);
     void mouseMoveEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void effacerMorts();
+    QGraphicsScene* getScene(){return scene;}
 public slots:
     void previentMonstres();
+    void joueurInvincible();
+    void joueurTransforme();
 private:
     QGraphicsScene* scene;
     SpriteJoueur* sprite;

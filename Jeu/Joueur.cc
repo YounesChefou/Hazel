@@ -6,15 +6,24 @@
 #include <sstream>
 #include <list>
 #include <ctime>
-#include <chrono>
+//#include <chrono>
 
 Statut Joueur::elements[] = {PHYSIQUE, GLACE, FEU, POISON, SOIN};
 
-Joueur::Joueur():Personnage(200), manaMax(75), mana(75), typeAttaque(0), godMode(false){}
+Joueur::Joueur(){ //:Personnage(200), manaMax(75), mana(75), typeAttaque(0), godMode(false){}
+    vieMax = 200;
+    vie = 200;
+    manaMax = 75;
+    mana = 75;
+    typeAttaque = 0;
+    transforme = false;
+    godMode = false;
+}
 
 //Constructeur de Joueur
-Joueur::Joueur(int v, int m):Personnage(v){
-  vieMax = 150;
+Joueur::Joueur(int v, int m){//:Personnage(v){
+  vieMax = v;
+  vie = vieMax;
   manaMax = 75;
   mana = m;
   typeAttaque = 0;

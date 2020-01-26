@@ -7,5 +7,4 @@ public:
   Glace();
   Glace(int v);
   ~Glace();
-  void attaque(int attaqueJoueur, Personnage *j);
 };

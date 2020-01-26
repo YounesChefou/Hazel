@@ -38,7 +38,7 @@ HazelGame::HazelGame()
     ajouterVie(20, 500, 500);
     ajouterMana(10, 600, 500);
 
-    Feu* f = new Feu(75);
+    Feu* f = new Feu(200);
     SpriteMonstre* spriteM =  new SpriteMonstre(f);
     ajouterMonstre(spriteM, 500, 150);
 
@@ -169,29 +169,70 @@ void HazelGame::collisionsMonstres(){
     Joueur* persoJoueur = sprite->getJoueur();
     Monstre* monstre;
 
+    //persoJoueur->transformation();
     for(int i = 0; i < nbMonstres; i++){
         monstre = monstres[i]->getMonstre();
         if(sprite->collidesWithItem(monstres[i])){
-            attaque(monstre, persoJoueur);
-//            if(persoJoueur->estTransforme()){//Le joueur attaque
-//                // persoJoueur->attaque(monstre);
-//                //monstres[i]->setMonstreHP(monstre->getVie());
-//            }
-//            else{//Le Monstre attaque
-//                //monstre->attaque(persoJoueur);
-//                sprite->setHP(persoJoueur->getVie());
-//                std::cout << persoJoueur->toString() << std::endl;
-//                std::cout << "Attaque contre joueur" << std::endl;
-//                persoJoueur->invincibilite();
+            if(persoJoueur->estTransforme()){//Le joueur attaque
+                persoJoueur->attaque(monstre);
+                monstres[i]->setMonstreHP(monstre->getVie());
+                std::cout << monstre->toString() << std::endl;
+                std::cout << "Attaque contre ennemi" << std::endl;
+            }
+            else{//Le Monstre attaque
+                monstre->attaque(persoJoueur);
+                sprite->setHP(persoJoueur->getVie());
+                std::cout << persoJoueur->toString() << std::endl;
+                std::cout << "Attaque contre joueur" << std::endl;
+                if(!persoJoueur->estInvincible()){ //On rend le joueur invincible pendant 2 secondes
+                    joueurInvincible();
+                    QTimer::singleShot(2000, this, SLOT(joueurInvincible()));
+                }
             }
         }
+    }
 
+
+    effacerMorts();
 }
 
-void HazelGame::attaque(Monstre *m, Joueur *j){
-    if(j->estTransforme() == true){
+//Efface les monstres morts de la scene
+void HazelGame::effacerMorts(){
+    Monstre* M;
+    int nbMonstres = monstres.size();
+
+    for(int i = 0; i < nbMonstres; i++){
+        M = monstres[i]->getMonstre();
+        if(M->estMort()){
+            std::cout << "Le monstre est mooooooort" << std::endl;
+            scene->removeItem(monstres[i]->getMonstreHPMax());
+            scene->removeItem(monstres[i]->getMonstreHP());
+            scene->removeItem(monstres[i]);
+            monstres.erase(monstres.begin()+i);
+        }
     }
-    else{
-       // m->attaque(j->getElement(),j);
+}
+
+//Appelle la fonction invincibilite() de Joueur
+//Le joueur devient soit invulnérable aux attaques ennemies
+//soit redevient vulnérable.
+void HazelGame::joueurInvincible(){
+    sprite->getJoueur()->invincibilite();
+}
+
+//Appelle la méthode de transformation du joueur
+void HazelGame::joueurTransforme(){
+    sprite->spriteTransformation();
+}
+
+void HazelGame::mousePressEvent(QMouseEvent *event){
+    switch(event->button()){
+        case Qt::LeftButton:
+            joueurTransforme();
+            QTimer::singleShot(10000, this, SLOT(joueurTransforme()));
+        break;
+        default:
+            std::cout << "Me and Michael" << std::endl;
+        break;
     }
 }

@@ -14,7 +14,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -m64 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -m64 -pipe -g -std=c++1y -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -m64 -pipe -g -std=c++0x -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -I../Graphisme -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
 QMAKE         = /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -48,8 +48,8 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../Jeu/Basic.cc \
-		../Jeu/Feu.cc \
+SOURCES       = ../Jeu/Feu.cc \
+		../Jeu/Glace.cc \
 		../Jeu/Joueur.cc \
 		../Jeu/Monstre.cc \
 		../Jeu/Ombre.cc \
@@ -62,8 +62,8 @@ SOURCES       = ../Jeu/Basic.cc \
 		../Graphisme/SpriteMonstre.cc \
 		../Graphisme/Vie.cc moc_HazelGame.cpp \
 		moc_SpriteMonstre.cpp
-OBJECTS       = Basic.o \
-		Feu.o \
+OBJECTS       = Feu.o \
+		Glace.o \
 		Joueur.o \
 		Monstre.o \
 		Ombre.o \
@@ -123,7 +123,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++14.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
@@ -135,8 +134,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		../Graphisme/Graphisme.pro ../Jeu/Basic.hh \
-		../Jeu/Feu.hh \
+		../Graphisme/Graphisme.pro ../Jeu/Feu.hh \
 		../Jeu/Glace.hh \
 		../Jeu/Joueur.hh \
 		../Jeu/Monstre.hh \
@@ -149,8 +147,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../Graphisme/Pouvoir.hh \
 		../Graphisme/SpriteJoueur.hh \
 		../Graphisme/SpriteMonstre.hh \
-		../Graphisme/Vie.hh ../Jeu/Basic.cc \
-		../Jeu/Feu.cc \
+		../Graphisme/Vie.hh ../Jeu/Feu.cc \
+		../Jeu/Glace.cc \
 		../Jeu/Joueur.cc \
 		../Jeu/Monstre.cc \
 		../Jeu/Ombre.cc \
@@ -238,7 +236,6 @@ Makefile: ../Graphisme/Graphisme.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++14.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
@@ -301,7 +298,6 @@ Makefile: ../Graphisme/Graphisme.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf:
-/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++14.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf:
@@ -331,8 +327,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Jeu/Basic.hh ../Jeu/Feu.hh ../Jeu/Glace.hh ../Jeu/Joueur.hh ../Jeu/Monstre.hh ../Jeu/Ombre.hh ../Jeu/Personnage.hh ../Graphisme/Barre.hh ../Graphisme/HazelGame.hh ../Graphisme/Mana.hh ../Graphisme/Objet.hh ../Graphisme/Pouvoir.hh ../Graphisme/SpriteJoueur.hh ../Graphisme/SpriteMonstre.hh ../Graphisme/Vie.hh $(DISTDIR)/
-	$(COPY_FILE) --parents ../Jeu/Basic.cc ../Jeu/Feu.cc ../Jeu/Joueur.cc ../Jeu/Monstre.cc ../Jeu/Ombre.cc ../Graphisme/Barre.cc ../Graphisme/HazelGame.cc ../Graphisme/Main.cc ../Graphisme/Mana.cc ../Graphisme/Pouvoir.cc ../Graphisme/SpriteJoueur.cc ../Graphisme/SpriteMonstre.cc ../Graphisme/Vie.cc $(DISTDIR)/
+	$(COPY_FILE) --parents ../Jeu/Feu.hh ../Jeu/Glace.hh ../Jeu/Joueur.hh ../Jeu/Monstre.hh ../Jeu/Ombre.hh ../Jeu/Personnage.hh ../Graphisme/Barre.hh ../Graphisme/HazelGame.hh ../Graphisme/Mana.hh ../Graphisme/Objet.hh ../Graphisme/Pouvoir.hh ../Graphisme/SpriteJoueur.hh ../Graphisme/SpriteMonstre.hh ../Graphisme/Vie.hh $(DISTDIR)/
+	$(COPY_FILE) --parents ../Jeu/Feu.cc ../Jeu/Glace.cc ../Jeu/Joueur.cc ../Jeu/Monstre.cc ../Jeu/Ombre.cc ../Graphisme/Barre.cc ../Graphisme/HazelGame.cc ../Graphisme/Main.cc ../Graphisme/Mana.cc ../Graphisme/Pouvoir.cc ../Graphisme/SpriteJoueur.cc ../Graphisme/SpriteMonstre.cc ../Graphisme/Vie.cc $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -391,17 +387,15 @@ compiler_clean: compiler_moc_header_clean
 
 ####### Compile
 
-Basic.o: ../Jeu/Basic.cc ../Jeu/Basic.hh \
-		../Jeu/Monstre.hh \
-		../Jeu/Personnage.hh
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Basic.o ../Jeu/Basic.cc
-
 Feu.o: ../Jeu/Feu.cc ../Jeu/Feu.hh \
 		../Jeu/Monstre.hh \
-		../Jeu/Personnage.hh \
-		../Jeu/Joueur.hh \
-		../Graphisme/Barre.hh
+		../Jeu/Personnage.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Feu.o ../Jeu/Feu.cc
+
+Glace.o: ../Jeu/Glace.cc ../Jeu/Glace.hh \
+		../Jeu/Monstre.hh \
+		../Jeu/Personnage.hh
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Glace.o ../Jeu/Glace.cc
 
 Joueur.o: ../Jeu/Joueur.cc ../Jeu/Joueur.hh \
 		../Jeu/Personnage.hh \
@@ -410,7 +404,9 @@ Joueur.o: ../Jeu/Joueur.cc ../Jeu/Joueur.hh \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Joueur.o ../Jeu/Joueur.cc
 
 Monstre.o: ../Jeu/Monstre.cc ../Jeu/Monstre.hh \
-		../Jeu/Personnage.hh
+		../Jeu/Personnage.hh \
+		../Jeu/Joueur.hh \
+		../Graphisme/Barre.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Monstre.o ../Jeu/Monstre.cc
 
 Ombre.o: ../Jeu/Ombre.cc ../Jeu/Ombre.hh \

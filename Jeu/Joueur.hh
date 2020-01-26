@@ -3,8 +3,6 @@
 #include <string>
 #include <iostream>
 #include <ostream>
-//#include "Vie.hh"
-//#include "Mana.hh"
 #include <QGraphicsRectItem>
 #include "Barre.hh"
 
@@ -14,23 +12,28 @@ public:
   //Constructeurs
   Joueur();
   Joueur(int v, int m);
+
   //Destructeur
   ~Joueur();
+
   //Fonctions
+  void attaque(Personnage* p);
+  void transformation(); //
+  void invincibilite();
+  void recupMana(int recup);
+  void changerElement();
+  std::string toString();
+
+  //Accesseurs
   int getManaMax() const{return manaMax;}
   int getMana() const {return mana;}
   int getAttaque() const {return typeAttaque;}
   Statut getElement() const{return elements[typeAttaque];}
-
-  void attaque(Personnage* p);
-  void transformation(); //
-  void invincibilite();
-  void setMana(int nouvMana){mana = nouvMana;}
-  void recupMana(int recup);
-  void changerElement();
   bool estTransforme(){return transforme;}
   bool estInvincible(){return godMode;}
-  std::string toString();
+
+  //Mutateurs
+  void setMana(int nouvMana){mana = nouvMana;}
 
 private:
     //Attributs
