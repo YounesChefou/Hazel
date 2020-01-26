@@ -19,6 +19,7 @@ public:
     void collisionsObjets();
     void collisionsMonstres();
     void mouseMoveEvent(QMouseEvent *event);
+    void keyPressEvent(QKeyEvent *event);
     void effacerMorts();
 public slots:
     void previentMonstres();

@@ -10,13 +10,7 @@
 
 Statut Joueur::elements[] = {PHYSIQUE, GLACE, FEU, POISON, SOIN};
 
-Joueur::Joueur():Personnage(200), manaMax(75), mana(75), typeAttaque(0), godMode(false){
-  // vie = 50;
-  // manaMax = (75 + (int) rand() /(int) RAND_MAX * (50));
-  // mana = manaMax;
-  // typeAttaque = 0;
-  // godMode = false;
-}
+Joueur::Joueur():Personnage(200), manaMax(75), mana(75), typeAttaque(0), godMode(false){}
 
 //Constructeur de Joueur
 Joueur::Joueur(int v, int m):Personnage(v){
@@ -55,41 +49,12 @@ void Joueur::attaque(Personnage *p){
    // std::cout << p->toString() << std::endl;
 }
 
-//    if(SOIN == getAttaque()){
-//    //if(getElement() == SOIN){
-//        M->recupVie(20);
-//    }
-//    else if(M->getForce() == getAttaque()){
-//    //else if(getElement() == M->getForce()){
-//        std::cout << "L'attaque n'est pas très efficace..." << std::endl;
-//        M->recupVie(5);
-//    }
-//    else if(M->getFaiblesse() == getAttaque()){
-//    //else if(getElement() == M->getFaiblesse()){
-//        std::cout << "L'attaque est très efficace !" << std::endl;
-//        M->perdVie(60);
-//    }
-//    else{
-//        std::cout << "L'attaque est normale." << std::endl;
-//        M->perdVie(20);
-//    }
-
-//    std::cout << M->toString() << std::endl;
-//}
-
 //Permet au joueur de changer le type d'élèment selectionné actuellement
 void Joueur::changerElement(){
     typeAttaque++;
     if(typeAttaque >= 5) typeAttaque = 0;
 }
 
-////Renvoie True si le joueur est mort et False sinon
-//bool Joueur::estMort()
-//{
-//    if(vie <= 0) return true;
-
-//    return false;
-//}
 
 //Le joueur choisit le type de pouvoir qu'il souhaite avoir et ensuite
 //se transforme, toutes les secondes, sa mana va graduellement descendre
