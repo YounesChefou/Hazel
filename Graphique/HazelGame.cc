@@ -220,14 +220,16 @@ void HazelGame::joueurInvincible(){
     sprite->getJoueur()->invincibilite();
 }
 
+//Appelle la méthode de transformation du joueur
 void HazelGame::joueurTransforme(){
-
+    sprite->spriteTransformation();
 }
 
 void HazelGame::mousePressEvent(QMouseEvent *event){
     switch(event->button()){
         case Qt::LeftButton:
             joueurTransforme();
+            QTimer::singleShot(10000, this, SLOT(joueurTransforme()));
         break;
         default:
             std::cout << "Me and Michael" << std::endl;
