@@ -13,7 +13,7 @@ SpriteMonstre::SpriteMonstre(Monstre* m){
     //Chaque fois que le timer arrive à zero, on appelle deplacement
     connect(timer, SIGNAL(timeout()), this, SLOT(deplacement()));
 
-    timer->start(20); //Toutes les 10ms
+    timer->start(10); //Toutes les 10ms
 }
 
 SpriteMonstre::~SpriteMonstre(){}

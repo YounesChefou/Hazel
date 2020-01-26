@@ -35,11 +35,6 @@ HazelGame::HazelGame()
     //On place l'image des pouvoirs juste à côté des barres de vie et de mana
     basic->setPos(sprite->getHPMax()->x() + 200, sprite->getHPMax()->y() + 20);
 
-    // ajouterVie(20, 500, 500);
-    // ajouterMana(10, 600, 500);
-    //
-
-
     setMouseTracking(true);
 
     QTimer* timerMouv = new QTimer();
@@ -221,7 +216,7 @@ void HazelGame::effacerMorts(){
 
             //On incrémente le compteur d'ennemis tués
             ennemisTues += 1;
-            if(ennemisTues >= 15) finDePartie(1);
+            if(ennemisTues >= 15) finDePartie();
             //On retire sa barre de vie
             scene->removeItem(monstres[i]->getMonstreHPMax());
             scene->removeItem(monstres[i]->getMonstreHP());
@@ -350,14 +345,14 @@ void HazelGame::mousePressEvent(QMouseEvent *event){
     }
 }
 
-//
+//Declenche la fin de la partie
 void HazelGame::finDePartie(int i){
     switch(i){
         case 0:
             std::cout << "Vous avez perdu :(" << std::endl;
             break;
         case 1:
-            std::cout << "Victoire woo" << std::endl;
+            std::cout << "Victoire woo" << std:endl;
             break;
     }
 }
