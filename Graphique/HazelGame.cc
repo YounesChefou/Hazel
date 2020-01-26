@@ -184,7 +184,7 @@ void HazelGame::collisionsMonstres(){
                 sprite->setHP(persoJoueur->getVie());
                 std::cout << persoJoueur->toString() << std::endl;
                 std::cout << "Attaque contre joueur" << std::endl;
-                if(!persoJoueur->estInvincible()){
+                if(!persoJoueur->estInvincible()){ //On rend le joueur invincible pendant 2 secondes
                     joueurInvincible();
                     QTimer::singleShot(2000, this, SLOT(joueurInvincible()));
                 }
@@ -220,14 +220,14 @@ void HazelGame::joueurInvincible(){
     sprite->getJoueur()->invincibilite();
 }
 
-void HazelGame::phaseTransformation(){
-    
+void HazelGame::joueurTransforme(){
+
 }
 
 void HazelGame::mousePressEvent(QMouseEvent *event){
     switch(event->button()){
         case Qt::LeftButton:
-            phaseTransformation();
+            joueurTransforme();
         break;
         default:
             std::cout << "Me and Michael" << std::endl;

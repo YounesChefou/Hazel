@@ -24,6 +24,7 @@ public:
 public slots:
     void previentMonstres();
     void joueurInvincible();
+    void joueurTransforme();
 private:
     QGraphicsScene* scene;
     SpriteJoueur* sprite;

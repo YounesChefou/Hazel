@@ -91,40 +91,56 @@ void SpriteJoueur::recupererMana(int recup){
 }
 
 //Test du changement de sprite
-void SpriteJoueur::mousePressEvent(QGraphicsSceneMouseEvent *event){
-    static int d = 0;
-    if(event->button() == Qt::LeftButton){
-        switch(d){
-            case 0:
-            changerSprite('S');
-            break;
-            case 1:
-            changerSprite('G');
-            break;
-            case 2:
-            changerSprite('F');
-            break;
-        }
-    }
+// void SpriteJoueur::mousePressEvent(QGraphicsSceneMouseEvent *event){
+//     static int d = 0;
+//     if(event->button() == Qt::LeftButton){
+//         switch(d){
+//             case 0:
+//             changerSprite('S');
+//             break;
+//             case 1:
+//             changerSprite('G');
+//             break;
+//             case 2:
+//             changerSprite('F');
+//             break;
+//         }
+//     }
+//
+//     d++;
+//     if(d >= 3) d = 0;
+// }
 
-    d++;
-    if(d >= 3) d = 0;
-}
 //Permet de changer de sprite
-void SpriteJoueur::changerSprite(char typeFumee){
+void SpriteJoueur::changerSprite(int element){
     QPixmap spriteStandard("../Ressources/spriteGenerique.png");
     QPixmap spriteGlace("../Ressources/fumeeBleue.png");
     QPixmap spriteFeu("../Ressources/fumeeRouge.png");
+    //Pas encore dispo, je vais les rajouter juste après
+    QPixmap spritePoison("../Ressources/fumeeViolette.png");
+    QPixmap spriteSoin("../Ressources/fumeeVerte.png");
 
-    switch(typeFumee){
-        case 'S':
+    switch(element){
+        case 0:
             setPixmap(spriteStandard);
             break;
-        case 'G':
+        case 1:
             setPixmap(spriteGlace);
             break;
-        case 'F':
-            this->setPixmap(spriteFeu);
+        case 2:
+            setPixmap(spriteFeu);
+            break;
+        case 3:
+            setPixmap(spritePoison);
+            break;
+        case 4:
+            setPixmap(spriteSoin);
             break;
     }
+}
+
+//Transforme le joueur et change son sprite
+void SpriteJoueur::spriteTransformation(){
+    joueur->transformation();
+    joueur->estTransforme() ? changerSprite(joueur->getAttaque()) : changerSprite(0);
 }
