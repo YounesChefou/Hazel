@@ -9,7 +9,8 @@ int main(int argc, char *argv[]){
     QApplication app(argc, argv);
 
     hazelGame = new HazelGame();
-    hazelGame->show();
+    hazelGame->showMaximized();
+    //hazelGame->show();
 
     //test du deplacement d'ennemi
     //Se renseigner sur les public slots

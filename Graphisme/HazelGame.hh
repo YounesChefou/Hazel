@@ -21,6 +21,7 @@ public:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void effacerMorts();
+    QGraphicsScene* getScene(){return scene;}
 public slots:
     void previentMonstres();
     void joueurInvincible();

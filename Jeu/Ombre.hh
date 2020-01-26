@@ -6,5 +6,4 @@ public:
   Ombre(int v);
   Ombre();
   ~Ombre();
-  void attaque(int attaqueJoueur, Personnage *j);
 };
