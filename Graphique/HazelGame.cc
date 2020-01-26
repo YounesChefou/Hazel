@@ -2,6 +2,7 @@
 #include "Vie.hh"
 #include "Mana.hh"
 #include "../Jeu/Feu.hh"
+#include "../Jeu"
 #include "Pouvoir.hh"
 #include <time.h>
 #include <QTimer>
@@ -33,29 +34,32 @@ HazelGame::HazelGame()
     //On place l'image des pouvoirs juste à côté des barres de vie et de mana
     basic->setPos(sprite->getHPMax()->x() + 200, sprite->getHPMax()->y() + 20);
 
-    ajouterVie(20, 500, 500);
-    ajouterMana(10, 600, 500);
+    // ajouterVie(20, 500, 500);
+    // ajouterMana(10, 600, 500);
+    //
 
-    Feu* f = new Feu(200);
-    SpriteMonstre* spriteM =  new SpriteMonstre(f);
-    ajouterMonstre(spriteM, 500, 150);
 
     setMouseTracking(true);
 
-    QTimer* timer = new QTimer();
+    QTimer* timerMouv = new QTimer();
     //Chaque fois que le timer arrive à zero, on appelle deplacement
-    connect(timer, SIGNAL(timeout()), this, SLOT(previentMonstres()));
-    timer->start(5); //Toutes les 5 ms
+    connect(timerMouv, SIGNAL(timeout()), this, SLOT(previentMonstres()));
+    timerMouv->start(5); //Toutes les 5 ms
 
     //La barre de mana se vide toutes les 2 secondes lorsque le joueur est transformé
-    QTimer* timer2 = new QTimer();
-    connect(timer2, SIGNAL(timeout()), this, SLOT(depletionMana()));
-    timer2->start(2000); // Toutes les 2 secondes
+    QTimer* timerMana1 = new QTimer();
+    connect(timerMana1, SIGNAL(timeout()), this, SLOT(depletionMana()));
+    timerMana1->start(2000); // Toutes les 2 secondes
 
     //La barre de mana se remplit toutes les 5 secondes lorsque le joueur n'est pas transformé
-    QTimer* timer3 = new QTimer();
-    connect(timer3, SIGNAL(timeout()), this, SLOT(remplissageMana()));
-    timer3->start(5000);
+    QTimer* timerMana2 = new QTimer();
+    connect(timerMana2, SIGNAL(timeout()), this, SLOT(remplissageMana()));
+    timerMana2->start(5000);
+
+    //Des ennemis apparaissent toutes les dix secondes
+    QTimer* timerEnnemi = new QTimer();
+    connect(timerEnnemi, SIGNAL(timeout()), this, SLOT(spawnEnnemis()));
+    timerEnnemi->start(10000);
 }
 
 HazelGame::~HazelGame(){}
@@ -214,6 +218,9 @@ void HazelGame::effacerMorts(){
             x = monstres[i]->x();
             y = monstres[i]->y();
 
+            //On incrémente le compteur d'ennemis tués
+            ennemisTues += 1;
+            if(ennemisTues >= 15) finDePartie();
             //On retire sa barre de vie
             scene->removeItem(monstres[i]->getMonstreHPMax());
             scene->removeItem(monstres[i]->getMonstreHP());
@@ -248,7 +255,47 @@ void HazelGame::spawnObjets(int x, int y){
             break;
     }
 
+}
+
+
+//Fait apparaitre des ennemis à une des quatre endroits de spawn possibles
+void HazelGame::spawnEnnemis(){
+    if(monstres.size() >= 4) return; //Pas plus de quatre monstres à la fois
+
+    srand(time(NULL));
+    int spawn = rand() % 3;
+    int position = rand() % 3;
+    Monstre* M;
+    switch(spawn) {
+        case 0 :
+            M = new Feu(200);
+            break;
+        case 1:
+            M = new Glace(200);
+            break;
+        case 2:
+            M = new Ombre(200);
+            break;
+        default:
+            M = new Feu(200);
+            break;
     }
+
+    SpriteMonstre* spriteM = new SpriteMonstre(M);
+
+    switch (position) {
+        case 0:
+            ajouterMonstre(spriteM, 700, 150);
+            break;
+        case 1:
+            ajouterMonstre(spriteM, 700, 700);
+            break;
+        case 2:
+            ajouterMonstre(spriteM, 150, 700);
+            break;
+    }
+
+}
 
 //Appelle la fonction invincibilite() de Joueur
 //Le joueur devient soit invulnérable aux attaques ennemies
