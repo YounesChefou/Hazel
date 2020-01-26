@@ -14,6 +14,7 @@ public:
     Statut getForce(){return force;}
     Statut getFaiblesse(){return faiblesse;}
     std::string toString();
+    void attaque(Personnage *p);
 
 protected:
     Statut faiblesse;

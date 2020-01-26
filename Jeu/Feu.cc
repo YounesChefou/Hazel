@@ -24,20 +24,6 @@ Feu::Feu(int v):Monstre(v, GLACE, FEU, "ROUGE"){
 
 Feu::~Feu(){}
 
-void Feu::attaque(Statut attaqueJoueur, Personnage* j){
-    switch(attaqueJoueur){
-    case FEU:
-        j->perdVie(30);
-        break;
-    case GLACE:
-        j->perdVie(10);
-        break;
-    default:
-        j->perdVie(15);
-        break;
-    }
-}
-
 //Permet au Monstre d'attaquer le joueur j
 //void Feu::attaque(Personnage* p){
 //    Joueur* j = (Joueur*) p;

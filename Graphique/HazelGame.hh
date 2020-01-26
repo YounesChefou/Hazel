@@ -19,8 +19,10 @@ public:
     void collisionsObjets();
     void collisionsMonstres();
     void mouseMoveEvent(QMouseEvent *event);
+    void effacerMorts();
 public slots:
     void previentMonstres();
+    void joueurInvincible();
 private:
     QGraphicsScene* scene;
     SpriteJoueur* sprite;

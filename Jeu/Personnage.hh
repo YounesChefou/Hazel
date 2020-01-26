@@ -4,6 +4,35 @@
 // #include "Barre.hh"
 
 typedef enum {PHYSIQUE, FEU, POISON, SOIN, GLACE, AUCUNE} Statut;
+inline std::ostream& operator<<(std::ostream& out, const Statut& stat)
+{
+    switch(stat){
+        case PHYSIQUE:
+            out << "PHYSIQUE";
+            break;
+        case FEU:
+            out << "FEU";
+            break;
+        case POISON:
+            out << "POISON";
+            break;
+        case SOIN:
+            out << "SOIN";
+            break;
+        case GLACE:
+            out << "GLACE";
+            break;
+        case AUCUNE:
+            out << "AUCUNE";
+            break;
+        default:
+            out << "woof";
+            break;
+    }
+
+    return out;
+}
+
 class Personnage{
   protected:
     int vie;

@@ -1,4 +1,5 @@
 #include "Joueur.hh"
+#include "Monstre.hh"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include <ostream>
@@ -7,7 +8,7 @@
 #include <ctime>
 #include <chrono>
 
-Statut Joueur::elements[] = {PHYSIQUE, FEU, SOIN, POISON, GLACE};
+Statut Joueur::elements[] = {PHYSIQUE, GLACE, FEU, POISON, SOIN};
 
 Joueur::Joueur():Personnage(200), manaMax(75), mana(75), typeAttaque(0), godMode(false){
   // vie = 50;
@@ -32,23 +33,22 @@ Joueur::Joueur(int v, int m):Personnage(v){
 //Si le joueur utilise une attaque correspondante à la force du Monstre, alors
 //le monstre recupère 2 pts de vie, si l'attaque correspond à sa faiblesse, 60 pts de vie
 //Si elle ne correspond à aucun des deux, 20 pts de vie
-void Joueur::attaque(int force, int faiblesse, Personnage *p){
-    if(SOIN == getAttaque()){
-        //if(getElement() == SOIN){
+void Joueur::attaque(Personnage *p){
+    Monstre* M = (Monstre*) p;
+        if(getElement() == SOIN){
+            std::cout << "Sooooooooooin " << getElement() << std::endl;
             p->recupVie(20);
         }
-        else if(force == getAttaque()){
-        //else if(getElement() == M->getForce()){
-            std::cout << "L'attaque n'est pas très efficace..." << std::endl;
+        else if(getElement() == M->getForce()){
+            std::cout << "L'attaque n'est pas très efficace... " << getElement() << std::endl;
             p->recupVie(5);
         }
-        else if(faiblesse == getAttaque()){
-        //else if(getElement() == M->getFaiblesse()){
-            std::cout << "L'attaque est très efficace !" << std::endl;
+        else if(getElement() == M->getFaiblesse()){
+            std::cout << "L'attaque est très efficace !" << getElement() << std::endl;
             p->perdVie(60);
         }
         else{
-            std::cout << "L'attaque est normale." << std::endl;
+            std::cout << "L'attaque est normale." << getElement() << std::endl;
             p->perdVie(20);
         }
 
@@ -96,18 +96,20 @@ void Joueur::changerElement(){
 //Quand sa mana tombe à zéro ou qu'il décide de se detransformer =
 void Joueur::transformation(){
     transforme == true ? transforme = false : transforme = true;
+    //transforme = true;
 }
 
 //Pas forcément super efficace, bloque le jeu si temps d'invincibilité trop long
 void Joueur::invincibilite(){
-    if(godMode == false){
-        godMode = true;
-        for(auto restUntil = std::chrono::system_clock::now() + std::chrono::milliseconds(5); std::chrono::system_clock::now() < restUntil;){
-            std::cout << "Invincible" << std::endl;
-        }
-        godMode = false;
-    }
-    //godMode == true ? godMode = false : godMode = true;
+    // if(godMode == false){
+    //     godMode = true;
+    //     for(auto restUntil = std::chrono::system_clock::now() + std::chrono::milliseconds(5); std::chrono::system_clock::now() < restUntil;){
+    //         std::cout << "Invincible" << std::endl;
+    //     }
+    //     godMode = false;
+    // }
+    godMode == true ? godMode = false : godMode = true;
+    // godMode = true;
 }
 
 

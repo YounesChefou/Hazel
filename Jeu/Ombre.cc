@@ -21,17 +21,3 @@ Ombre::Ombre(int v):Monstre(v, SOIN, PHYSIQUE, "NOIRE"){
 }
 
 Ombre::~Ombre(){}
-
-// void Ombre::attaque(int attaqueJoueur, Personnage *j){
-//     switch(attaqueJoueur){
-//     case SOIN:
-//         j->perdVie(30);
-//         break;
-//     case PHYSIQUE:
-//         j->perdVie(10);
-//         break;
-//     default:
-//         j->perdVie(15);
-//         break;
-//     }
-// }

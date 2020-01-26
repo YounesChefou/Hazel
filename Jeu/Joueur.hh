@@ -22,7 +22,7 @@ public:
   int getAttaque() const {return typeAttaque;}
   Statut getElement() const{return elements[typeAttaque];}
 
-  void attaque(int force, int faiblesse, Personnage* p);
+  void attaque(Personnage* p);
   void transformation(); //
   void invincibilite();
   void setMana(int nouvMana){mana = nouvMana;}
