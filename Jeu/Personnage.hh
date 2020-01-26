@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
-// #include <QGraphicsRectItem>
-// #include "Barre.hh"
 
+//Nouveau type Statut qui contient les différents pouvoirs, forces et faiblesses
 typedef enum {PHYSIQUE, FEU, POISON, SOIN, GLACE, AUCUNE} Statut;
+
+//Operateur pour permettre d'afficher un Statut
 inline std::ostream& operator<<(std::ostream& out, const Statut& stat)
 {
     switch(stat){
@@ -34,15 +35,24 @@ inline std::ostream& operator<<(std::ostream& out, const Statut& stat)
 }
 
 class Personnage{
-  protected:
-    int vie;
-    int vieMax;
-
   public:
-    Personnage():vie(200), vieMax(200){}
-    Personnage(int v):vie(v), vieMax(200){}
-    int getVie(){return vie;}
-    void setVie(int v){vie = v;}
+    //Constructeurs
+    //Personnage():vie(200), vieMax(200){}
+    //Personnage(int v):vie(v), vieMax(200){}
+
+    //Méthodes
+    bool estMort(){return vie <= 0 ? true : false;}
+    std::string virtual toString() = 0;
+
+    //Retire des pts de vie au ersonnage
+    //degats : pts de vie perdus
+    void perdVie(int degats){
+        std::cout << "Vie : " << this->vie << std::endl;
+        this->vie -= degats;
+        std::cout << "Vie : " << this->vie << std::endl;
+    }
+
+    //Rajoute de la vie au personnage
     void recupVie(int recup)
     {
         int vie = this->getVie();
@@ -55,13 +65,17 @@ class Personnage{
             this->setVie(vieMax);
         }
     }
-    //Retire des pts de vie au Personnage
-    //degats : pts de vie perdus
-    void perdVie(int degats){
-        std::cout << "Vie : " << this->vie << std::endl;
-        this->vie -= degats;
-        std::cout << "Vie : " << this->vie << std::endl;
-    }
+
+    //Accesseurs
+    int getVie(){return vie;}
     int getVieMax() {return vieMax;}
-    bool estMort(){ return vie <= 0 ? true : false;}
+
+    //Mutateurs
+    void setVie(int v){vie = v;}
+
+protected:
+  //Attributs
+  int vie;
+  int vieMax;
+
 };

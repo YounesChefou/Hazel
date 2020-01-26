@@ -3,6 +3,7 @@
 
 //Constructeur
 SpriteMonstre::SpriteMonstre(Monstre* m){
+    monstre = m;
     QPixmap spriteStd("../Ressources/ennemiFeu.png");
     setPixmap(spriteStd);
     monstreHPMax = new Barre(m->getVieMax(), x(), y() - 10, Qt::black);

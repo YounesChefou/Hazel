@@ -2,7 +2,7 @@
 #include "Joueur.hh"
 #include <sstream>
 
-Monstre::~Monstre(){}
+//Monstre::~Monstre(){}
 
 std::string Monstre::toString()
     {

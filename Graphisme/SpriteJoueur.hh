@@ -26,8 +26,9 @@ public:
     void recupererVie(int recup);
     void recupererMana(int recup);
     void keyPressEvent(QKeyEvent *event);
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void changerSprite(char typeFumee);
+    // void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void changerSprite(int element);
+    void spriteTransformation();
 private:
     Joueur* joueur;
     Pouvoir* pictoAttaque;

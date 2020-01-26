@@ -1,10 +1,9 @@
 QT += widgets
 QT += core
-CONFIG += c++14
-CONFIG += debug
+
 SOURCES += \
-    ../Jeu/Basic.cc \
     ../Jeu/Feu.cc \
+    ../Jeu/Glace.cc \
     ../Jeu/Joueur.cc \
     ../Jeu/Monstre.cc \
     ../Jeu/Ombre.cc \
@@ -15,10 +14,9 @@ SOURCES += \
     Pouvoir.cc \
     SpriteJoueur.cc \
     SpriteMonstre.cc \
-    Vie.cc
+    Vie.cc \
 
 HEADERS += \
-    ../Jeu/Basic.hh \
     ../Jeu/Feu.hh \
     ../Jeu/Glace.hh \
     ../Jeu/Joueur.hh \
