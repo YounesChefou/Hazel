@@ -60,7 +60,9 @@ SOURCES       = ../Jeu/Feu.cc \
 		../Graphisme/Pouvoir.cc \
 		../Graphisme/SpriteJoueur.cc \
 		../Graphisme/SpriteMonstre.cc \
-		../Graphisme/Vie.cc moc_HazelGame.cpp \
+		../Graphisme/Vie.cc \
+		../Graphisme/Menu.cc \
+		../Graphisme/Intro.cc moc_HazelGame.cpp \
 		moc_SpriteMonstre.cpp
 OBJECTS       = Feu.o \
 		Glace.o \
@@ -75,6 +77,8 @@ OBJECTS       = Feu.o \
 		SpriteJoueur.o \
 		SpriteMonstre.o \
 		Vie.o \
+		Menu.o \
+		Intro.o \
 		moc_HazelGame.o \
 		moc_SpriteMonstre.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -147,7 +151,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../Graphisme/Pouvoir.hh \
 		../Graphisme/SpriteJoueur.hh \
 		../Graphisme/SpriteMonstre.hh \
-		../Graphisme/Vie.hh ../Jeu/Feu.cc \
+		../Graphisme/Vie.hh \
+		../Graphisme/Menu.hh \
+		../Graphisme/Intro.hh ../Jeu/Feu.cc \
 		../Jeu/Glace.cc \
 		../Jeu/Joueur.cc \
 		../Jeu/Monstre.cc \
@@ -159,7 +165,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../Graphisme/Pouvoir.cc \
 		../Graphisme/SpriteJoueur.cc \
 		../Graphisme/SpriteMonstre.cc \
-		../Graphisme/Vie.cc
+		../Graphisme/Vie.cc \
+		../Graphisme/Menu.cc \
+		../Graphisme/Intro.cc
 QMAKE_TARGET  = Graphisme
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Graphisme
@@ -327,8 +335,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Jeu/Feu.hh ../Jeu/Glace.hh ../Jeu/Joueur.hh ../Jeu/Monstre.hh ../Jeu/Ombre.hh ../Jeu/Personnage.hh ../Graphisme/Barre.hh ../Graphisme/HazelGame.hh ../Graphisme/Mana.hh ../Graphisme/Objet.hh ../Graphisme/Pouvoir.hh ../Graphisme/SpriteJoueur.hh ../Graphisme/SpriteMonstre.hh ../Graphisme/Vie.hh $(DISTDIR)/
-	$(COPY_FILE) --parents ../Jeu/Feu.cc ../Jeu/Glace.cc ../Jeu/Joueur.cc ../Jeu/Monstre.cc ../Jeu/Ombre.cc ../Graphisme/Barre.cc ../Graphisme/HazelGame.cc ../Graphisme/Main.cc ../Graphisme/Mana.cc ../Graphisme/Pouvoir.cc ../Graphisme/SpriteJoueur.cc ../Graphisme/SpriteMonstre.cc ../Graphisme/Vie.cc $(DISTDIR)/
+	$(COPY_FILE) --parents ../Jeu/Feu.hh ../Jeu/Glace.hh ../Jeu/Joueur.hh ../Jeu/Monstre.hh ../Jeu/Ombre.hh ../Jeu/Personnage.hh ../Graphisme/Barre.hh ../Graphisme/HazelGame.hh ../Graphisme/Mana.hh ../Graphisme/Objet.hh ../Graphisme/Pouvoir.hh ../Graphisme/SpriteJoueur.hh ../Graphisme/SpriteMonstre.hh ../Graphisme/Vie.hh ../Graphisme/Menu.hh ../Graphisme/Intro.hh $(DISTDIR)/
+	$(COPY_FILE) --parents ../Jeu/Feu.cc ../Jeu/Glace.cc ../Jeu/Joueur.cc ../Jeu/Monstre.cc ../Jeu/Ombre.cc ../Graphisme/Barre.cc ../Graphisme/HazelGame.cc ../Graphisme/Main.cc ../Graphisme/Mana.cc ../Graphisme/Pouvoir.cc ../Graphisme/SpriteJoueur.cc ../Graphisme/SpriteMonstre.cc ../Graphisme/Vie.cc ../Graphisme/Menu.cc ../Graphisme/Intro.cc $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -471,6 +479,12 @@ SpriteMonstre.o: ../Graphisme/SpriteMonstre.cc ../Graphisme/SpriteMonstre.hh \
 Vie.o: ../Graphisme/Vie.cc ../Graphisme/Vie.hh \
 		../Graphisme/Objet.hh
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Vie.o ../Graphisme/Vie.cc
+
+Menu.o: ../Graphisme/Menu.cc ../Graphisme/Menu.hh
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Menu.o ../Graphisme/Menu.cc
+
+Intro.o: ../Graphisme/Intro.cc ../Graphisme/Intro.hh
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Intro.o ../Graphisme/Intro.cc
 
 moc_HazelGame.o: moc_HazelGame.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_HazelGame.o moc_HazelGame.cpp
