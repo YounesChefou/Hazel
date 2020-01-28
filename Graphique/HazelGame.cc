@@ -6,7 +6,7 @@
 #include <time.h>
 
 
-//Initialise le jeu
+//Constructeur
 HazelGame::HazelGame()
 {
     initialiseSceneJeu();
@@ -14,7 +14,7 @@ HazelGame::HazelGame()
 
 HazelGame::~HazelGame(){}
 
-
+//Initialise le jeu
 void HazelGame::initialiseSceneJeu(){
 
     //Initialisation de la scene
@@ -222,7 +222,7 @@ void HazelGame::effacerMorts(){
 
             //On incrémente le compteur d'ennemis tués
             ennemisTues += 1;
-            if(ennemisTues >= 15) finDePartie(0);
+            if(ennemisTues >= 20) finDePartie(0);
             //On retire sa barre de vie
             sceneJeu->removeItem(monstres[i]->getMonstreHPMax());
             sceneJeu->removeItem(monstres[i]->getMonstreHP());
@@ -360,6 +360,7 @@ void HazelGame::finDePartie(int i){
             sceneGameOver = new QGraphicsScene(0,0,1350,700);
             sceneGameOver->setBackgroundBrush(ecran.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
             setScene(sceneGameOver);
+            QTimer::singleShot(2000, this, SLOT(test()));
             break;
         case 1:
             std::cout << "Victoire woo" << std::endl;
@@ -367,7 +368,9 @@ void HazelGame::finDePartie(int i){
     }
 }
 
-
+void HazelGame::test(){
+    setScene(sceneJeu);
+}
 //Desactive tous les éléments de la scène Jeu pour afficher le Game Over
 void HazelGame::desactiveToutJeu(){
     //On arrête les timers et donc les appels de fonctions

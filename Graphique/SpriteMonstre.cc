@@ -4,8 +4,7 @@
 //Constructeur
 SpriteMonstre::SpriteMonstre(Monstre* m){
     monstre = m;
-    QPixmap spriteStd("../Ressources/ennemiFeu.png");
-    setPixmap(spriteStd);
+    attribueSprite();
     monstreHPMax = new Barre(m->getVieMax(), x(), y() - 10, Qt::black);
     monstreHP = new Barre(m->getVie(), x(), y() - 10, Qt::red);
     direction = 0;
@@ -24,7 +23,18 @@ void SpriteMonstre::attribueSprite(){
     QPixmap spriteGlace("../Ressources/ennemiGlace.png");
     QPixmap spriteOmbre("../Ressources/ennemiOmbre.png");
 
-    
+    switch(monstre->getForce()){
+        case FEU:
+            setPixmap(spriteFeu);
+            break;
+        case GLACE:
+            setPixmap(spriteGlace);
+            break;
+        case POISON:
+            setPixmap(spriteOmbre);
+            break;
+    }
+
 }
 
 //Deplace le sprite Monstre et sa barre de vie à la position indiquée

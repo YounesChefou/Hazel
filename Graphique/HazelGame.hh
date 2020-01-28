@@ -42,6 +42,7 @@ public slots:
     void depletionMana();
     void remplissageMana();
     void spawnEnnemis();
+    void test();
 private:
     //Scene Intro
 

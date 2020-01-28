@@ -33,7 +33,7 @@ void SpriteJoueur::recupererMana(int recup){
 
 //Permet de changer de sprite
 void SpriteJoueur::changerSprite(int element){
-    QPixmap spriteStandard("../Ressources/spriteGenerique.png");
+    QPixmap spriteStandard("../Ressources/spriteSorciere.png");
     QPixmap spriteGlace("../Ressources/fumeeBleue.png");
     QPixmap spriteFeu("../Ressources/fumeeRouge.png");
     QPixmap spritePoison("../Ressources/fumeeViolette.png");

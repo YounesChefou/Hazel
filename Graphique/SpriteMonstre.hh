@@ -7,7 +7,7 @@ class SpriteMonstre : public QObject, public QGraphicsPixmapItem{
 public:
     SpriteMonstre(Monstre* m);
     ~SpriteMonstre();
-    void attibueSprite();
+    void attribueSprite();
     void setPosition(int x, int y);
     void deplacerDe(int nX, int nY);
     void changerDirection(int nouvDir){direction = nouvDir;}

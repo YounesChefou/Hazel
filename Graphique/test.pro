@@ -7,7 +7,6 @@ SOURCES += \
     ../Jeu/Joueur.cc \
     ../Jeu/Monstre.cc \
     ../Jeu/Ombre.cc \
-    ../Jeu/Personnage.cc \
     Barre.cc \
     HazelGame.cc \
     Main.cc \
