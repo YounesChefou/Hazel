@@ -3,7 +3,6 @@
 #include <string>
 #include <iostream>
 #include <ostream>
-#include <QGraphicsRectItem>
 #include "Barre.hh"
 
 

@@ -8,7 +8,7 @@ Ombre::Ombre(){//:Monstre(200, SOIN, PHYSIQUE, "NOIRE"){}
     vieMax = vieMax;
     vie = vieMax;
     faiblesse = SOIN;
-    force = PHYSIQUE;
+    force = POISON;
     couleur = "NOIRE";
 }
 
@@ -16,7 +16,7 @@ Ombre::Ombre(int v){//:Monstre(v, SOIN, PHYSIQUE, "NOIRE"){}
     vieMax = v;
     vie = vieMax;
     faiblesse = SOIN;
-    force = PHYSIQUE;
+    force = POISON;
     couleur = "NOIRE";
 }
 

@@ -10,8 +10,7 @@ SpriteJoueur::SpriteJoueur(){
 
 SpriteJoueur::SpriteJoueur(Joueur *j, Pouvoir *p):joueur(j), pictoAttaque(p)
 {
-    QPixmap spriteStandard("../Ressources/spriteGenerique.png");
-    setPixmap(spriteStandard);
+    changerSprite(j->getAttaque());
     HPMax= new Barre(j->getVieMax(), 20, 20, Qt::black);
     HP = new Barre(j->getVie(), 20, 20, Qt::green);
     MPMax = new Barre(j->getManaMax(),20, 60, Qt::black);
@@ -37,7 +36,6 @@ void SpriteJoueur::changerSprite(int element){
     QPixmap spriteStandard("../Ressources/spriteGenerique.png");
     QPixmap spriteGlace("../Ressources/fumeeBleue.png");
     QPixmap spriteFeu("../Ressources/fumeeRouge.png");
-    //Pas encore dispo, je vais les rajouter juste après
     QPixmap spritePoison("../Ressources/fumeeViolette.png");
     QPixmap spriteSoin("../Ressources/fumeeVerte.png");
 

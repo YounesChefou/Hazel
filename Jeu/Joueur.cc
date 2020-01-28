@@ -38,11 +38,7 @@ Joueur::Joueur(int v, int m){//:Personnage(v){
 //Si elle ne correspond à aucun des deux, 20 pts de vie
 void Joueur::attaque(Personnage *p){
     Monstre* M = (Monstre*) p;
-        if(getElement() == SOIN){
-            std::cout << "Sooooooooooin " << getElement() << std::endl;
-            p->recupVie(20);
-        }
-        else if(getElement() == M->getForce()){
+        if(getElement() == M->getForce()){
             std::cout << "L'attaque n'est pas très efficace... " << getElement() << std::endl;
             p->recupVie(5);
         }

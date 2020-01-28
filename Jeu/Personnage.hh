@@ -43,6 +43,7 @@ class Personnage{
     //Méthodes
     bool estMort(){return vie <= 0 ? true : false;}
     std::string virtual toString() = 0;
+    void virtual attaque(Personnage* p) = 0;
 
     //Retire des pts de vie au ersonnage
     //degats : pts de vie perdus

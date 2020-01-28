@@ -18,6 +18,15 @@ SpriteMonstre::SpriteMonstre(Monstre* m){
 
 SpriteMonstre::~SpriteMonstre(){}
 
+//Attribue au monstre l'apparence qui lui convient
+void SpriteMonstre::attribueSprite(){
+    QPixmap spriteFeu("../Ressources/ennemiFeu.png");
+    QPixmap spriteGlace("../Ressources/ennemiGlace.png");
+    QPixmap spriteOmbre("../Ressources/ennemiOmbre.png");
+
+    
+}
+
 //Deplace le sprite Monstre et sa barre de vie à la position indiquée
 void SpriteMonstre::setPosition(int x, int y){
     setPos(x, y);

@@ -1,64 +1,70 @@
 #include "HazelGame.hh"
-#include "Vie.hh"
-#include "Mana.hh"
 #include "../Jeu/Feu.hh"
 #include "../Jeu/Glace.hh"
 #include "../Jeu/Ombre.hh"
 #include "Pouvoir.hh"
 #include <time.h>
-#include <QTimer>
+
 
 //Initialise le jeu
 HazelGame::HazelGame()
 {
+    initialiseSceneJeu();
+}
+
+HazelGame::~HazelGame(){}
+
+
+void HazelGame::initialiseSceneJeu(){
+
     //Initialisation de la scene
-    scene = new QGraphicsScene(0,0,1350,700);
+    sceneJeu = new QGraphicsScene(0,0,1350,700);
     //Chargement du décor
     QPixmap pix("../Ressources/decorGenerique.jpg");
     //Application du décor au fond de la scene
-    scene->setBackgroundBrush(pix.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
-    this->setScene(scene);
+    sceneJeu->setBackgroundBrush(pix.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+    setScene(sceneJeu);
 
     Joueur *j = new Joueur(100, 25);
     Pouvoir* basic = new Pouvoir();
-    scene->addItem(basic);
+    sceneJeu->addItem(basic);
     sprite = new SpriteJoueur(j, basic);
-    scene->addItem(sprite);
+    sceneJeu->addItem(sprite);
     sprite->setPos(250, 500);
 
     //Ajout des barres de vie et de mana
-    scene->addItem(sprite->getHPMax());
-    scene->addItem(sprite->getHP());
-    scene->addItem(sprite->getMPMax());
-    scene->addItem(sprite->getMP());
+    sceneJeu->addItem(sprite->getHPMax());
+    sceneJeu->addItem(sprite->getHP());
+    sceneJeu->addItem(sprite->getMPMax());
+    sceneJeu->addItem(sprite->getMP());
 
     //On place l'image des pouvoirs juste à côté des barres de vie et de mana
     basic->setPos(sprite->getHPMax()->x() + 200, sprite->getHPMax()->y() + 20);
 
     setMouseTracking(true);
 
-    QTimer* timerMouv = new QTimer();
+    timerMouv = new QTimer();
     //Chaque fois que le timer arrive à zero, on appelle deplacement
     connect(timerMouv, SIGNAL(timeout()), this, SLOT(previentMonstres()));
     timerMouv->start(5); //Toutes les 5 ms
 
     //La barre de mana se vide toutes les 2 secondes lorsque le joueur est transformé
-    QTimer* timerMana1 = new QTimer();
+    timerMana1 = new QTimer();
     connect(timerMana1, SIGNAL(timeout()), this, SLOT(depletionMana()));
     timerMana1->start(2000); // Toutes les 2 secondes
 
     //La barre de mana se remplit toutes les 5 secondes lorsque le joueur n'est pas transformé
-    QTimer* timerMana2 = new QTimer();
+    timerMana2 = new QTimer();
     connect(timerMana2, SIGNAL(timeout()), this, SLOT(remplissageMana()));
     timerMana2->start(5000);
 
     //Des ennemis apparaissent toutes les dix secondes
-    QTimer* timerEnnemi = new QTimer();
+    timerEnnemi = new QTimer();
     connect(timerEnnemi, SIGNAL(timeout()), this, SLOT(spawnEnnemis()));
     timerEnnemi->start(10000);
+
 }
 
-HazelGame::~HazelGame(){}
 
 //Permet de déplacer le personnage à l'aide de la souris
 void HazelGame::mouseMoveEvent(QMouseEvent *event)
@@ -75,7 +81,7 @@ void HazelGame::ajouterVie(int recup, int x, int y)
 {
     QPixmap pix("../Ressources/vie.png");
     Vie * v = new Vie(recup);
-    this->scene->addItem(v);
+    sceneJeu->addItem(v);
     v->setPos(x, y);
     objetsVie.push_back(v);
 }
@@ -85,7 +91,7 @@ void HazelGame::ajouterMana(int recup, int x, int y)
 {
     QPixmap pix2("../Ressources/mana.png");
     Mana * m = new Mana(recup);
-    this->scene->addItem(m);
+    sceneJeu->addItem(m);
     m->setPos(x, y);
     objetsMana.push_back(m);
 }
@@ -101,7 +107,7 @@ void HazelGame::collisionsObjets()
     for(int i = 0; i < nbObjetsVie; i++){
         if(sprite->collidesWithItem(objetsVie[i])){
             sprite->recupererVie(objetsVie[i]->getRecup());
-            scene->removeItem(objetsVie[i]);
+            sceneJeu->removeItem(objetsVie[i]);
             objetsVie.erase(objetsVie.begin()+i);
         }
     }
@@ -109,7 +115,7 @@ void HazelGame::collisionsObjets()
     for(int i = 0; i < nbObjetsMana; i++){
         if(sprite->collidesWithItem(objetsMana[i])){
             sprite->recupererMana(objetsMana[i]->getRecup());
-            scene->removeItem(objetsMana[i]);
+            sceneJeu->removeItem(objetsMana[i]);
             objetsMana.erase(objetsMana.begin()+i);
         }
     }
@@ -117,9 +123,9 @@ void HazelGame::collisionsObjets()
 
 //Ajoute un ennemi dans la scène
 void HazelGame::ajouterMonstre(SpriteMonstre* m, int x, int y){
-    scene->addItem(m);
-    scene->addItem(m->getMonstreHPMax());
-    scene->addItem(m->getMonstreHP());
+    sceneJeu->addItem(m);
+    sceneJeu->addItem(m->getMonstreHPMax());
+    sceneJeu->addItem(m->getMonstreHP());
     m->setPosition(x, y);
     monstres.push_back(m);
 }
@@ -216,11 +222,11 @@ void HazelGame::effacerMorts(){
 
             //On incrémente le compteur d'ennemis tués
             ennemisTues += 1;
-            if(ennemisTues >= 15) finDePartie();
+            if(ennemisTues >= 15) finDePartie(0);
             //On retire sa barre de vie
-            scene->removeItem(monstres[i]->getMonstreHPMax());
-            scene->removeItem(monstres[i]->getMonstreHP());
-            scene->removeItem(monstres[i]);
+            sceneJeu->removeItem(monstres[i]->getMonstreHPMax());
+            sceneJeu->removeItem(monstres[i]->getMonstreHP());
+            sceneJeu->removeItem(monstres[i]);
 
             //On tire au sort si sa mort résulte en l'apparition d'un objet
             spawnObjets(x,y);
@@ -347,12 +353,30 @@ void HazelGame::mousePressEvent(QMouseEvent *event){
 
 //Declenche la fin de la partie
 void HazelGame::finDePartie(int i){
+    QPixmap ecran("../Ressources/ecranGameOver.png");
     switch(i){
         case 0:
             std::cout << "Vous avez perdu :(" << std::endl;
+            sceneGameOver = new QGraphicsScene(0,0,1350,700);
+            sceneGameOver->setBackgroundBrush(ecran.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+            setScene(sceneGameOver);
             break;
         case 1:
-            std::cout << "Victoire woo" << std:endl;
+            std::cout << "Victoire woo" << std::endl;
             break;
     }
+}
+
+
+//Desactive tous les éléments de la scène Jeu pour afficher le Game Over
+void HazelGame::desactiveToutJeu(){
+    //On arrête les timers et donc les appels de fonctions
+    timerMouv->stop();
+    timerMana1->stop();
+    timerMana2->stop();
+    timerEnnemi->stop();
+    //On desactive le MouseTracking
+    setMouseTracking(false);
+    //On nettoie la scene
+    sceneJeu->clear();
 }
