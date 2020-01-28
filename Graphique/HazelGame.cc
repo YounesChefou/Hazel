@@ -4,7 +4,7 @@
 #include "../Jeu/Ombre.hh"
 #include "Pouvoir.hh"
 #include <time.h>
-
+#include <QPushButton>
 
 //Constructeur
 HazelGame::HazelGame()
@@ -25,7 +25,7 @@ void HazelGame::initialiseSceneJeu(){
     sceneJeu->setBackgroundBrush(pix.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
     setScene(sceneJeu);
 
-    Joueur *j = new Joueur(100, 25);
+    Joueur *j = new Joueur(200, 75);
     Pouvoir* basic = new Pouvoir();
     sceneJeu->addItem(basic);
     sprite = new SpriteJoueur(j, basic);
@@ -38,8 +38,10 @@ void HazelGame::initialiseSceneJeu(){
     sceneJeu->addItem(sprite->getMPMax());
     sceneJeu->addItem(sprite->getMP());
 
+    nbMonstresATuer = 5;
+
     //On place l'image des pouvoirs juste à côté des barres de vie et de mana
-    basic->setPos(sprite->getHPMax()->x() + 200, sprite->getHPMax()->y() + 20);
+    basic->setPos(sprite->getHPMax()->x() + 300, sprite->getHPMax()->y() + 20);
 
     setMouseTracking(true);
 
@@ -51,7 +53,7 @@ void HazelGame::initialiseSceneJeu(){
     //La barre de mana se vide toutes les 2 secondes lorsque le joueur est transformé
     timerMana1 = new QTimer();
     connect(timerMana1, SIGNAL(timeout()), this, SLOT(depletionMana()));
-    timerMana1->start(2000); // Toutes les 2 secondes
+    timerMana1->start(1000); // Toutes les 2 secondes
 
     //La barre de mana se remplit toutes les 5 secondes lorsque le joueur n'est pas transformé
     timerMana2 = new QTimer();
@@ -61,7 +63,7 @@ void HazelGame::initialiseSceneJeu(){
     //Des ennemis apparaissent toutes les dix secondes
     timerEnnemi = new QTimer();
     connect(timerEnnemi, SIGNAL(timeout()), this, SLOT(spawnEnnemis()));
-    timerEnnemi->start(10000);
+    timerEnnemi->start(2000);
 
 }
 
@@ -196,7 +198,11 @@ void HazelGame::collisionsMonstres(){
                 sprite->setHP(persoJoueur->getVie());
                 std::cout << persoJoueur->toString() << std::endl;
                 std::cout << "Attaque contre joueur" << std::endl;
-                if(!persoJoueur->estInvincible()){ //On rend le joueur invincible pendant 2 secondes
+                if(persoJoueur->estMort()){
+                    finDePartie(0);
+                    return;
+                }
+                else if(!persoJoueur->estInvincible()){ //On rend le joueur invincible pendant 2 secondes
                     joueurInvincible();
                     QTimer::singleShot(2000, this, SLOT(joueurInvincible()));
                 }
@@ -222,7 +228,7 @@ void HazelGame::effacerMorts(){
 
             //On incrémente le compteur d'ennemis tués
             ennemisTues += 1;
-            if(ennemisTues >= 20) finDePartie(0);
+
             //On retire sa barre de vie
             sceneJeu->removeItem(monstres[i]->getMonstreHPMax());
             sceneJeu->removeItem(monstres[i]->getMonstreHP());
@@ -233,6 +239,8 @@ void HazelGame::effacerMorts(){
 
             //On le retire du tableau
             monstres.erase(monstres.begin()+i);
+
+            if(ennemisTues >= nbMonstresATuer) finDePartie(1);
         }
     }
 }
@@ -262,10 +270,10 @@ void HazelGame::spawnObjets(int x, int y){
 
 //Fait apparaitre des ennemis à une des quatre endroits de spawn possibles
 void HazelGame::spawnEnnemis(){
-    if(monstres.size() >= 4) return; //Pas plus de quatre monstres à la fois
+    if( monstres.size() >= 4 /*|| ((ennemisTues + monstres.size() + 1) > nbMonstresATuer)*/ ) return; //Pas plus de quatre monstres à la fois
 
     srand(time(NULL));
-    int spawn = rand() % 3;
+    int spawn = rand() % 2;
     int position = rand() % 3;
     Monstre* M;
     switch(spawn) {
@@ -287,13 +295,13 @@ void HazelGame::spawnEnnemis(){
 
     switch (position) {
         case 0:
-            ajouterMonstre(spriteM, 700, 150);
+            ajouterMonstre(spriteM, 800, 150);
             break;
         case 1:
-            ajouterMonstre(spriteM, 700, 700);
+            ajouterMonstre(spriteM, 800, 550);
             break;
         case 2:
-            ajouterMonstre(spriteM, 150, 700);
+            ajouterMonstre(spriteM, 150, 550);
             break;
     }
 
@@ -316,7 +324,7 @@ void HazelGame::joueurTransforme(){
 void HazelGame::depletionMana(){
     Joueur* j = sprite->getJoueur();
     if(j->estTransforme()){ // Si le joueur est transforme, alors on vide sa mana
-        j->setMana(j->getMana() - 2);
+        j->setMana(j->getMana() - 5);
         sprite->setMP(j->getMana());
         if(j->getMana() <= 0) joueurTransforme();
     }
@@ -353,24 +361,31 @@ void HazelGame::mousePressEvent(QMouseEvent *event){
 
 //Declenche la fin de la partie
 void HazelGame::finDePartie(int i){
-    QPixmap ecran("../Ressources/ecranGameOver.png");
+    QPixmap ecranOver("../Ressources/ecranGameOver.png");
+    QPixmap ecranVictoire("../Ressources/ecranVictoire.png");
+    QPushButton* button = new QPushButton("Continue ?");
     switch(i){
         case 0:
             std::cout << "Vous avez perdu :(" << std::endl;
+            desactiveToutJeu();
             sceneGameOver = new QGraphicsScene(0,0,1350,700);
-            sceneGameOver->setBackgroundBrush(ecran.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+            sceneGameOver->setBackgroundBrush(ecranOver.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+            sceneGameOver->addWidget(button);
+            connect(button, SIGNAL(clicked()), this, SLOT(rejouer()));
             setScene(sceneGameOver);
-            QTimer::singleShot(2000, this, SLOT(test()));
             break;
         case 1:
             std::cout << "Victoire woo" << std::endl;
+            desactiveToutJeu();
+            sceneGameOver = new QGraphicsScene(0,0,1350,700);
+            sceneGameOver->setBackgroundBrush(ecranVictoire.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+            sceneGameOver->addWidget(button);
+            connect(button, SIGNAL(clicked()), this, SLOT(rejouer()));
+            setScene(sceneGameOver);
             break;
     }
 }
 
-void HazelGame::test(){
-    setScene(sceneJeu);
-}
 //Desactive tous les éléments de la scène Jeu pour afficher le Game Over
 void HazelGame::desactiveToutJeu(){
     //On arrête les timers et donc les appels de fonctions
@@ -378,8 +393,32 @@ void HazelGame::desactiveToutJeu(){
     timerMana1->stop();
     timerMana2->stop();
     timerEnnemi->stop();
+
     //On desactive le MouseTracking
     setMouseTracking(false);
-    //On nettoie la scene
-    sceneJeu->clear();
+
+    //On retire tous les monstres
+    int nbMonstres = monstres.size();
+    for(int i = 0; i < nbMonstres; i++){
+        monstres.erase(monstres.begin()+i);
+    }
+}
+
+//Reactive les elements de la scène Jeu
+void HazelGame::reactiveToutJeu(){
+    //On arrête les timers et donc les appels de fonctions
+    timerMouv->start(5);
+    timerMana1->start(1000);
+    timerMana2->start(5000);
+    timerEnnemi->start(5000);
+
+    //On desactive le MouseTracking
+    setMouseTracking(true);
+}
+
+//Rejouer partie
+void HazelGame::rejouer(){
+    ennemisTues = 0;
+    reactiveToutJeu();
+    setScene(sceneJeu);
 }

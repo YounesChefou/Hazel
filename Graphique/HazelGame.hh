@@ -29,9 +29,8 @@ public:
     void effacerMorts();
     void spawnObjets(int x, int y);
     void finDePartie(int resultat);
-    void rejouer();
     void desactiveToutJeu();
-
+    void reactiveToutJeu();
     //Méthode Game Over
 
 public slots:
@@ -42,7 +41,7 @@ public slots:
     void depletionMana();
     void remplissageMana();
     void spawnEnnemis();
-    void test();
+    void rejouer();
 private:
     //Scene Intro
 
@@ -57,6 +56,7 @@ private:
     QTimer* timerMana2;
     QTimer* timerEnnemi;
     int ennemisTues;
+    int nbMonstresATuer;
     std::vector<Vie*> objetsVie;
     std::vector<Mana*> objetsMana;
     std::vector<SpriteMonstre*> monstres;
