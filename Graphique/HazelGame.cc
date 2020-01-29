@@ -421,7 +421,7 @@ void HazelGame::desactiveToutJeu(){
 
     //On remet le personnage du joueur par défaut
     Joueur* j = sprite->getJoueur();
-    j->setElement(0);
+    j->setAttaque(0);
     p->changerPicto(j->getAttaque());
     sprite->changerSprite(0);
     j->setVie(j->getVieMax());
