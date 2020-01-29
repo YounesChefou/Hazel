@@ -422,6 +422,7 @@ void HazelGame::desactiveToutJeu(){
     j->setAttaque(0);
     sprite->getPicto()->changerPicto(j->getAttaque());
     sprite->changerSprite(0);
+    if(j->estTransforme()) j->transformation();
     j->setVie(j->getVieMax());
     j->setMana(j->getManaMax());
     sprite->setHP(j->getVie());
