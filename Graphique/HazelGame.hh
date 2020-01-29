@@ -7,6 +7,7 @@
 #include "Mana.hh"
 #include <vector>
 #include <QTimer>
+#include <QLabel>
 
 class HazelGame : public QGraphicsView
 {
@@ -55,6 +56,7 @@ private:
     QTimer* timerMana1;
     QTimer* timerMana2;
     QTimer* timerEnnemi;
+    QLabel* labCompteur; //Affichage du compteur d'ennemis tués
     int ennemisTues;
     int nbMonstresATuer;
     std::vector<Vie*> objetsVie;

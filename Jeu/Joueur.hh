@@ -32,6 +32,7 @@ public:
   bool estInvincible(){return godMode;}
 
   //Mutateurs
+  void setAttaque(int nouvType){typeAttaque = nouvType;}
   void setMana(int nouvMana){mana = nouvMana;}
 
 private:

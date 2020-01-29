@@ -41,6 +41,10 @@ void HazelGame::initialiseSceneJeu(){
     ennemisTues = 0;
     nbMonstresATuer = 5;
 
+//    labCompteur = new QLabel();
+//    labCompteur->setNum(ennemisTues);
+//    sceneJeu->addWidget(labCompteur);
+
     //On place l'image des pouvoirs juste à côté des barres de vie et de mana
     basic->setPos(sprite->getHPMax()->x() + 300, sprite->getHPMax()->y() + 20);
 
@@ -246,7 +250,7 @@ void HazelGame::effacerMorts(){
     }
 }
 
-//Fait apparaitre aléatoirement un Objet Vie ou un Ob
+//Fait apparaitre aléatoirement un Objet Vie ou un Objet Mana
 void HazelGame::spawnObjets(int x, int y){
     srand(time(NULL));
     int spawn = rand() % 5;
@@ -365,24 +369,28 @@ void HazelGame::mousePressEvent(QMouseEvent *event){
 void HazelGame::finDePartie(int i){
     QPixmap ecranOver("../Ressources/ecranGameOver.png");
     QPixmap ecranVictoire("../Ressources/ecranVictoire.png");
-    QPushButton* button = new QPushButton("Continue ?");
+    //QPushButton* button = new QPushButton("Continue ?");
     switch(i){
         case 0:
             std::cout << "Vous avez perdu :(" << std::endl;
             //desactiveToutJeu();
             sceneGameOver = new QGraphicsScene(0,0,1350,700);
             sceneGameOver->setBackgroundBrush(ecranOver.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
-            sceneGameOver->addWidget(button);
-            connect(button, SIGNAL(clicked()), this, SLOT(rejouer()));
+            desactiveToutJeu();
+            // sceneGameOver->addWidget(button);
+            // connect(button, SIGNAL(clicked()), this, SLOT(rejouer()));
             setScene(sceneGameOver);
+            QTimer::singleShot(2000, this, SLOT(rejouer()));
             break;
         case 1:
             std::cout << "Victoire woo" << std::endl;
             //desactiveToutJeu();
             sceneGameOver = new QGraphicsScene(0,0,1350,700);
             sceneGameOver->setBackgroundBrush(ecranVictoire.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+            desactiveToutJeu();
             //sceneGameOver->addWidget(button);
             //connect(button, SIGNAL(clicked()), this, SLOT(rejouer()));
+            QTimer::singleShot(3000, this, SLOT(rejouer()));
             setScene(sceneGameOver);
             break;
     }
@@ -404,6 +412,21 @@ void HazelGame::desactiveToutJeu(){
     for(int i = 0; i < nbMonstres; i++){
         monstres.erase(monstres.begin()+i);
     }
+
+    //On retire tous les objets
+    int nbObjets = objetsVie.size();
+    for(int i = 0; i < nbObjets; i++) objetsVie.erase(objetsVie.begin()+i);
+    nbObjets = objetsMana.size();
+    for(int i = 0; i < nbObjets; i++) objetsMana.erase(objetsMana.begin()+i);
+
+    //On remet le personnage du joueur par défaut
+    Joueur* j = sprite->getJoueur();
+    j->setElement(0);
+    p->changerPicto(j->getAttaque());
+    sprite->changerSprite(0);
+    j->setVie(j->getVieMax());
+    j->setMana(j->getManaMax());
+    sprite->setHP(j->getVie());
 }
 
 //Reactive les elements de la scène Jeu
@@ -421,6 +444,6 @@ void HazelGame::reactiveToutJeu(){
 //Rejouer partie
 void HazelGame::rejouer(){
     ennemisTues = 0;
-    reactiveToutJeu();
     setScene(sceneJeu);
+    reactiveToutJeu();
 }
