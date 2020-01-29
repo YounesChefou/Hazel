@@ -409,9 +409,7 @@ void HazelGame::desactiveToutJeu(){
 
     //On retire tous les monstres
     int nbMonstres = monstres.size();
-    for(int i = 0; i < nbMonstres; i++){
-        monstres.erase(monstres.begin()+i);
-    }
+    for(int i = 0; i < nbMonstres; i++) monstres.erase(monstres.begin()+i);
 
     //On retire tous les objets
     int nbObjets = objetsVie.size();
@@ -421,8 +419,8 @@ void HazelGame::desactiveToutJeu(){
 
     //On remet le personnage du joueur par défaut
     Joueur* j = sprite->getJoueur();
-    j->setElement(0);
-    p->changerPicto(j->getAttaque());
+    j->setAttaque(0);
+    sprite->getPicto()->changerPicto(j->getAttaque());
     sprite->changerSprite(0);
     j->setVie(j->getVieMax());
     j->setMana(j->getManaMax());
