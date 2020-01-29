@@ -38,6 +38,7 @@ void HazelGame::initialiseSceneJeu(){
     sceneJeu->addItem(sprite->getMPMax());
     sceneJeu->addItem(sprite->getMP());
 
+    ennemisTues = 0;
     nbMonstresATuer = 5;
 
     //On place l'image des pouvoirs juste à côté des barres de vie et de mana
@@ -352,6 +353,7 @@ void HazelGame::mousePressEvent(QMouseEvent *event){
         case Qt::RightButton:
             j->changerElement();
             p->changerPicto(j->getAttaque());
+            if(j->estTransforme()) sprite->changerSprite(j->getAttaque());
             break;
         default:
             std::cout << "Me and Michael" << std::endl;
@@ -367,7 +369,7 @@ void HazelGame::finDePartie(int i){
     switch(i){
         case 0:
             std::cout << "Vous avez perdu :(" << std::endl;
-            desactiveToutJeu();
+            //desactiveToutJeu();
             sceneGameOver = new QGraphicsScene(0,0,1350,700);
             sceneGameOver->setBackgroundBrush(ecranOver.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
             sceneGameOver->addWidget(button);
@@ -376,11 +378,11 @@ void HazelGame::finDePartie(int i){
             break;
         case 1:
             std::cout << "Victoire woo" << std::endl;
-            desactiveToutJeu();
+            //desactiveToutJeu();
             sceneGameOver = new QGraphicsScene(0,0,1350,700);
             sceneGameOver->setBackgroundBrush(ecranVictoire.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
-            sceneGameOver->addWidget(button);
-            connect(button, SIGNAL(clicked()), this, SLOT(rejouer()));
+            //sceneGameOver->addWidget(button);
+            //connect(button, SIGNAL(clicked()), this, SLOT(rejouer()));
             setScene(sceneGameOver);
             break;
     }
