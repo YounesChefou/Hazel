@@ -209,7 +209,7 @@ void HazelGame::collisionsMonstres(){
                 }
                 else if(!persoJoueur->estInvincible()){ //On rend le joueur invincible pendant 2 secondes
                     joueurInvincible();
-                    QTimer::singleShot(2000, this, SLOT(joueurInvincible()));
+                    QTimer::singleShot(1000, this, SLOT(joueurInvincible()));
                 }
             }
         }
@@ -422,6 +422,7 @@ void HazelGame::desactiveToutJeu(){
     j->setAttaque(0);
     sprite->getPicto()->changerPicto(j->getAttaque());
     sprite->changerSprite(0);
+    if(j->estTransforme()) j->transformation();
     j->setVie(j->getVieMax());
     j->setMana(j->getManaMax());
     sprite->setHP(j->getVie());

@@ -65,21 +65,17 @@ void Joueur::changerElement(){
 //se transforme, toutes les secondes, sa mana va graduellement descendre
 //Quand sa mana tombe à zéro ou qu'il décide de se detransformer =
 void Joueur::transformation(){
-    transforme == true ? transforme = false : transforme = true;
-    //transforme = true;
+    if(estTransforme()){
+     transforme = false;
+    }
+    else if(getMana() > 15){
+        transforme = true;
+    }
 }
 
 //Pas forcément super efficace, bloque le jeu si temps d'invincibilité trop long
 void Joueur::invincibilite(){
-    // if(godMode == false){
-    //     godMode = true;
-    //     for(auto restUntil = std::chrono::system_clock::now() + std::chrono::milliseconds(5); std::chrono::system_clock::now() < restUntil;){
-    //         std::cout << "Invincible" << std::endl;
-    //     }
-    //     godMode = false;
-    // }
     godMode == true ? godMode = false : godMode = true;
-    // godMode = true;
 }
 
 
@@ -89,14 +85,14 @@ void Joueur::invincibilite(){
 //maximum possible
 void Joueur::recupMana(int recup)
 {
-    int mana = this->getMana();
-    int manaMax = this->getManaMax();
+    int mana = getMana();
+    int manaMax = getManaMax();
 
     if(mana + recup <= manaMax){
-        this->setMana(mana + recup);
+        setMana(mana + recup);
     }
     else{
-        this->setMana(manaMax);
+        setMana(manaMax);
     }
 }
 
