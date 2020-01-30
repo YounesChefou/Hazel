@@ -33,6 +33,8 @@ void SpriteMonstre::attribueSprite(){
         case POISON:
             setPixmap(spriteOmbre);
             break;
+        default:
+            break;
     }
 
 }

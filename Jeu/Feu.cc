@@ -1,6 +1,7 @@
 #include "Feu.hh"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <sstream>
 
 Feu::Feu(){//:Monstre(200, GLACE, FEU, "ROUGE"){
    srand (time(NULL));

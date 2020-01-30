@@ -17,6 +17,12 @@ HazelGame::~HazelGame(){}
 //Initialise le jeu
 void HazelGame::initialiseSceneJeu(){
 
+//    //Affichage menu
+//    menu = new Menu();
+//    menu->setBackgroundBrush((menu->getPix()).scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+//    setScene(menu);
+
+
     //Initialisation de la scene
     sceneJeu = new QGraphicsScene(0,0,1350,700);
     //Chargement du décor
@@ -41,9 +47,9 @@ void HazelGame::initialiseSceneJeu(){
     ennemisTues = 0;
     nbMonstresATuer = 5;
 
-//    labCompteur = new QLabel();
-//    labCompteur->setNum(ennemisTues);
-//    sceneJeu->addWidget(labCompteur);
+    labCompteur = new QLabel();
+    labCompteur->setNum(ennemisTues);
+    sceneJeu->addWidget(labCompteur);
 
     //On place l'image des pouvoirs juste à côté des barres de vie et de mana
     basic->setPos(sprite->getHPMax()->x() + 300, sprite->getHPMax()->y() + 20);

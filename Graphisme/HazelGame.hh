@@ -45,8 +45,6 @@ public slots:
     void spawnEnnemis();
     void rejouer();
 private:
-    //Scene Intro
-
     //Scene Menu
     Menu* menu;
 
@@ -66,5 +64,4 @@ private:
 
     //Scene Game Over
     QGraphicsScene* sceneGameOver;
-
 };
