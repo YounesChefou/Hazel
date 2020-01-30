@@ -96,6 +96,7 @@ void Joueur::recupMana(int recup)
     }
 }
 
+//Retourne une chaine de caractères avec des informations sur le joueur
 std::string Joueur::toString(){
     std::stringstream str;
     str << "=========================" << std::endl;
