@@ -4,8 +4,7 @@
 //Constructeur
 SpriteMonstre::SpriteMonstre(Monstre* m){
     monstre = m;
-    QPixmap spriteStd("../Ressources/ennemiFeu.png");
-    setPixmap(spriteStd);
+    attribueSprite();
     monstreHPMax = new Barre(m->getVieMax(), x(), y() - 10, Qt::black);
     monstreHP = new Barre(m->getVie(), x(), y() - 10, Qt::red);
     direction = 0;
@@ -13,10 +12,30 @@ SpriteMonstre::SpriteMonstre(Monstre* m){
     //Chaque fois que le timer arrive à zero, on appelle deplacement
     connect(timer, SIGNAL(timeout()), this, SLOT(deplacement()));
 
-    timer->start(20); //Toutes les 10ms
+    timer->start(10); //Toutes les 10ms
 }
 
 SpriteMonstre::~SpriteMonstre(){}
+
+//Attribue au monstre l'apparence qui lui convient
+void SpriteMonstre::attribueSprite(){
+    QPixmap spriteFeu("../Ressources/ennemiFeu.png");
+    QPixmap spriteGlace("../Ressources/ennemiGlace.png");
+    QPixmap spriteOmbre("../Ressources/ennemiOmbre.png");
+
+    switch(monstre->getForce()){
+        case FEU:
+            setPixmap(spriteFeu);
+            break;
+        case GLACE:
+            setPixmap(spriteGlace);
+            break;
+        case POISON:
+            setPixmap(spriteOmbre);
+            break;
+    }
+
+}
 
 //Deplace le sprite Monstre et sa barre de vie à la position indiquée
 void SpriteMonstre::setPosition(int x, int y){

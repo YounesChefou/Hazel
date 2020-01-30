@@ -15,8 +15,7 @@ SOURCES += \
     SpriteJoueur.cc \
     SpriteMonstre.cc \
     Vie.cc \
-    Menu.cc \
-    Intro.cc
+    Menu.cc
 
 HEADERS += \
     ../Jeu/Feu.hh \
@@ -33,5 +32,4 @@ HEADERS += \
     SpriteJoueur.hh \
     SpriteMonstre.hh \
     Vie.hh \
-    Menu.hh \
-    Intro.hh
+    Menu.hh

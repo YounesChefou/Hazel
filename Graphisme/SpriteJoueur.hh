@@ -21,12 +21,11 @@ public:
     Barre* getHP(){return HP;}
     Barre* getMPMax(){return MPMax;}
     Barre* getMP(){return MP;}
+    Pouvoir* getPicto(){return pictoAttaque;}
     void setHP(int vie){return HP->setBarre(vie);}
     void setMP(int mana){return MP->setBarre(mana);}
     void recupererVie(int recup);
     void recupererMana(int recup);
-    void keyPressEvent(QKeyEvent *event);
-    // void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void changerSprite(int element);
     void spriteTransformation();
 private:

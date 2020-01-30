@@ -6,13 +6,21 @@
 #include "Vie.hh"
 #include "Mana.hh"
 #include <vector>
+#include <QTimer>
+#include <QLabel>
+#include "Menu.hh"
 
 class HazelGame : public QGraphicsView
 {
     Q_OBJECT
 public:
+    //Constructeur
     HazelGame();
+    //Destructeur
     ~HazelGame();
+
+    //Méthodes Jeu
+    void initialiseSceneJeu();
     void ajouterVie(int recup, int x, int y);
     void ajouterMana(int recup, int x, int y);
     void ajouterMonstre(SpriteMonstre* m, int x, int y);
@@ -21,15 +29,42 @@ public:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void effacerMorts();
-    QGraphicsScene* getScene(){return scene;}
+    void spawnObjets(int x, int y);
+    void finDePartie(int resultat);
+    void desactiveToutJeu();
+    void reactiveToutJeu();
+    //Méthode Game Over
+
 public slots:
+    //Méthodes de Jeu appelées de manière répétés
     void previentMonstres();
     void joueurInvincible();
     void joueurTransforme();
+    void depletionMana();
+    void remplissageMana();
+    void spawnEnnemis();
+    void rejouer();
 private:
-    QGraphicsScene* scene;
+    //Scene Intro
+
+    //Scene Menu
+
+
+    //Scene jeu
+    QGraphicsScene* sceneJeu;
     SpriteJoueur* sprite;
+    QTimer* timerMouv;
+    QTimer* timerMana1;
+    QTimer* timerMana2;
+    QTimer* timerEnnemi;
+    QLabel* labCompteur; //Affichage du compteur d'ennemis tués
+    int ennemisTues;
+    int nbMonstresATuer;
     std::vector<Vie*> objetsVie;
     std::vector<Mana*> objetsMana;
     std::vector<SpriteMonstre*> monstres;
+
+    //Scene Game Over
+    QGraphicsScene* sceneGameOver;
+    Menu* menu;
 };
