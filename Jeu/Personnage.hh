@@ -2,7 +2,7 @@
 #include <iostream>
 
 //Nouveau type Statut qui contient les différents pouvoirs, forces et faiblesses
-typedef enum {PHYSIQUE, FEU, POISON, SOIN, GLACE, AUCUNE} Statut;
+typedef enum {PHYSIQUE, FEU, POISON, SOIN, GLACE} Statut;
 
 //Operateur pour permettre d'afficher un Statut
 inline std::ostream& operator<<(std::ostream& out, const Statut& stat)
@@ -23,9 +23,6 @@ inline std::ostream& operator<<(std::ostream& out, const Statut& stat)
         case GLACE:
             out << "GLACE";
             break;
-        case AUCUNE:
-            out << "AUCUNE";
-            break;
         default:
             out << "woof";
             break;
@@ -41,10 +38,10 @@ class Personnage{
     //Personnage(int v):vie(v), vieMax(200){}
 
     //Méthodes
-    bool estMort(){return vie <= 0 ? true : false;}
     std::string virtual toString() = 0;
     void virtual attaque(Personnage* p) = 0;
 
+    bool estMort(){return vie <= 0 ? true : false;}
     //Retire des pts de vie au ersonnage
     //degats : pts de vie perdus
     void perdVie(int degats){
