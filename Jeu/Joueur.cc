@@ -68,7 +68,7 @@ void Joueur::transformation(){
     if(estTransforme()){
      transforme = false;
     }
-    else if(getMana() > 15){
+    else if(getMana() > 15 && getAttaque() != 0){
         transforme = true;
     }
 }
