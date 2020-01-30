@@ -20,3 +20,14 @@ Glace::Glace(int v){ //:Monstre(v, FEU, GLACE, "BLEUE"){
 }
 
 Glace::~Glace(){}
+
+std::string Glace::toString()
+    {
+        std::stringstream str;
+        str << "=========================" << std::endl;
+        str << "L'ennemi Glace a " << vie << " sur " << vieMax << std::endl;
+        str << "Force : " << force << std::endl;
+        str << "Faiblesse : " << faiblesse << std::endl;
+        str << "=========================" << std::endl;
+        return str.str();
+    }

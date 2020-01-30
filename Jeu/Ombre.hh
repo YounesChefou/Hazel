@@ -6,4 +6,5 @@ public:
   Ombre(int v);
   Ombre();
   ~Ombre();
+  std::string toString();
 };

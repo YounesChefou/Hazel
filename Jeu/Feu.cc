@@ -24,21 +24,13 @@ Feu::Feu(int v){ //:Monstre(v, GLACE, FEU, "ROUGE"){
 
 Feu::~Feu(){}
 
-//Permet au Monstre d'attaquer le joueur j
-//void Feu::attaque(Personnage* p){
-//    Joueur* j = (Joueur*) p;
-//    if((j->getElement())["FEU"] == j->getAttaque()){
-//    //if(j->getElement() == FEU){
-//    //if(getForce() == "FEU"){
-//    // if(1){
-//            j->perdVie(30);
-//    }
-//    else if((j->getElement())["GLACE"] == j->getAttaque()){
-//    //else if(j->getElement() == GLACE){
-//        j->perdVie(10);
-//    }
-//    else{
-//        j->perdVie(15);
-//    }
-//    //}
-//}
+std::string Feu::toString()
+    {
+        std::stringstream str;
+        str << "=========================" << std::endl;
+        str << "L'ennemi Glace a " << vie << " sur " << vieMax << std::endl;
+        str << "Force : " << force << std::endl;
+        str << "Faiblesse : " << faiblesse << std::endl;
+        str << "=========================" << std::endl;
+        return str.str();
+    }

@@ -7,4 +7,6 @@ public:
   Glace();
   Glace(int v);
   ~Glace();
+  std::string toString();
+
 };

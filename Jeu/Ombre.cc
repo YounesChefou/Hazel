@@ -21,3 +21,14 @@ Ombre::Ombre(int v){//:Monstre(v, SOIN, PHYSIQUE, "NOIRE"){}
 }
 
 Ombre::~Ombre(){}
+
+std::string Ombre::toString()
+    {
+        std::stringstream str;
+        str << "=========================" << std::endl;
+        str << "L'ennemi Ombre a " << vie << " sur " << vieMax << std::endl;
+        str << "Force : " << force << std::endl;
+        str << "Faiblesse : " << faiblesse << std::endl;
+        str << "=========================" << std::endl;
+        return str.str();
+    }

@@ -7,4 +7,5 @@ public:
   Feu(int v);
   Feu();
   ~Feu();
+  std::string toString();
 };
