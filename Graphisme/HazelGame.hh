@@ -48,7 +48,7 @@ private:
     //Scene Intro
 
     //Scene Menu
-
+    Menu* menu;
 
     //Scene jeu
     QGraphicsScene* sceneJeu;
@@ -66,5 +66,5 @@ private:
 
     //Scene Game Over
     QGraphicsScene* sceneGameOver;
-    Menu* menu;
+
 };
