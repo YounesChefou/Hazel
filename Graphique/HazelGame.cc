@@ -39,7 +39,7 @@ void HazelGame::initialiseSceneJeu(){
     sceneJeu->addItem(sprite->getMP());
 
     ennemisTues = 0;
-    nbMonstresATuer = 5;
+    nbMonstresATuer = 20;
 
     //On place l'image des pouvoirs juste à côté des barres de vie et de mana
     basic->setPos(sprite->getHPMax()->x() + 300, sprite->getHPMax()->y() + 20);
