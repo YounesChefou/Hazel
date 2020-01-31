@@ -364,16 +364,13 @@ void HazelGame::finDePartie(int i){
     switch(i){
         case 0:
             std::cout << "Vous avez perdu :(" << std::endl;
-            //desactiveToutJeu();
             sceneGameOver = new QGraphicsScene(0,0,1350,700);
             sceneGameOver->setBackgroundBrush(ecranOver.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
             desactiveToutJeu();
             setScene(sceneGameOver);
-            QTimer::singleShot(2000, this, SLOT(rejouer()));
             break;
         case 1:
             std::cout << "Victoire woo" << std::endl;
-            //desactiveToutJeu();
             sceneGameOver = new QGraphicsScene(0,0,1350,700);
             sceneGameOver->setBackgroundBrush(ecranVictoire.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
             desactiveToutJeu();
@@ -399,20 +396,21 @@ void HazelGame::desactiveToutJeu(){
         sceneJeu->removeItem(monstres[i]->getMonstreHPMax());
         sceneJeu->removeItem(monstres[i]->getMonstreHP());
         sceneJeu->removeItem(monstres[i]);
-        monstres.erase(monstres.begin()+i);
     }
+    monstres.clear();
 
     //On retire tous les objets
     int nbObjets = objetsVie.size();
     for(int i = 0; i < nbObjets; i++){
         sceneJeu->removeItem(objetsVie[i]);
-        objetsVie.erase(objetsVie.begin()+i);
     }
+    objetsVie.clear();
+
     nbObjets = objetsMana.size();
     for(int i = 0; i < nbObjets; i++){
         sceneJeu->removeItem(objetsMana[i]);
-        objetsMana.erase(objetsMana.begin()+i);
     }
+    objetsMana.clear();
 
     //On remet le personnage du joueur par défaut
     Joueur* j = sprite->getJoueur();
