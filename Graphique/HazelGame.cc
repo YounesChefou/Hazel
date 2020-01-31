@@ -10,8 +10,6 @@
 HazelGame::HazelGame()
 {
     menu = new Menu();
-    QPixmap pix = menu->getPix();
-    menu->setBackgroundBrush(pix.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
     setScene(menu);
 }
 
@@ -423,6 +421,7 @@ void HazelGame::desactiveToutJeu(){
     j->setVie(j->getVieMax());
     j->setMana(j->getManaMax());
     sprite->setHP(j->getVie());
+    sprite->setMP(j->getMana());
 }
 
 //Reactive les elements de la scène Jeu

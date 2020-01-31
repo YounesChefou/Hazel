@@ -44,7 +44,7 @@ public slots:
     void rejouer();
 private:
     //Scene Menu
-    Menu* menu();
+    Menu* menu;
 
     //Scene jeu
     QGraphicsScene* sceneJeu;

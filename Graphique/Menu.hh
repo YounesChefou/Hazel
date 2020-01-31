@@ -10,9 +10,7 @@
 class Menu : public QGraphicsScene{
 public:
     Menu();
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    bool getPress(){return press;}
     QPixmap getPix(){return pix;}
 private:
-    QPixmap* pix;
+    QPixmap pix;
 };
