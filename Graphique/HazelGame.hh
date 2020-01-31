@@ -2,9 +2,9 @@
 #include <QGraphicsScene>
 #include "SpriteJoueur.hh"
 #include "SpriteMonstre.hh"
-//#include "Objet.hh"
 #include "Vie.hh"
 #include "Mana.hh"
+#include "Menu.hh"
 #include <vector>
 #include <QTimer>
 #include <QLabel>
@@ -43,10 +43,8 @@ public slots:
     void spawnEnnemis();
     void rejouer();
 private:
-    //Scene Intro
-
     //Scene Menu
-
+    Menu* menu();
 
     //Scene jeu
     QGraphicsScene* sceneJeu;

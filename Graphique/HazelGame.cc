@@ -9,14 +9,16 @@
 //Constructeur
 HazelGame::HazelGame()
 {
-    initialiseSceneJeu();
+    menu = new Menu();
+    QPixmap pix = menu->getPix();
+    menu->setBackgroundBrush(pix.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+    setScene(menu);
 }
 
 HazelGame::~HazelGame(){}
 
 //Initialise le jeu
 void HazelGame::initialiseSceneJeu(){
-
     //Initialisation de la scene
     sceneJeu = new QGraphicsScene(0,0,1350,700);
     //Chargement du décor
@@ -443,7 +445,10 @@ void HazelGame::rejouer(){
 }
 
 void HazelGame::keyPressEvent(QKeyEvent *event){
-    if(scene() == sceneGameOver){
+    if(scene() == menu){
+        initialiseSceneJeu();
+    }
+    else if(scene() == sceneGameOver){
         switch(event->key()){
             case Qt::Key_Space:
                 rejouer();
