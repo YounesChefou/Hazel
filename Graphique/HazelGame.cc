@@ -41,10 +41,6 @@ void HazelGame::initialiseSceneJeu(){
     ennemisTues = 0;
     nbMonstresATuer = 5;
 
-//    labCompteur = new QLabel();
-//    labCompteur->setNum(ennemisTues);
-//    sceneJeu->addWidget(labCompteur);
-
     //On place l'image des pouvoirs juste à côté des barres de vie et de mana
     basic->setPos(sprite->getHPMax()->x() + 300, sprite->getHPMax()->y() + 20);
 
@@ -81,6 +77,27 @@ void HazelGame::mouseMoveEvent(QMouseEvent *event)
     sprite->setPos(x,y);
     collisionsObjets();
     collisionsMonstres();
+}
+
+//Transformation du joueur avec un clic gauche
+//Changement d'element avec un clic droit
+void HazelGame::mousePressEvent(QMouseEvent *event){
+    Joueur* j = sprite->getJoueur();
+    Pouvoir* p = sprite->getPicto();
+
+    switch(event->button()){
+        case Qt::LeftButton:
+            joueurTransforme();
+            break;
+        case Qt::RightButton:
+            j->changerElement();
+            p->changerPicto(j->getAttaque());
+            if(j->estTransforme()) sprite->changerSprite(j->getAttaque());
+            break;
+        default:
+            std::cout << "Me and Michael" << std::endl;
+        break;
+    }
 }
 
 //Ajoute un objet Vie dans la scene à la position (x,y)
@@ -195,26 +212,21 @@ void HazelGame::collisionsMonstres(){
             if(persoJoueur->estTransforme()){//Le joueur attaque
                 persoJoueur->attaque(monstre);
                 monstres[i]->setMonstreHP(monstre->getVie());
-                std::cout << monstre->toString() << std::endl;
-                std::cout << "Attaque contre ennemi" << std::endl;
             }
             else{//Le Monstre attaque
                 monstre->attaque(persoJoueur);
                 sprite->setHP(persoJoueur->getVie());
-                std::cout << persoJoueur->toString() << std::endl;
-                std::cout << "Attaque contre joueur" << std::endl;
                 if(persoJoueur->estMort()){
                     finDePartie(0);
                     return;
                 }
-                else if(!persoJoueur->estInvincible()){ //On rend le joueur invincible pendant 2 secondes
+                else if(!persoJoueur->estInvincible()){ //On rend le joueur invincible pendant 1 seconde
                     joueurInvincible();
                     QTimer::singleShot(1000, this, SLOT(joueurInvincible()));
                 }
             }
         }
     }
-
 
     effacerMorts();
 }
@@ -278,7 +290,7 @@ void HazelGame::spawnEnnemis(){
     if( monstres.size() >= 4 /*|| ((ennemisTues + monstres.size() + 1) > nbMonstresATuer)*/ ) return; //Pas plus de quatre monstres à la fois
 
     srand(time(NULL));
-    int spawn = rand() % 2;
+    int spawn = rand() % 3;
     int position = rand() % 3;
     Monstre* M;
     switch(spawn) {
@@ -344,32 +356,11 @@ void HazelGame::remplissageMana(){
     }
 }
 
-//Transformation du joueur avec un clic gauche
-//Changement d'element avec un clic droit
-void HazelGame::mousePressEvent(QMouseEvent *event){
-    Joueur* j = sprite->getJoueur();
-    Pouvoir* p = sprite->getPicto();
-
-    switch(event->button()){
-        case Qt::LeftButton:
-            joueurTransforme();
-            break;
-        case Qt::RightButton:
-            j->changerElement();
-            p->changerPicto(j->getAttaque());
-            if(j->estTransforme()) sprite->changerSprite(j->getAttaque());
-            break;
-        default:
-            std::cout << "Me and Michael" << std::endl;
-        break;
-    }
-}
-
 //Declenche la fin de la partie
 void HazelGame::finDePartie(int i){
     QPixmap ecranOver("../Ressources/ecranGameOver.png");
     QPixmap ecranVictoire("../Ressources/ecranVictoire.png");
-    //QPushButton* button = new QPushButton("Continue ?");
+
     switch(i){
         case 0:
             std::cout << "Vous avez perdu :(" << std::endl;
@@ -377,8 +368,6 @@ void HazelGame::finDePartie(int i){
             sceneGameOver = new QGraphicsScene(0,0,1350,700);
             sceneGameOver->setBackgroundBrush(ecranOver.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
             desactiveToutJeu();
-            // sceneGameOver->addWidget(button);
-            // connect(button, SIGNAL(clicked()), this, SLOT(rejouer()));
             setScene(sceneGameOver);
             QTimer::singleShot(2000, this, SLOT(rejouer()));
             break;
@@ -388,9 +377,6 @@ void HazelGame::finDePartie(int i){
             sceneGameOver = new QGraphicsScene(0,0,1350,700);
             sceneGameOver->setBackgroundBrush(ecranVictoire.scaled(1350,700,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
             desactiveToutJeu();
-            //sceneGameOver->addWidget(button);
-            //connect(button, SIGNAL(clicked()), this, SLOT(rejouer()));
-            QTimer::singleShot(3000, this, SLOT(rejouer()));
             setScene(sceneGameOver);
             break;
     }
@@ -409,13 +395,24 @@ void HazelGame::desactiveToutJeu(){
 
     //On retire tous les monstres
     int nbMonstres = monstres.size();
-    for(int i = 0; i < nbMonstres; i++) monstres.erase(monstres.begin()+i);
+    for(int i = 0; i < nbMonstres; i++){
+        sceneJeu->removeItem(monstres[i]->getMonstreHPMax());
+        sceneJeu->removeItem(monstres[i]->getMonstreHP());
+        sceneJeu->removeItem(monstres[i]);
+        monstres.erase(monstres.begin()+i);
+    }
 
     //On retire tous les objets
     int nbObjets = objetsVie.size();
-    for(int i = 0; i < nbObjets; i++) objetsVie.erase(objetsVie.begin()+i);
+    for(int i = 0; i < nbObjets; i++){
+        sceneJeu->removeItem(objetsVie[i]);
+        objetsVie.erase(objetsVie.begin()+i);
+    }
     nbObjets = objetsMana.size();
-    for(int i = 0; i < nbObjets; i++) objetsMana.erase(objetsMana.begin()+i);
+    for(int i = 0; i < nbObjets; i++){
+        sceneJeu->removeItem(objetsMana[i]);
+        objetsMana.erase(objetsMana.begin()+i);
+    }
 
     //On remet le personnage du joueur par défaut
     Joueur* j = sprite->getJoueur();
@@ -445,4 +442,17 @@ void HazelGame::rejouer(){
     ennemisTues = 0;
     setScene(sceneJeu);
     reactiveToutJeu();
+}
+
+void HazelGame::keyPressEvent(QKeyEvent *event){
+    if(scene() == sceneGameOver){
+        switch(event->key()){
+            case Qt::Key_Space:
+                rejouer();
+                break;
+            default:
+                break;
+        }
+    }
+
 }

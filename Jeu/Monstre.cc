@@ -17,3 +17,12 @@ void Monstre::attaque(Personnage *p){
         j->perdVie(15);
     }
 }
+
+std::string Monstre::toString()
+    {
+        std::stringstream str;
+        str << "=========================" << std::endl;
+        str << "L'ennemi a " << vie << " sur " << vieMax << std::endl;
+        str << "=========================" << std::endl;
+        return str.str();
+    }

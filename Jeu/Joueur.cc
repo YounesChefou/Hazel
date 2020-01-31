@@ -32,7 +32,6 @@ Joueur::Joueur(int v, int m){//:Personnage(v){
 }
 
 //Permet au Joueur d'attaquer le Monstre M
-//Si le joueur utilise SOIN, le monstre recupère 20 pts de vie
 //Si le joueur utilise une attaque correspondante à la force du Monstre, alors
 //le monstre recupère 2 pts de vie, si l'attaque correspond à sa faiblesse, 60 pts de vie
 //Si elle ne correspond à aucun des deux, 20 pts de vie
@@ -51,7 +50,6 @@ void Joueur::attaque(Personnage *p){
             p->perdVie(20);
         }
 
-   // std::cout << p->toString() << std::endl;
 }
 
 //Permet au joueur de changer le type d'élèment selectionné actuellement

@@ -1,6 +1,7 @@
 #include "Ombre.hh"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <sstream>
 
 Ombre::Ombre(){//:Monstre(200, SOIN, PHYSIQUE, "NOIRE"){}
     srand (time(NULL));

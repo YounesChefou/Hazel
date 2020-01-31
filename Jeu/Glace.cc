@@ -1,6 +1,7 @@
 #include "Glace.hh"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <sstream>
 
 Glace::Glace(){//:Monstre(200, FEU, GLACE, "BLEUE"){
    srand (time(NULL));

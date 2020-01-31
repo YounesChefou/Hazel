@@ -32,8 +32,7 @@ public:
     void finDePartie(int resultat);
     void desactiveToutJeu();
     void reactiveToutJeu();
-    //Méthode Game Over
-
+    void keyPressEvent(QKeyEvent *event);
 public slots:
     //Méthodes de Jeu appelées de manière répétés
     void previentMonstres();
@@ -56,7 +55,6 @@ private:
     QTimer* timerMana1;
     QTimer* timerMana2;
     QTimer* timerEnnemi;
-    QLabel* labCompteur; //Affichage du compteur d'ennemis tués
     int ennemisTues;
     int nbMonstresATuer;
     std::vector<Vie*> objetsVie;
