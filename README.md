@@ -8,7 +8,7 @@
 - fumée violette pour POISON,
 - fumée verte pour SOIN.
 
-Le but du jeu est d’utiliser ces divers fumées à bon escient afin de venir à bout des monstres qui envahissent l’écran. Chaque monstre a une force et une faiblesse qui correspondent elles aussi à un élément. Pour vaincre un ennemi, le Joueur doit se transformer et utiliser la fumée qui a pour élément la faiblesse du Monstre.
+Le but du jeu est d’utiliser ces diverses fumées à bon escient afin de venir à bout des monstres qui envahissent l’écran. Chaque monstre a une force et une faiblesse qui correspondent elles aussi à un élément. Pour vaincre un ennemi, le Joueur doit se transformer et utiliser la fumée qui a pour élément la faiblesse du Monstre.
 Par exemple, pour tuer un Monstre Feu, le Joueur utilise la fumée bleue, s’il utilise la fumée rouge, le Monstre récupère de la vie.
 Être transformé épuise la Mana (points de magie) et le Joueur se “détransforme” dès que celle-ci est entièrement vide. 
 
